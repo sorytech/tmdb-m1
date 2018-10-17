@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {TmdbService} from './tmdb.service';
+import {TmdbService} from './services/tmdb/tmdb.service';
 import {MovieResponse} from './tmdb-data/Movie';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth, User} from 'firebase';
@@ -28,7 +28,7 @@ export class AppComponent {
     setTimeout( () =>
       tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
           .getMovie(13)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movie = m) )
+          .then( (m: MovieResponse) => console.log('Movie 13: ', this._movie = m) )
           .catch( err => console.error('Error getting movie:', err) ),
       1000 );
 
