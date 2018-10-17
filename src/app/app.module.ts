@@ -8,10 +8,14 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { ListComponent } from './components/list/list.component';
+import { SortListPipe } from './pipes/sort-list.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListComponent,
+    SortListPipe
   ],
   imports: [
     BrowserModule,
