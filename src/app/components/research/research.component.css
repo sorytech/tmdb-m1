@@ -1,0 +1,13 @@
+/deep/ .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0 0 1em 0;
+}
+
+/deep/ .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0;
+}
+
+.search-container {
+    width: 100%;
+    text-align: center;
+    background: white
+}
