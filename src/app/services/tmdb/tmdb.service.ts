@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {MovieQuery, MovieResponse} from '../../tmdb-data/Movie';
+import {MovieQuery, MovieResponse, MovieGenre} from '../../tmdb-data/Movie';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {PersonQuery, PersonResponse} from '../../tmdb-data/Person';
 import {SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie';
@@ -53,6 +53,19 @@ export class TmdbService {
     const res = await this.get<SearchMovieResponse>(url, query);
     return res.body;
   }
+  /** moi : renvoie les films poulaires */
+  async getPopular(options?: MovieQuery): Promise<MovieResponse[]> {
+    const url = `${tmdbApi}/movie/popular?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US&page=1`;
+    const res = await this.get<MovieResponse[]>(url,options);
+    return res.body;
+  }
+
+  /* moi : renvoie tous les genres de film qui existent dans la base */
+  async getGenre(options?: MovieQuery): Promise<MovieGenre[]>{
+    const url = `${tmdbApi}/genre/movie/list?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US`;
+    const res = await this.get<MovieGenre[]>(url,options);
+    return res.body;
+  }
 
   // _______________________________________________________________________________________________________________________________________
   // Person / People _______________________________________________________________________________________________________________________
@@ -83,5 +96,7 @@ export class TmdbService {
     const res = await this.get<SearchTVResponse>(url, query);
     return res.body;
   }
+
+
 
 }

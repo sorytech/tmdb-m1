@@ -40,10 +40,19 @@
                 <mat-icon style="font-size: 40px; margin-bottom: 35px;" class="item-icon">play_circle_filled</mat-icon>
             </div>
 
+            <!--label class="label" for="item">Genre :</label>
+        <div class="genre-name" *ngFor="let genre of current.genres">
+            {{genre.name}}             
+        </div-->
+    
             <div class="film-content-genre">
-                <label for="genre" class="genre-label">Genre : </label>
-                <span id="genre">{{currentFilm.genres[0].name}}</span>
-                <span class="out-date">Sorti le : {{currentFilm.release_date}}</span>
+                <label for="genre">Genre : </label>
+                <div class="genre-name" *ngFor="let genre of currentFilm.genres; let i = index">
+                    {{genre.name}}
+                    <div class="genre-name" *ngIf="currentFilm.genres.length > i+1"> ,</div> 
+                </div>
+                <br><br>
+                <span class="out-date">Sortit le : {{currentFilm.release_date}}</span>
                 <label for="note" class="note-label">Note : </label>
                 <span id="note">{{currentFilm.vote_average}}</span>
             </div>

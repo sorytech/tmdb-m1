@@ -162,12 +162,13 @@ margin-bottom: 100px;
     width: 86%;
 }
 
-#genre {
-    font-weight: 700;
-}
-.genre-label {
 
+.film-content-genre .genre-name{
+    font-size: small;
+    font-weight: 500;
+    display: inline ;
 }
+
 .out-date {
     font-size: small;
     margin-left: 76px;

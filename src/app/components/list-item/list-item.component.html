@@ -7,22 +7,26 @@
 
         <div class="item-head">
             <span class="item-title">{{film.original_title}}</span>
-            <span class="item-date">Sorti le {{film.release_date}}</span>
+            <span class="item-date">Sortit le {{film.release_date}}</span>
         </div>
 
         <br>
 
-        <div class="item-details">
+        <div class="item-details"  >
             <label class="label" for="item">Réalisé par : </label>
             <a class="label-value" name="item">Hardy Nkouka</a><br>
             <label class="label" for="item">Avec : </label>
             <a class="label-value" name="item">Jean Paul, Dialo, Ali, ...</a><br>
-            <label class="label" for="item">Genre : </label>
-            <a class="label-value" name="item">Drame</a><br>
         </div>
 
-        <span class="label-value">Synopsis</span>
+        <label class="label" for="item">Genre :</label>
+        <div class="genre-name" *ngFor="let genre of current.genres; let i = index">
+            {{genre.name}}
+            <div class="genre-name" *ngIf="current.genres.length > i+1"> ,</div>               
+        </div>
+        <br>
 
+        <span class="label-value">Synopsis</span>
         <div class="synopsis-content">
             {{film.overview}}
         </div>

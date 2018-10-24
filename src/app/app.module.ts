@@ -1,4 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms'
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
@@ -28,6 +29,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { GenreFilterComponent } from './components/genre-filter/genre-filter.component';
 
 
 
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
         ListItemComponent,
         ResearchComponent,
         ListViewComponent,
-        FIlmComponent
+        FIlmComponent,
+        GenreFilterComponent
     ],
     imports: [
         BrowserModule,
@@ -66,6 +69,7 @@ const appRoutes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatProgressSpinnerModule,
+        FormsModule
     ],
     providers: [TmdbService, FilmService],
     exports: [ResearchComponent],

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import {Film} from '../../modeles/myModeles';
+import { MovieResponse, MovieGenre } from 'src/app/tmdb-data/Movie';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,11 @@ export class FilmService {
         return this.httpClient.get(this.url_movie + `movie/latest?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US`);
     }
     getPopularMovies() {
-        return this.httpClient.get<Film[]>(this.url_movie + `movie/popular?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US&page=1`);
+        return this.httpClient.get<MovieResponse[]>(this.url_movie + `movie/popular?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US&page=1`);
+    }
+
+    getGenreMovies(){
+        return this.httpClient.get<MovieGenre[]>(this.url_movie + `genre/movie/list?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US`);
     }
 
    /* search(term: string): Observable<Film[]> {

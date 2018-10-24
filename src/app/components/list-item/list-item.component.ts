@@ -1,5 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Film} from '../../modeles/myModeles';
+import { Component, Input, OnInit } from '@angular/core';
+import { Film } from '../../modeles/myModeles';
+import { MovieResponse, MovieGenre } from 'src/app/tmdb-data/Movie';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
+import { FilmService } from 'src/app/services/movies/film.service';
 
 @Component({
   selector: 'app-list-item',
@@ -8,15 +11,38 @@ import {Film} from '../../modeles/myModeles';
 })
 export class ListItemComponent implements OnInit {
 
-  @Input()film: Film;
+  @Input() film: MovieResponse;
 
-  constructor() { }
+  public current : MovieResponse={};
+
+ 
+  public genresResults : MovieGenre[];
+
+  constructor(private tmdb: TmdbService) { }
 
   ngOnInit() {
-  }
+    
 
-  onSelect () {
-    console.log('séléctioné : ', this.film.id);
-  }
+    /*this._FService.getGenreMovies()
+        .subscribe((genre: MovieGenre[]) => {
+            console.log("filmTitle",  this.film.title);
 
+            //this.genresResults = genre;
+            //console.log("film",this.film);
+            //console.log("genres",this.film.genres);
+
+            },
+            (error) => console.log(error)
+        );*/
+        console.log("les genres du film",this.film);
+        this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
+                    .getMovie(Number(this.film.id))
+                    .then((m: MovieResponse) => {
+                        this.current = m;
+                        console.log("genre du film dans liste");
+                        for(let i in this.current.genres){
+                            console.log(this.current.genres[i].name);
+                        }   
+                    }).catch(err => console.error('Error getting movie:', err));
+  }
 }

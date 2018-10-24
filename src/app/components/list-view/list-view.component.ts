@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Film} from '../../modeles/myModeles';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FilmService} from '../../services/movies/film.service';
+import { MovieResponse } from 'src/app/tmdb-data/Movie';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 @Component({
     selector: 'app-list-view',
@@ -10,14 +10,15 @@ import {FilmService} from '../../services/movies/film.service';
 })
 export class ListViewComponent implements OnInit {
 
-    @Input() films: Film[] = [];
+    @Input() films: MovieResponse[] = [];
 
-    constructor(private _FService: FilmService, private route: ActivatedRoute, private router: Router) {
+    constructor(private _FService: TmdbService, private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
-        this._FService.getPopularMovies()
-            .subscribe((movie: any[]) => {
+        this._FService.init('384da4d1d38ad08447d757fb4629fa6b')
+            .getPopular()
+            .then((movie: any[]) => {
                     this.films = movie['results'];
                 },
                 (error) => console.log('Erreur lors du téléchargement : ', error)

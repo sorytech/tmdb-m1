@@ -25,7 +25,6 @@ export class MainPageComponent implements OnInit {
 
     constructor(private _FService: FilmService, private route: ActivatedRoute, private router: Router, private _userSercive: UserService) {
     }
-
     ngOnInit() {
         this._FService.getPopularMovies()
         .subscribe((movie: any[]) => {

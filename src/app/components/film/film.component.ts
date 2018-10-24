@@ -27,8 +27,13 @@ export class FIlmComponent implements OnInit {
                 this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
                     .getMovie(Number(this.id))
                     .then((m: MovieResponse) => {
-                        console.log('getFilm : ', this.currentFilm);
                         this.currentFilm = m;
+                        console.log("genre du film selectionne");
+                        for(let i in this.currentFilm.genres){
+                            console.log(this.currentFilm.genres[i].name);
+                        }
+                        
+                        
                     })
                     .catch(err => console.error('Error getting movie:', err)),
             1000);

@@ -22,23 +22,38 @@
 
     <div class="left-panel">
         <div class="left-panel-tite">Genre</div>
+        
         <div class="left-panel-controls">
             <section>
-                <mat-checkbox class="left-panel_controls-item">Action</mat-checkbox><br>
-                <mat-checkbox class="left-panel_controls-item">Drame</mat-checkbox><br>
-                <mat-checkbox class="left-panel_controls-item">Comedie</mat-checkbox><br>
-                <mat-checkbox class="left-panel_controls-item">Sci-fy</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="checkedAction" class="left-panel_controls-item">Action</mat-checkbox><br>
+                    <div *ngIf="checkedAction">
+                      Action is checked
+                    </div>
+                  <mat-checkbox [(ngModel)]="checkedDrame" class="left-panel_controls-item" >Drame</mat-checkbox><br>
+                      <div *ngIf="checkedDrame">
+                          Drame is checked
+                      </div>
+                  <mat-checkbox [(ngModel)]="checkedComedie" class="left-panel_controls-item">Comedie</mat-checkbox><br>
+                      <div *ngIf="checkedComedie">
+                          Comedie is checked
+                      </div>
+                  <mat-checkbox [(ngModel)]="checkedScienceFiction" class="left-panel_controls-item">Sci-fy</mat-checkbox>
+                      <div *ngIf="checkedScienceFiction">
+                          Science-fiction is checked
+                  </div>
             </section>
         </div>
-        <div class="left-panel-tite">Durée</div>
-        <div class="mat-slider-container">
-            <mat-slider
-                    thumbLabel
-                    [displayWith]="formatLabel"
-                    tickInterval="1000"
-                    min="1"
-                    max="100000">
-            </mat-slider>
+        <div class="left-panel">
+            <div class="left-panel-tite">Durée</div>
+            <div class="mat-slider-container">
+                <mat-slider
+                        thumbLabel
+                        [displayWith]="formatLabel"
+                        tickInterval="1000"
+                        min="1"
+                        max="100000">
+                </mat-slider>
+            </div>
         </div>
     </div>
 
