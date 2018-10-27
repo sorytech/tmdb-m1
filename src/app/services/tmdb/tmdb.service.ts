@@ -67,6 +67,28 @@ export class TmdbService {
     return res.body;
   }
 
+  /* moi : pour filter les films */
+  filterMovies(myMovies : MovieResponse[], myGenres: String[],options?: MovieQuery) : MovieResponse[] {
+    var res : MovieResponse[] = [];
+    var tableID : number []=[];
+    
+    /* Pour chaque film, filtrer en fonction des genres */
+    for(let i in myMovies){
+      /* Pour chaque genre du film, on verifie si il se trouve dans myGenres
+      si c'est le cas, on verifie qu'on a pas son id dans tableID pour éviter les doublons
+      avant d'ajouter l'id et d'ajouter le film dans res */
+      for(let j in myMovies[i].genres){
+        if(myGenres.includes(myMovies[i].genres[j].name) ){
+          if(!(tableID.includes(myMovies[i].id))){
+            tableID.push(myMovies[i].id);
+            res.push(myMovies[i]);
+          }
+        }
+      }
+    }
+    return res;
+  }
+
   // _______________________________________________________________________________________________________________________________________
   // Person / People _______________________________________________________________________________________________________________________
   // _______________________________________________________________________________________________________________________________________

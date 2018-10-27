@@ -34,7 +34,6 @@ export class ListItemComponent implements OnInit {
             },
             (error) => console.log(error)
         );*/
-        console.log("les genres du film",this.film);
         this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
                     .getMovie(Number(this.film.id))
                     .then((m: MovieResponse) => {
