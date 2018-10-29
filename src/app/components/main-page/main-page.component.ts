@@ -1,73 +1,104 @@
 import {Component, OnInit, Output} from '@angular/core';
-import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FilmService} from '../../services/movies/film.service';
 import {UserService} from '../../services/users/user.service';
 import {auth, User} from 'firebase';
-import { MovieResponse } from 'src/app/tmdb-data/Movie';
+import { MovieResponse, MovieGenre } from 'src/app/tmdb-data/Movie';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
+import { ListViewComponent } from '../list-view/list-view.component';
 
 @Component({
     selector: 'app-main-page',
     templateUrl: './main-page.component.html',
     styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit { 
 
-    films: MovieResponse[] = [];
+    listeGenres : string[]=[];
 
-    static tableau : Observable<String[]>;
-    static tableGenres : String[]=[];
+    tableauGenres : MovieGenre[]=[];
 
-    @Output() movies: MovieResponse[] = [];
-
-    images: any[] = [];
-
+    lvc : ListViewComponent;
     click = false;
 
     selected = '';
 
-    constructor(private _FService: FilmService, private route: ActivatedRoute, private router: Router, private _userSercive: UserService) {
+    constructor(private tmdbs: TmdbService, private route: ActivatedRoute, private router: Router, private _userSercive: UserService) {
     }
     ngOnInit() {
-        /* pourquoi la méthode getPopularMovies est appelée ici ? */
+        /* pourquoi la méthode getPopularMovies est appelée ici ? 
         this._FService.getPopularMovies()
         .subscribe((movie: any[]) => {
             this.movies = movie['results'];
             },
             (error) => console.log(error)
         );
+        this.tmdbs.init('384da4d1d38ad08447d757fb4629fa6b')
+            .getPopular()
+            .then((movie: any[]) => {
+                MainPageComponent.movies = movie['results'];
+                },
+                (error) => console.log('Erreur lors du téléchargement : ', error)
+            );
+            console.log("yes");*/
+            
     }
-    createObserver(observer) {
-        for(let i in MainPageComponent.tableGenres){
-            observer.next(MainPageComponent.tableGenres[i]);
-        }
-        observer.complete(); 
-    }
+
     /* Dans la fonction addGenre, appeler une methode qui filtre tous les 
     films populaires en fonction des genres qu'on a dans le tableau tableGenres 
     et réafficher les résultats obtenus. Définir la méthode filterMovies dans les 
     services et l'utilisée dans le composant list-view. J'ai aussi déclaré le tableau 
     des genres comme static pour l'utiliser comme paramètre dans le composant list-view.
     filterMovies(myMovies : MovieResponse[], genres: String[],options?: MovieQuery) */
-    addGenre(value : String){
-        if((MainPageComponent.
-            tableGenres.includes(value))){
-            const index: number = MainPageComponent.tableGenres.indexOf(value);
+    addGenre(value : string){
+        if((this.listeGenres.includes(value))){
+            const index: number = this.listeGenres.indexOf(value);
             if (index !== -1) {
-                MainPageComponent.tableGenres.splice(index, 1);
-            }  
-            MainPageComponent.tableGenres.splice;
+                this.listeGenres.splice(index, 1);
+            }
+            /* pour éviter les répétitions */
+            this.tmdbs.tableGenres = this.tmdbs.tableGenres.filter(function( obj ) {
+                return obj.name !== value;
+            });  
         }else{
-            MainPageComponent.tableGenres.push(value);
+            let Id:number=0;
+            let Name: string='';
+            switch(value){
+                case 'Action': Id = 28;
+                    console.log("Action");
+                    break;
+                case 'Drama': Id = 18;
+                    console.log("Drama");
+                    break;
+                case 'Comedy': Id = 35;
+                    console.log("Comedy");
+                    break;
+                default: Id = 878;
+                console.log("scy-fy");
+            }
+            
+            Name=value;
+            console.log("voir le genre",{id: Id,name:Name});
+            this.tmdbs.tableGenres.push({id: Id,name:Name});
+            this.listeGenres.push(value);
+
+            this.tmdbs.genresChoisis = this.listeGenres;
+            
+
         }
-        MainPageComponent.tableau = new Observable()
-        console.log("le tableau genre",MainPageComponent.tableGenres);
-        for(let i in MainPageComponent.tableGenres){
-            console.log("les genres du tableau",MainPageComponent.tableGenres[i]);
-        }
+        
+       
+        this.lvc = new ListViewComponent(this.tmdbs,this.route,this.router);
+        this.lvc.update();
+
+        console.log("le tableau genre",this.listeGenres);
+        console.log("les genres ajoutés",this.tmdbs.tableGenres);
+
     }
 
-    tableau = new Observable(this.createObserver); 
+    getTableauGenres():MovieGenre[]{
+        return this.tableauGenres
+    }
 
     selectedReceiver(event) {
         console.log('JE suis là !!! : ', event.value)

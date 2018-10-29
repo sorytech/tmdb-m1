@@ -26,11 +26,8 @@
         <div class="left-panel-controls">
             <section>
                 <mat-checkbox (change)="addGenre('Action')" [(ngModel)]="checkedAction"  class="left-panel_controls-item">Action</mat-checkbox><br>
-                   
                 <mat-checkbox (change)="addGenre('Drama')" [(ngModel)]="checkedDrame" class="left-panel_controls-item" >Drame</mat-checkbox><br>
-                     
-                <mat-checkbox (change)="addGenre('Comedy')" [(ngModel)]="checkedComedie" class="left-panel_controls-item">Comedy</mat-checkbox><br>
-                      
+                <mat-checkbox (change)="addGenre('Comedy')" [(ngModel)]="checkedComedie" class="left-panel_controls-item">Comedy</mat-checkbox><br>             
                 <mat-checkbox (change)="addGenre('Science Fiction')" [(ngModel)]="checkedScienceFiction" class="left-panel_controls-item">Sci-fy</mat-checkbox>
                     
             </section>
@@ -53,7 +50,6 @@
         <router-outlet></router-outlet>
     </div>
 </div>
-
 
 <mat-menu #menuFilms="matMenu">
     <button mat-menu-item>Item 1</button>

@@ -32,7 +32,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { GenreFilterComponent } from './components/genre-filter/genre-filter.component';
 
 
-
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
     { path: 'mylist', component: ListViewComponent },

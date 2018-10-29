@@ -30,6 +30,7 @@ export interface MovieResponse {
   belongs_to_collection?: Object;
   budget?: number;
   genres?: MovieGenre[];
+  genre_ids?: number[];
   homepage?: string;
   id?: number;
   imdb_id?: string; // pattern: ^tt[0-9]{7}

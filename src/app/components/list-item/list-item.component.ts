@@ -34,14 +34,14 @@ export class ListItemComponent implements OnInit {
             },
             (error) => console.log(error)
         );*/
+
+       
         this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
-                    .getMovie(Number(this.film.id))
-                    .then((m: MovieResponse) => {
-                        this.current = m;
-                        console.log("genre du film dans liste");
-                        for(let i in this.current.genres){
-                            console.log(this.current.genres[i].name);
-                        }   
-                    }).catch(err => console.error('Error getting movie:', err));
+            .getMovie(Number(this.film.id))
+            .then((m: MovieResponse) => {
+            this.current = m;
+         
+        }).catch(err => console.error('Error getting movie:', err));
+
   }
 }

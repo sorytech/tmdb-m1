@@ -21,12 +21,11 @@ export class GenreFilterComponent implements OnInit {
       .then((movie: any[]) => {
         this.myMovies = movie['results'];
 
-      }).catch(error => console.error('Erreur lors du téléchargement : ', error));*/
+      }).catch(error => console.error('Erreur lors du téléchargement : ', error));
 
-      this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
-      .getGenre().then((movie: MovieGenre[]) => {
+      this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b').getGenres().then((movie: MovieGenre[]) => {
       this.genres = movie;
-      }).catch(error => console.log('Erreur lors du téléchargement : ', error)); 
+      }).catch(error => console.log('Erreur lors du téléchargement : ', error)); */
   } 
 
 

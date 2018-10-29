@@ -28,10 +28,10 @@ export class FIlmComponent implements OnInit {
                     .getMovie(Number(this.id))
                     .then((m: MovieResponse) => {
                         this.currentFilm = m;
-                        console.log("genre du film selectionne");
+                        /*console.log("genre du film selectionne");
                         for(let i in this.currentFilm.genres){
                             console.log(this.currentFilm.genres[i].name);
-                        }
+                        }*/
                         
                         
                     })

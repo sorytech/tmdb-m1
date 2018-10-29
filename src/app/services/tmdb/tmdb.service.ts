@@ -6,6 +6,7 @@ import {SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie
 import {SearchPeopleQuery, SearchPeopleResponse} from '../../tmdb-data/SearchPeople';
 import {TVQuery, TVResponse} from '../../tmdb-data/TV';
 import {SearchTVQuery, SearchTVResponse} from '../../tmdb-data/SearchTV';
+import { mapTo } from 'rxjs/operators';
 
 const tmdbApi = 'https://api.themoviedb.org/3';
 type HTTP_METHOD = 'GET' | 'POST' | 'DELETE' | 'PUT';
@@ -31,6 +32,11 @@ export class TmdbService {
       params: {...AlxToObjectString(data), api_key: this.api_key}
     }).toPromise();
   }
+
+
+  tableGenres : MovieGenre[]=[];
+  genresChoisis : string[]=[];
+  filteredMovies : MovieResponse[];
 
   constructor(private _http: HttpClient) { }
 
@@ -61,33 +67,119 @@ export class TmdbService {
   }
 
   /* moi : renvoie tous les genres de film qui existent dans la base */
-  async getGenre(options?: MovieQuery): Promise<MovieGenre[]>{
-    const url = `${tmdbApi}/genre/movie/list?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US`;
-    const res = await this.get<MovieGenre[]>(url,options);
-    return res.body;
+  getGenres(){
+    return this._http.get<MovieGenre[]>(`https://api.themoviedb.org/3/genre/movie/list?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US`);
   }
+  
 
+  
   /* moi : pour filter les films */
-  filterMovies(myMovies : MovieResponse[], myGenres: String[],options?: MovieQuery) : MovieResponse[] {
+  filterMovies(myMovies : MovieResponse[], myGenres: MovieGenre[],options?: MovieQuery) : MovieResponse[] {
     var res : MovieResponse[] = [];
     var tableID : number []=[];
+
+    console.log("mygenres",myGenres);
     
     /* Pour chaque film, filtrer en fonction des genres */
     for(let i in myMovies){
       /* Pour chaque genre du film, on verifie si il se trouve dans myGenres
       si c'est le cas, on verifie qu'on a pas son id dans tableID pour éviter les doublons
       avant d'ajouter l'id et d'ajouter le film dans res */
-      for(let j in myMovies[i].genres){
+      console.log("film ",i+" titre du film",myMovies[i].title);
+      console.log("le film",myMovies[i]);
+      for(let j in myMovies[i].genre_ids){
+        console.log("id genres du film courrant",myMovies[i].genre_ids)
+        for(let g in myGenres){
+          if(myMovies[i].genre_ids[j] === myGenres[g].id){
+            console.log("les id sont egaux",myGenres[g].id)
+            if(!(tableID.includes(myMovies[i].id))){
+              tableID.push(myMovies[i].id);
+              res.push(myMovies[i]);
+            }
+          }
+        }
+      }
+
+
+
+      /*for(let j in myMovies[i].genre_ids){
+       // console.log("genre ",j+"les genres du film",myMovies[i].genres[j]);
+        //console.log("tableau genre ",myGenres);
+        
+
+
         if(myGenres.includes(myMovies[i].genres[j].name) ){
           if(!(tableID.includes(myMovies[i].id))){
             tableID.push(myMovies[i].id);
             res.push(myMovies[i]);
           }
-        }
-      }
+        }*/
+      
     }
     return res;
   }
+/* demander à hardy
+
+  variable : MovieGenre[]=[];
+
+  verify(myArray1 : MovieGenre[],myArray2 : number[]) : void {
+
+    for(let i in myArray1){
+      this.variable.push(myArray1[i]);
+    }
+    
+    console.log("longueur variable",this.variable.length);
+    il affiche la longeur est égal à 1
+    const result = this.variable.filter((a,i) => a.id == myArray2[i]).map(a => a.name);
+
+    console.log("resultat",result);
+
+  }
+
+*/
+
+/* une fonction qui prend en parametre un tableau genre et une liste d'id de genres et
+  renvoie comme résultat les genres dont l'id est inclus dans le tableau genre*/
+  filterGenres(tabId:number[],tabGenres : MovieGenre[]) : MovieGenre[]{
+    console.log("le tableau id avant for",tabId);
+    console.log("le tableau des genres avant for",tabGenres);
+    for(let i in tabId){
+      for(let j in tabGenres){
+        if(tabId[i] == tabGenres[j].id){
+          console.log("le tableau id apres for",tabId);
+          console.log("le tableau des genres apres for",tabGenres);
+          if(!this.tableGenres.includes(tabGenres[j])){
+            console.log("ajout");
+            this.tableGenres.push(tabGenres[j]);
+          }
+        }
+      }
+    }
+    //console.log("les genres correspondant avec les id",this.tableGenres);
+    return this.tableGenres;
+  }
+
+
+  /* renvoie les genres qui correspondent à ceux choisis {id,name} */
+  getGenresChecked():MovieGenre[]{
+    return this.init('384da4d1d38ad08447d757fb4629fa6b').tableGenres;
+  }
+
+  /* renvoie les genres qui correspondent à ceux choisis juste les noms*/
+  getGenresCheckedNames():string[]{
+    return this.init('384da4d1d38ad08447d757fb4629fa6b').genresChoisis;
+  }
+
+  /* renvoie les films filtrés*/
+  getFilteredMovies():MovieResponse[]{
+    return this.init('384da4d1d38ad08447d757fb4629fa6b').filteredMovies;
+  }
+
+
+
+
+
+
 
   // _______________________________________________________________________________________________________________________________________
   // Person / People _______________________________________________________________________________________________________________________
@@ -103,6 +195,8 @@ export class TmdbService {
     const res = await this.get<SearchPeopleResponse>(url, query);
     return res.body;
   }
+
+  
 
   // _______________________________________________________________________________________________________________________________________
   // TV ____________________________________________________________________________________________________________________________________
