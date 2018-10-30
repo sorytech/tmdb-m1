@@ -2,9 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { MovieResponse, MovieGenre } from 'src/app/tmdb-data/Movie';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
-import { MainPageComponent } from '../main-page/main-page.component';
-import { UserService } from 'src/app/services/users/user.service';
-
+import { Subscription } from 'rxjs';
+import { FilmService } from 'src/app/services/movies/film.service';
 
 @Component({
     selector: 'app-list-view',
@@ -13,45 +12,34 @@ import { UserService } from 'src/app/services/users/user.service';
 })
 export class ListViewComponent implements OnInit {
 
-    @Input() films: MovieResponse[];
+    films: MovieResponse[];
+ 
+    subscription : Subscription;
     
-    _userSercive: UserService;
-    mpc : MainPageComponent;
-    touslesgenres : MovieGenre[] = [
-        {id: 28, name: "Action"},
-        {id: 18, name: "Drama"},
-        {id: 35, name: "Comedy"},
-        {id: 878, name: "Science Fiction"}
-    ];
-    constructor(private tmdbs: TmdbService, private route: ActivatedRoute, private router: Router) {
+    constructor(private tmdbs: TmdbService, private route: ActivatedRoute, private router: Router,private filmsts:FilmService) {
     }
     ngOnInit() {
-        this.tmdbs.init('384da4d1d38ad08447d757fb4629fa6b')
-        .getPopular()
-        .then((movie: any[]) => {
-            this.films = movie['results'];              
-            },
-            (error) => console.log('Erreur lors du téléchargement : ', error)
-        );           
+        this.loadMovies();
+        this.subscription = this.filmsts.sub.subscribe( g => {          
+            if(g.length !== 0){                
+                this.films = this.filmsts.filterMovies(this.filmsts.getGenresChecked()); 
+                console.log("les films filtrés",this.films);                            
+            }else{
+                this.loadMovies();
+            }                 
+        });
     }
-    update(){
+
+    loadMovies(){
         this.tmdbs.init('384da4d1d38ad08447d757fb4629fa6b')
         .getPopular()
         .then((movie: any[]) => {
-            this.films = movie['results'];
-            console.log("tous les genres qui existent",this.touslesgenres); 
-            console.log("pour voir que contient le tableau genres",this.tmdbs.getGenresChecked());
-            console.log("pour voir que contient genres dans tmdbs",this.tmdbs.getGenresCheckedNames());
-            console.log("tous les films",this.films);
-            this.films=this.tmdbs.filterMovies(this.films,this.tmdbs.getGenresChecked());
-            console.log("les films filtrés ", this.films);
-            this.tmdbs.filteredMovies = this.films;
-                       
+            this.films = movie['results'];  
+            this.filmsts.setMovies(this.films); 
+            console.log("tous les films",this.filmsts.getMovies());        
             },
             (error) => console.log('Erreur lors du téléchargement : ', error)
-        ); 
-        
-
+        );
     }
 
     

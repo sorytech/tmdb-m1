@@ -29,8 +29,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { GenreFilterComponent } from './components/genre-filter/genre-filter.component';
-
 
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
@@ -46,8 +44,7 @@ const appRoutes: Routes = [
         ListItemComponent,
         ResearchComponent,
         ListViewComponent,
-        FIlmComponent,
-        GenreFilterComponent
+        FIlmComponent
     ],
     imports: [
         BrowserModule,
