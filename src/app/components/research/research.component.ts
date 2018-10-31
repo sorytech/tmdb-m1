@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {TmdbService} from '../../services/tmdb/tmdb.service';
 
 @Component({
   selector: 'app-research',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResearchComponent implements OnInit {
 
-  constructor() { }
+  @Output() valueResearch: EventEmitter<string> = new EventEmitter();
+
+  constructor(private _tmdb: TmdbService) { }
 
   ngOnInit() {
+  }
+
+  onChange (event) {
+      this._tmdb.subject.next(event);
   }
 
 }

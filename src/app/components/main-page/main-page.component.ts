@@ -1,10 +1,9 @@
 import {Component, OnInit, Output} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Film} from '../../modeles/myModeles';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FilmService} from '../../services/movies/film.service';
 import {UserService} from '../../services/users/user.service';
-import {auth, User} from 'firebase';
+import {User} from 'firebase';
+import {MovieResponse} from '../../tmdb-data/Movie';
+import {Constant} from '../../constante/Constant';
 
 @Component({
     selector: 'app-main-page',
@@ -13,30 +12,13 @@ import {auth, User} from 'firebase';
 })
 export class MainPageComponent implements OnInit {
 
-    films: Film[] = [];
+    @Output() movies: MovieResponse[] = [];
+    public options = Constant.getGenres;
+    public films: MovieResponse[] = [];
 
-    @Output() movies: Film[] = [];
-
-    images: any[] = [];
-
-    click = false;
-
-    selected = '';
-
-    constructor(private _FService: FilmService, private route: ActivatedRoute, private router: Router, private _userSercive: UserService) {
-    }
+    constructor(private route: ActivatedRoute, private router: Router, private _userService: UserService) { }
 
     ngOnInit() {
-        this._FService.getPopularMovies()
-        .subscribe((movie: any[]) => {
-            this.movies = movie['results'];
-            },
-            (error) => console.log(error)
-        );
-    }
-    selectedReceiver(event) {
-        console.log('JE suis là !!! : ', event.value)
-        this.click = true
     }
 
     formatLabel(value: number | null) {
@@ -51,8 +33,8 @@ export class MainPageComponent implements OnInit {
         return value;
     }
 
-    private _getUser () {
-        return this._userSercive.getInstance();
+    private _getUser() {
+        return this._userService.getInstance();
     }
 
     login() {
@@ -64,7 +46,7 @@ export class MainPageComponent implements OnInit {
     }
 
     user(): User {
-        return this._userSercive.user;
+        return this._userService.user;
     }
 
 }

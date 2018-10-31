@@ -2,10 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {Constant} from '../app/constante/Constant';
+
 export const environment = {
   production: false,
   firebase:  {
-      apiKey: 'AIzaSyCz6cIbElxXg97m_pXixDMMOS4N2hlYqc4',
+      apiKey: Constant.fireBaseKey,
       authDomain: 'ihmg2-5.firebaseapp.com',
       databaseURL: 'https://ihmg2-5.firebaseio.com',
       projectId: 'ihmg2-5',

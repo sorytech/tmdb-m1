@@ -82,6 +82,7 @@
     margin-top: 5px;
     text-align: left;
     padding-left: 40px;
+    display: table-caption;
 }
 
 .left-panel_controls-item {

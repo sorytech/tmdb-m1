@@ -13,8 +13,7 @@ import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ResearchComponent } from './components/research/research.component';
-import {FilmService} from './services/movies/film.service';
+import {ResearchComponent} from './components/research/research.component';
 import {FIlmComponent} from './components/film/film.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
 import {MatToolbarModule} from '@angular/material';
@@ -28,13 +27,15 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import {FormsModule} from '@angular/forms';
+import {PersonneComponent} from './components/personne/personne.component';
 
 
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
     { path: 'mylist', component: ListViewComponent },
-    { path: '', component: ListViewComponent }
+    { path: '', component: ListViewComponent },
+    { path: 'moviePerson', component: PersonneComponent },
 ];
 
 @NgModule({
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
         ListItemComponent,
         ResearchComponent,
         ListViewComponent,
-        FIlmComponent
+        FIlmComponent,
+        PersonneComponent,
     ],
     imports: [
         BrowserModule,
@@ -66,8 +68,9 @@ const appRoutes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatProgressSpinnerModule,
+        FormsModule,
     ],
-    providers: [TmdbService, FilmService],
+    providers: [TmdbService],
     exports: [ResearchComponent],
     bootstrap: [AppComponent]
 })
