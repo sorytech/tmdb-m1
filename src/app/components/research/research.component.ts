@@ -9,7 +9,6 @@ import {TmdbService} from '../../services/tmdb/tmdb.service';
 export class ResearchComponent implements OnInit {
 
   @Output() valueResearch: EventEmitter<string> = new EventEmitter();
-
   constructor(private _tmdb: TmdbService) { }
 
   ngOnInit() {

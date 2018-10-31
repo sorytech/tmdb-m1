@@ -31,6 +31,10 @@ export class ListViewComponent implements OnInit {
          */
         this._tmdb.subject.subscribe((data) => {
             this.valueToResearch = data;
+            this._tmdb.getMovieByName(this.valueToResearch.toString())
+            .subscribe((movie: any[]) => {
+              this.films = movie['results'];
+            });
         });
     }
 
