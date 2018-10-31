@@ -36,7 +36,7 @@ import { PipesPersonPipe } from './pipes/persons-sort/pipes-person.pipe';
 
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
-    { path: 'Films', component: ListViewComponent },
+    { path: 'mylist', component: ListViewComponent },
     { path: '', component: ListViewComponent },
     { path: 'moviePerson', component: PersonneComponent },
     { path: 'person/:id', component: PersonneComponent},
