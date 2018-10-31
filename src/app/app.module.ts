@@ -8,7 +8,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {SortListPipe} from './pipes/sort-list.pipe';
+import {SortListPipe} from './pipes/movies-sort/sort-list.pipe';
 import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
@@ -29,13 +29,19 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule} from '@angular/forms';
 import {PersonneComponent} from './components/personne/personne.component';
+import { ListActorComponent } from './components/list-actor/list-actor.component';
+import { ListViewPersonComponent } from './components/list-view-person/list-view-person.component';
+import { PipesPersonPipe } from './pipes/persons-sort/pipes-person.pipe';
 
 
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
-    { path: 'mylist', component: ListViewComponent },
+    { path: 'Films', component: ListViewComponent },
     { path: '', component: ListViewComponent },
     { path: 'moviePerson', component: PersonneComponent },
+    { path: 'person/:id', component: PersonneComponent},
+    { path: 'Persons', component: ListViewPersonComponent},
+    { path: '', component: ListViewComponent}
 ];
 
 @NgModule({
@@ -48,6 +54,9 @@ const appRoutes: Routes = [
         ListViewComponent,
         FIlmComponent,
         PersonneComponent,
+        ListActorComponent,
+        ListViewPersonComponent,
+        PipesPersonPipe,
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,72 @@
+.list-item-container {
+  background: white;
+  width: 96%;
+  margin: auto;
+  height: 163px;
+  box-shadow: 1px 1px 1px #d4d0cd;
+  font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  cursor: pointer;
+}
+.list-item-container:hover {
+  box-shadow: 1px 2px 2px rgba(166, 166, 150, 0.84)
+}
+
+.film-photo-container {
+  width: 125px;
+  height: inherit;
+  float: left;
+}
+.photo {
+  height: inherit;
+  width: inherit;
+}
+
+.list-item-container-content {
+  height: inherit;
+  text-align: left;
+  padding-left: 8px;
+  margin-left: 11px;
+  width: 75%;
+  float: right;
+  padding-top: 5px;
+  padding-right: 5px;
+}
+
+.item-title {
+  font-size: small;
+  font-weight: 600;
+  float: left;
+}
+.item-date {
+  float: right;
+  font-size: small;
+  font-style: italic;
+  margin-right: 34px;
+}
+.item-details {
+
+}
+.label {
+  font-size: small;
+  color: #aba3a3;
+}
+.label-value {
+  font-size: 11px;
+  font-weight: 600;
+}
+.synopsis-content {
+  font-size: 12px;
+  height: 40px;
+  width: 97%;
+  text-align: justify;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.item-icons {
+  text-align: right;
+}
+.item-icon {
+  margin-right: 5px;
+  font-size: medium;
+}

@@ -1,0 +1,28 @@
+<div class="list-item-container" [routerLink]="['/personne', person.id]">
+  <div class="film-photo-container">
+    <img src="{{imageBaseUrl}}{{person.profile_path}}" alt="Image indisponible" class="photo">
+  </div>
+
+  <div class="list-item-container-content">
+
+    <div class="item-head">
+      <span class="item-title">{{person.name}}</span>
+      <span class="item-date">née le {{person.birthday}}</span>
+    </div>
+
+    <br>
+
+    <span class="label-value">Biography</span>
+
+    <div class="synopsis-content">
+      {{person.biography}}
+    </div>
+
+    <div class="item-icons">
+      <mat-icon class="item-icon">favorite</mat-icon>
+      <mat-icon class="item-icon">visibility</mat-icon>
+      <mat-icon class="item-icon">insert_invitation</mat-icon>
+    </div>
+  </div>
+</div>
+<br>

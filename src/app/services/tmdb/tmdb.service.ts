@@ -109,7 +109,9 @@ export class TmdbService {
     getPopularMovies() {
         return this._http.get<MovieResponse[]>(`${Constant.baseURL}movie/popular?api_key=${Constant.tmdbKey}&language=en-US&page=1`);
     }
-
+    getPopularPerson() {
+        return this._http.get<PersonResponse[]>(`${Constant.baseURL}person/popular?api_key=${Constant.tmdbKey}&language=en-US&page=1`);
+    }
     get subject(): Subject<any> {
         return this._subject;
     }
