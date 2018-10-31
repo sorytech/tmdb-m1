@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Film} from '../../modeles/myModeles';
 import {ActivatedRoute} from '@angular/router';
-import {MovieResponse} from '../../tmdb-data/Movie';
+import {MovieResponse, MovieCredits, Crew, Cast} from '../../tmdb-data/Movie';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
+import {PersonResponse} from '../../tmdb-data/Person';
 
 @Component({
     selector: 'app-film',
@@ -11,7 +12,11 @@ import {TmdbService} from '../../services/tmdb/tmdb.service';
 })
 export class FIlmComponent implements OnInit {
 
-    public currentFilm: MovieResponse; // Film en cours
+    public currentFilmResponse: MovieResponse; // Film en cours
+    public currentFilmCredits: MovieCredits; // Film en cours
+    public  crew: Crew;
+    public  casts: Cast[] = [];
+    public  director: PersonResponse;
     private id: string;
 
     // L'Id du film qui serai passé en paramètre dans le router
@@ -25,10 +30,22 @@ export class FIlmComponent implements OnInit {
 
         setTimeout(() =>
                 this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
-                    .getMovie(Number(this.id))
-                    .then((m: MovieResponse) => {
-                        console.log('getFilm : ', this.currentFilm);
-                        this.currentFilm = m;
+                    .getMovieDetails(Number(this.id))
+                    .then(([mr, mc]) => {
+                      console.log('getFilm Response : ', mr);
+                      console.log('getFilm crew : ', mc);
+                         this.currentFilmResponse = mr;
+                         this.currentFilmCredits = mc;
+                         this.crew = mc.crew.find((elem) => elem.job === 'Director')
+                      console.log('getFilm : ', this.currentFilmResponse);
+                      this.tmdb.getPerson(this.crew.id).then((bio) => {
+                        this.director = bio ;
+                      });
+                      mc.cast.forEach((cast) => {
+                        console.log('cast ', cast)
+                        this.casts.push(cast);
+                      });
+                      this.casts.splice(6);
                     })
                     .catch(err => console.error('Error getting movie:', err)),
             1000);

@@ -28,6 +28,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { RealisteurComponent } from './components/realisteur/realisteur.component';
 
 
 
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
         ListItemComponent,
         ResearchComponent,
         ListViewComponent,
-        FIlmComponent
+        FIlmComponent,
+        RealisteurComponent
     ],
     imports: [
         BrowserModule,

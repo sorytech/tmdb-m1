@@ -1,4 +1,4 @@
-<div *ngIf="currentFilm !== undefined">
+<div *ngIf="currentFilmResponse !== undefined">
 
     <div class="film-container">
         <div class="film-photo-container">
@@ -8,18 +8,18 @@
                     Retour
                 </button>
             </div>
-            <img [src]="getPath(currentFilm.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
+            <img [src]="getPath(currentFilmResponse.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
         </div>
 
         <div class="film-content">
             <div class="film-content-left">
                 <div class="item-head">
-                    <span class="item-title">{{currentFilm !== undefined ? currentFilm.title : 'Film test'}}</span>
+                    <span class="item-title">{{currentFilmResponse !== undefined ? currentFilmResponse.title : 'Film test'}}</span>
                 </div>
                 <div class="synopsis">
                     <span class="label-value">Synopsis</span>
                     <p class="synopsis-content">
-                        {{currentFilm.overview}}
+                        {{currentFilmResponse.overview}}
                        <!-- Sans un bruit est un film réalisé par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
                         :
                         Une famille tente de survivre sous la menace de mystérieuses ..
@@ -42,10 +42,10 @@
 
             <div class="film-content-genre">
                 <label for="genre" class="genre-label">Genre : </label>
-                <span id="genre">{{currentFilm.genres[0].name}}</span>
-                <span class="out-date">Sorti le : {{currentFilm.release_date}}</span>
+                <span id="genre">{{currentFilmResponse.genres[0].name}}</span>
+                <span class="out-date">Sorti le : {{currentFilmResponse.release_date}}</span>
                 <label for="note" class="note-label">Note : </label>
-                <span id="note">{{currentFilm.vote_average}}</span>
+                <span id="note">{{currentFilmResponse.vote_average}}</span>
             </div>
         </div>
 
@@ -54,20 +54,13 @@
                 <div class="realisateur">
                     <span class="realisateur-label">Réalisateur</span> <br>
                     <div class="film-photo-container">
-                        <img src="assets/images/no-image-icon-6.png" alt="assets/images/no-image-icon-6.png"
+                        <img [src]="getPath(crew.profile_path)"  alt="assets/images/no-image-icon-6.png"
                              class="realisateur-photo">
                     </div>
                     <div class="realisateur-details">
-                        <span class="realisateur-name"><a href="url">Nom du réalisateur</a></span><br>
+                        <span class="realisateur-name"><a href="url">{{crew.name}}</a></span><br>
                         <div class="realisateur-biographie">
-                            Surnommé le « Chêne autrichien » (Austrian Oak en anglais) pendant ses années de culturisme
-                            (bodybuilding), puis « Schwarzy »
-                            pendant sa carrière d'acteur et plus récemment « Governator » (mot-valise mélangeant
-                            gouverneur
-                            en anglais et Terminator), il se fait connaître universellement
-                            en devenant un des plus grands culturistes, avec notamment cinq titres de Mister Univers et
-                            sept
-                            titres de Monsieur Olympia.
+                           {{director.biography}}
                         </div>
                     </div>
                 </div>
@@ -83,32 +76,18 @@
 
             <div class="film-content-bottom-acteurs">
                 <span class="acteurs-label">Acteurs</span><br>
-                <div class="acteur">
-                    <img src="assets/images/no-image-icon-6.png" alt="assets/images/no-image-icon-6.png"
+                <div class="acteur" *ngFor="let actor of casts">
+                    <img [src]="getPath(actor.profile_path)" alt="Image Indisponible"
                          class="acteur-photo"><br>
-                    <span class="acteur-name">Nom : <a href="url">Hardy Nkouka</a></span>
+                    <span class="acteur-name">Nom : <a href="url">{{actor.name}}</a></span>
                 </div>
-                <div class="acteur">
-                    <img src="assets/images/no-image-icon-6.png" alt="assets/images/no-image-icon-6.png"
-                         class="acteur-photo"><br>
-                    <span class="acteur-name">Nom : <a href="url">Hardy Nkouka</a></span>
-                </div>
-                <div class="acteurs-panel">
-                    <div class="acteur">
-                        <img src="assets/images/no-image-icon-6.png" alt="assets/images/no-image-icon-6.png"
-                             class="acteur-photo"><br>
-                        <span class="acteur-name">Nom : <a href="url">Hardy Nkouka</a></span>
-                    </div>
-                </div>
-
-
             </div>
         </div>
 
     </div>
 </div>
 
-<div class="wait"  *ngIf="currentFilm === undefined">
+<div class="wait"  *ngIf="currentFilmResponse === undefined">
     <mat-spinner ></mat-spinner>
 </div>
 
