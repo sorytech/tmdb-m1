@@ -1,0 +1,125 @@
+.film-container {
+  background: white;
+  width: 96%;
+  margin: auto;
+  height: 655px;
+  box-shadow: 1px 1px 1px #d4d0cd;
+  font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+.film-photo-container {
+  width: 30%;
+  height: 41%;
+  float: left;
+}
+.photo {
+  height: inherit;
+  width: inherit;
+}
+
+.item-title {
+  font-size: larger;
+  font-weight: 600;
+}
+.film-content {
+  height: 49%;
+  text-align: left;
+  padding-left: 8px;
+  margin-left: 11px;
+  width: 66%;
+  float: right;
+  padding-top: 5px;
+  padding-right: 5px;
+}
+.film-content-left {
+  width: 85%;
+  float: left;
+  margin-left: 13px;
+}
+
+.film-content-right {
+  width: 12%;
+  height: 263px;
+  float: right;
+  text-align: center;
+}
+.item-icons {
+  margin-bottom: 100px;
+}
+
+
+
+.synopsis {
+  margin-top: 12px;
+}
+.synopsis-content {
+  text-align: justify;
+  font-size: small;
+}
+.label-value {
+  font-size: large;
+  font-weight: 600;
+}
+
+.film-content-bottom {
+  width: 100%;
+  background: #e1e8e8;
+  float: right;
+  height: 496px;
+}
+.film-content-bottom-realisateur {
+  height: 50%;
+  padding: 10px;
+}
+.realisateur {
+  width: 50%;
+  float: right;
+  height: 100%;
+  text-align: left;
+}
+.realisateur-label {
+  font-size: x-large;
+  font-weight: 600;
+}
+.realisateur-film-photo-container {
+  width: 30%;
+  height: 41%;
+  float: left;
+}
+.realisateur-photo {
+  height: 182px;
+  width: 156px;
+  float: left;
+}
+.realisateur-details {
+  float: right;
+  width: 60%;
+}
+.realisateur-name a {
+  color: #1721ff;
+  font-size: larger;
+  font-weight: bold;
+}
+.realisateur-biographie {
+  text-align: justify;
+  font-size: small;
+  padding-right: 20px;
+  height: auto;
+  white-space: pre-line;
+  display: block;
+  margin-top: 19px;
+  overflow: hidden;
+}
+.film-content-bottom-acteurs {
+  background: #cdd4d2;
+  height: 46%;
+  padding: 7px;
+}
+
+
+.film-content-genre {
+  float: inherit;
+  width: 86%;
+}
+
+

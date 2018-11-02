@@ -28,12 +28,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { RealisteurComponent } from './components/realisteur/realisteur.component';
+import { RealisateurComponent } from './components/realisateur/realisateur.component';
 
 
 
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
+    { path: 'realisateur/:id', component: RealisateurComponent },
     { path: 'mylist', component: ListViewComponent },
     { path: '', component: ListViewComponent }
 ];
@@ -47,7 +48,7 @@ const appRoutes: Routes = [
         ResearchComponent,
         ListViewComponent,
         FIlmComponent,
-        RealisteurComponent
+        RealisateurComponent
     ],
     imports: [
         BrowserModule,

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RealisteurComponent } from './realisteur.component';
+import { RealisateurComponent } from './realisateur.component';
 
-describe('RealisteurComponent', () => {
-  let component: RealisteurComponent;
-  let fixture: ComponentFixture<RealisteurComponent>;
+describe('RealisateurComponent', () => {
+  let component: RealisateurComponent;
+  let fixture: ComponentFixture<RealisateurComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RealisteurComponent ]
+      declarations: [ RealisateurComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RealisteurComponent);
+    fixture = TestBed.createComponent(RealisateurComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -58,7 +58,7 @@
                              class="realisateur-photo">
                     </div>
                     <div class="realisateur-details">
-                        <span class="realisateur-name"><a href="url">{{crew.name}}</a></span><br>
+                        <span class="realisateur-name"><a  [routerLink]="['/realisateur/', currentFilmResponse.id]" >{{crew.name}}</a></span><br>
                         <div class="realisateur-biographie">
                            {{director.biography}}
                         </div>
