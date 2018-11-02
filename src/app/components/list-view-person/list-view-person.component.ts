@@ -21,6 +21,7 @@ export class ListViewPersonComponent implements OnInit {
     this._tmdb.getPopularPerson()
       .subscribe((person: any[]) => {
           this.persons = person['results'];
+          console.log(this.persons[1].name);
         },
         (error) => {
           console.log('Erreur lors du téléchargement : ', error);
