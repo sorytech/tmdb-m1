@@ -21,7 +21,6 @@ export class ListViewPersonComponent implements OnInit {
     this._tmdb.getPopularPerson()
       .subscribe((person: any[]) => {
           this.persons = person['results'];
-          console.log(this.persons[1].name);
         },
         (error) => {
           console.log('Erreur lors du téléchargement : ', error);
@@ -33,6 +32,16 @@ export class ListViewPersonComponent implements OnInit {
      */
       this._tmdb.subject.subscribe((data) => {
       this.valueToResearch = data;
+      if (this.valueToResearch === '') {
+        this._tmdb.getPopularPerson()
+          .subscribe((person: any[]) => {
+              this.persons = person['results'];
+            },
+            (error) => {
+              console.log('Erreur lors du téléchargement : ', error);
+            }
+          );
+      }
       /*this._tmdb.getMovieByName(this.valueToResearch.toString())
         .subscribe((movie: any[]) => {
           this.films = movie['results'];
