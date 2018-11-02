@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { MovieResponse, MovieCredits, Crew, Cast } from 'src/app/tmdb-data/Movie';
 import { PersonResponse } from 'src/app/tmdb-data/Person';
-=======
->>>>>>> a8d43427361f7068f9da0b7f62ad48c24d9ee4c8
 
 @Component({
   selector: 'app-acteur',
@@ -13,7 +10,6 @@ import { PersonResponse } from 'src/app/tmdb-data/Person';
   styleUrls: ['./acteur.component.css']
 })
 export class ActeurComponent implements OnInit {
-<<<<<<< HEAD
   public current_id : number;
   public actor: PersonResponse;
   public  casts: Cast[] = [];
@@ -43,12 +39,6 @@ export class ActeurComponent implements OnInit {
 
   getGender(gender: Number): string {
     return (gender === 1? "Femimin" : "Masculin");
-=======
-
-  constructor() { }
-
-  ngOnInit() {
->>>>>>> a8d43427361f7068f9da0b7f62ad48c24d9ee4c8
   }
 
 }
