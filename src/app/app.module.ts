@@ -32,8 +32,6 @@ import {PersonneComponent} from './components/personne/personne.component';
 import { ActeurComponent } from './components/acteur/acteur.component';
 
 
-
-
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
     { path: 'mylist', component: ListViewComponent },
@@ -51,7 +49,13 @@ const appRoutes: Routes = [
         ResearchComponent,
         ListViewComponent,
         FIlmComponent,
+        PersonneComponent,
+        ActeurComponent,
+    ],
+    imports: [
+        BrowserModule,
         HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFireDatabaseModule,
         RouterModule.forRoot(appRoutes),
