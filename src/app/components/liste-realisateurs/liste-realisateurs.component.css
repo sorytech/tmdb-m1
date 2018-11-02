@@ -1,0 +1,8 @@
+.list-realisateur {
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    max-height: 500px;
+}

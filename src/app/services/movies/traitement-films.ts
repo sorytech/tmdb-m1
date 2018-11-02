@@ -1,17 +1,14 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 import { MovieResponse, MovieGenre } from 'src/app/tmdb-data/Movie';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class FilmService {
+export class TraitementFilms {
   sub : Subject<string[]> = new Subject<string[]>();
   genresChoisis : string[]=[];
   tableGenres : MovieGenre[]=[];
   myMovies : MovieResponse[] = [];
-  constructor(private httpClient: HttpClient) { }
+
+  private _subject = new Subject<any>();
+  constructor() { }
 
     genresCoches(){
         this.sub.next(this.genresChoisis);
@@ -37,10 +34,13 @@ export class FilmService {
         
         /* Pour chaque film, filtrer en fonction des genres */
         for(let i in this.myMovies){
+            console.log("titre ",this.myMovies[i].title);
+            console.log("duree ",this.myMovies[i]);
             /* Pour chaque genre du film, on verifie si il se trouve dans myGenres
             si c'est le cas, on verifie qu'on a pas son id dans tableID pour éviter les doublons
             avant d'ajouter l'id et d'ajouter le film dans res */
             for(let j in this.myMovies[i].genre_ids){
+                
                 for(let g in myGenres){
                     if(this.myMovies[i].genre_ids[j] === myGenres[g].id){
                         if(!(tableID.includes(this.myMovies[i].id))){
@@ -57,6 +57,16 @@ export class FilmService {
     getGenresChecked():MovieGenre[]{
         return this.tableGenres;
     }
+
+    get subject(): Subject<any> {
+        return this._subject;
+    }
+
+    set subject(value: Subject<any>) {
+        this._subject = value;
+    }
+
+    
 }
 
     /*public url_movie = `https://api.themoviedb.org/3/`;

@@ -40,6 +40,7 @@ export class UserService {
     logout() {
         this._anAuth.auth.signOut();
         this._user = undefined;
+        //this._user.displayName = '';
     }
 
     get user(): User {

@@ -15,9 +15,10 @@ import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ResearchComponent } from './components/research/research.component';
-import {FilmService} from './services/movies/film.service';
+import {TraitementFilms} from './services/movies/traitement-films';
 import {FIlmComponent} from './components/film/film.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
+import { ListeRealisateursComponent } from './components/liste-realisateurs/liste-realisateurs.component';
 import {MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
@@ -29,10 +30,15 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { RealisateurItemComponent } from './components/realisateur-item/realisateur-item.component';
+import { RealisateurComponent } from './components/realisateur/realisateur.component';
+
 
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
-    { path: 'mylist', component: ListViewComponent },
+    { path: 'realisateur/:id', component: RealisateurComponent },
+    { path: 'films', component: ListViewComponent },
+    { path: 'realisateurs', component: ListeRealisateursComponent },
     { path: '', component: ListViewComponent }
 ];
 
@@ -44,7 +50,10 @@ const appRoutes: Routes = [
         ListItemComponent,
         ResearchComponent,
         ListViewComponent,
-        FIlmComponent
+        FIlmComponent,
+        ListeRealisateursComponent,
+        RealisateurItemComponent,
+        RealisateurComponent
     ],
     imports: [
         BrowserModule,
@@ -67,7 +76,7 @@ const appRoutes: Routes = [
         MatProgressSpinnerModule,
         FormsModule
     ],
-    providers: [TmdbService, FilmService],
+    providers: [TmdbService, TraitementFilms],
     exports: [ResearchComponent],
     bootstrap: [AppComponent]
 })

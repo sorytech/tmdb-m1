@@ -1,34 +1,26 @@
-<div *ngIf="currentFilm !== undefined">
+<div *ngIf="currentFilmResponse !== undefined">
 
     <div class="film-container">
         <div class="film-photo-container">
             <div class="retourn-tbn">
-                <button mat-button routerLink="/mylist">
+                <button mat-button routerLink="/films">
                     <mat-icon matPrefix>navigate_before</mat-icon>
                     Retour
                 </button>
             </div>
-            <img [src]="getPath(currentFilm.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
+            <img [src]="getPath(currentFilmResponse.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
         </div>
 
         <div class="film-content">
             <div class="film-content-left">
                 <div class="item-head">
-                    <span class="item-title">{{currentFilm !== undefined ? currentFilm.title : 'Film test'}}</span>
+                    <span class="item-title">{{currentFilmResponse !== undefined ? currentFilmResponse.title : 'Film test'}}</span>
                 </div>
                 <div class="synopsis">
                     <span class="label-value">Synopsis</span>
                     <p class="synopsis-content">
-                        {{currentFilm.overview}}
-                       <!-- Sans un bruit est un film réalisé par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-                        :
-                        Une famille tente de survivre sous la menace de mystérieuses ..
-                        Sans un bruit est un film réalisé par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-                        :
-                        Une famille tente de survivre sous la menace de mystérieuses ..
-                        Sans un bruit est un film réalisé par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-                        :
-                        Une famille tente de survivre sous la menace de mystérieuses ..-->
+                        {{currentFilmResponse.overview}}
+            
                     </p>
                 </div>
             </div>
@@ -40,21 +32,16 @@
                 <mat-icon style="font-size: 40px; margin-bottom: 35px;" class="item-icon">play_circle_filled</mat-icon>
             </div>
 
-            <!--label class="label" for="item">Genre :</label>
-        <div class="genre-name" *ngFor="let genre of current.genres">
-            {{genre.name}}             
-        </div-->
-    
             <div class="film-content-genre">
                 <label for="genre">Genre : </label>
-                <div class="genre-name" *ngFor="let genre of currentFilm.genres; let i = index">
+                <div class="genre-name" *ngFor="let genre of currentFilmResponse.genres; let i = index">
                     {{genre.name}}
-                    <div class="genre-name" *ngIf="currentFilm.genres.length > i+1"> ,</div> 
+                    <div class="genre-name" *ngIf="currentFilmResponse.genres.length > i+1"> ,</div> 
                 </div>
                 <br><br>
-                <span class="out-date">Sortit le : {{currentFilm.release_date}}</span>
+                <span class="out-date">Sortit le : {{currentFilmResponse.release_date}}</span>
                 <label for="note" class="note-label">Note : </label>
-                <span id="note">{{currentFilm.vote_average}}</span>
+                <span id="note">{{currentFilmResponse.vote_average}}</span>
             </div>
         </div>
 

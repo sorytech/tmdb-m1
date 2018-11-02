@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Film} from '../../modeles/myModeles';
 import {ActivatedRoute} from '@angular/router';
-import {MovieResponse} from '../../tmdb-data/Movie';
+import {MovieResponse, MovieCredits, Crew, Cast} from '../../tmdb-data/Movie';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
+import { PersonResponse } from 'src/app/tmdb-data/Person';
 
 @Component({
     selector: 'app-film',
@@ -11,7 +11,7 @@ import {TmdbService} from '../../services/tmdb/tmdb.service';
 })
 export class FIlmComponent implements OnInit {
 
-    public currentFilm: MovieResponse; // Film en cours
+    public currentFilmResponse: MovieResponse; // Film en cours
     private id: string;
 
     // L'Id du film qui sera passé en paramètre dans le router
@@ -26,10 +26,12 @@ export class FIlmComponent implements OnInit {
             this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
             .getMovie(Number(this.id))
             .then((m: MovieResponse) => {
-                this.currentFilm = m;
+                this.currentFilmResponse = m;
             })
             .catch(err => console.error('Error getting movie:', err)),
         1000);
+        
+
     }
 
     getPath(path: string): string {

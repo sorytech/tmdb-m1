@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import { MovieResponse, MovieGenre } from 'src/app/tmdb-data/Movie';
+import {Component, OnInit} from '@angular/core';
+import { MovieResponse } from 'src/app/tmdb-data/Movie';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Subscription } from 'rxjs';
-import { FilmService } from 'src/app/services/movies/film.service';
+import { TraitementFilms } from 'src/app/services/movies/traitement-films';
 
 @Component({
     selector: 'app-list-view',
@@ -16,7 +15,7 @@ export class ListViewComponent implements OnInit {
  
     subscription : Subscription;
     
-    constructor(private tmdbs: TmdbService, private route: ActivatedRoute, private router: Router,private filmsts:FilmService) {
+    constructor(private tmdbs: TmdbService,private filmsts:TraitementFilms) {
     }
     ngOnInit() {
         this.loadMovies();
@@ -31,15 +30,19 @@ export class ListViewComponent implements OnInit {
     }
 
     loadMovies(){
-        this.tmdbs.init('384da4d1d38ad08447d757fb4629fa6b')
-        .getPopular()
-        .then((movie: any[]) => {
-            this.films = movie['results'];  
-            this.filmsts.setMovies(this.films); 
-            console.log("tous les films",this.filmsts.getMovies());        
+        this.tmdbs.getPopularMovies()
+            .subscribe((movie: any[]) => {
+                this.films = movie['results'];
+                this.filmsts.setMovies(this.films);
             },
-            (error) => console.log('Erreur lors du téléchargement : ', error)
+            (error) => {
+                console.log('Erreur lors du téléchargement : ', error);
+            }
         );
+    }
+
+    loadCredits(id:number){
+        this.tmdbs.getCredits(id);
     }
 
     

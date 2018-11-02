@@ -8,6 +8,7 @@ export interface PersonResponse {
   deathday?: string;
   id?: number;
   name?: string;
+  title_movie?: string;
   also_known_as?: string[];
   gender?: number; // 0, 1, 2, default 0
   biography?: string;

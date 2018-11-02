@@ -1,11 +1,10 @@
 import {Component, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FilmService} from 'src/app/services/movies/film.service';
+import {TraitementFilms} from 'src/app/services/movies/traitement-films';
 import {UserService} from '../../services/users/user.service';
 import {auth, User} from 'firebase';
-import { MovieResponse, MovieGenre } from 'src/app/tmdb-data/Movie';
+import { MovieGenre } from 'src/app/tmdb-data/Movie';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
-import { ListViewComponent } from '../list-view/list-view.component';
+import { Constant } from 'src/app/constante/Constant';
 
 @Component({
     selector: 'app-main-page',
@@ -17,15 +16,13 @@ export class MainPageComponent implements OnInit {
     listeGenres : string[]=[];
 
     tableauGenres : MovieGenre[]=[];
-
-    lvc : ListViewComponent;
     click = false;
-
     selected = '';
+    options:{label:string, value:string}[] = Constant.options;
 
-    constructor(private tmdbs: TmdbService, private route: ActivatedRoute, private router: Router, private _userSercive: UserService,private filmsts:FilmService) {
+    constructor(private tmdbs: TmdbService, private _userSercive: UserService,private filmsts:TraitementFilms) {
     }
-    ngOnInit() {}
+    ngOnInit() { }
 
     /* Dans la fonction addGenre,  */
     addGenre(value : string){
@@ -97,5 +94,4 @@ export class MainPageComponent implements OnInit {
     user(): User {
         return this._userSercive.user;
     }
-
 }
