@@ -27,14 +27,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-<<<<<<< HEAD
 import {FormsModule} from '@angular/forms';
 import {PersonneComponent} from './components/personne/personne.component';
 import { ActeurComponent } from './components/acteur/acteur.component';
-=======
-import { ActeurComponent } from './components/acteur/acteur.component';
 
->>>>>>> a8d43427361f7068f9da0b7f62ad48c24d9ee4c8
+
 
 
 const appRoutes: Routes = [
@@ -54,17 +51,7 @@ const appRoutes: Routes = [
         ResearchComponent,
         ListViewComponent,
         FIlmComponent,
-<<<<<<< HEAD
-        PersonneComponent,
-        ActeurComponent,
-=======
-        ActeurComponent
->>>>>>> a8d43427361f7068f9da0b7f62ad48c24d9ee4c8
-    ],
-    imports: [
-        BrowserModule,
         HttpClientModule,
-        AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFireDatabaseModule,
         RouterModule.forRoot(appRoutes),
