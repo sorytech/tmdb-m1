@@ -4,6 +4,7 @@ import {UserService} from '../../services/users/user.service';
 import {User} from 'firebase';
 import {MovieResponse} from '../../tmdb-data/Movie';
 import {Constant} from '../../constante/Constant';
+import {PersonResponse} from '../../tmdb-data/Person';
 
 @Component({
   selector: 'app-main-page',
@@ -12,9 +13,11 @@ import {Constant} from '../../constante/Constant';
 })
 export class MainPageComponent implements OnInit {
 
-  @Output() movies: MovieResponse[] = [];
-  public options = Constant.getGenres;
-  public films: MovieResponse[] = [];
+    @Output() movies: MovieResponse[] = [];
+    @Output() persons: PersonResponse[] = [];
+    public options = Constant.getGenres;
+    public films: MovieResponse[] = [];
+    public _persons: PersonResponse[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private _userService: UserService) { }
 

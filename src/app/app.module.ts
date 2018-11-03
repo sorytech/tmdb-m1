@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {TmdbService} from './services/tmdb/tmdb.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -8,7 +7,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {SortListPipe} from './pipes/sort-list.pipe';
+import {SortListPipe} from './pipes/movies-sort/sort-list.pipe';
 import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
@@ -32,54 +31,60 @@ import {FormsModule} from '@angular/forms';
 import {PersonneComponent} from './components/personne/personne.component';
 import {RealisateurComponent} from './components/realisateur/realisateur.component';
 import { ActeurComponent } from './components/acteur/acteur.component';
+import { ListActorComponent } from './components/list-actor/list-actor.component';
+import { ListViewPersonComponent } from './components/list-view-person/list-view-person.component';
+import { PipesPersonPipe } from './pipes/persons-sort/pipes-person.pipe';
 
 
 const appRoutes: Routes = [
-  { path: 'film/:id', component: FIlmComponent },
-  { path: 'mylist', component: ListViewComponent },
-  { path: '', component: ListViewComponent },
-  { path: 'moviePerson', component: PersonneComponent },
-  { path: 'realisateur/:id', component: RealisateurComponent },
-  { path: 'actor/:id', component: ActeurComponent }
+    { path: 'film/:id', component: FIlmComponent },
+    { path: 'mylist', component: ListViewComponent },
+    { path: 'moviePerson', component: PersonneComponent },
+    { path: 'realisateur/:id', component: RealisateurComponent },
+    { path: 'actor/:id', component: ActeurComponent }
+    { path: 'person/:id', component: PersonneComponent},
+    { path: 'Persons', component: ListViewPersonComponent},
+    { path: '', component: ListViewComponent}
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SortListPipe,
-    MainPageComponent,
-    ListItemComponent,
-    ResearchComponent,
-    ListViewComponent,
-    FIlmComponent,
-    PersonneComponent,
-    RealisateurComponent,
-    ActeurComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
-    RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatListModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    FormsModule
-  ],
-  providers: [TmdbService],
-  exports: [ResearchComponent],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SortListPipe,
+        MainPageComponent,
+        ListItemComponent,
+        ResearchComponent,
+        ListViewComponent,
+        FIlmComponent,
+        PersonneComponent,
+        ListActorComponent,
+        ListViewPersonComponent,
+        PipesPersonPipe,
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAuthModule,
+        AngularFireDatabaseModule,
+        RouterModule.forRoot(appRoutes),
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatMenuModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatListModule,
+        MatCheckboxModule,
+        MatSliderModule,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        FormsModule,
+    ],
+    providers: [TmdbService],
+    exports: [ResearchComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

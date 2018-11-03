@@ -43,5 +43,4 @@ export class ListViewComponent implements OnInit {
   set valueToResearch(value: string) {
     this._valueToResearch = value;
   }
-
 }
