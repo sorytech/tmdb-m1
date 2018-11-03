@@ -19,6 +19,7 @@ export class ListViewComponent implements OnInit {
     constructor(private tmdbs: TmdbService,private filmsts:TraitementFilms) {
     }
     ngOnInit() {
+        this.tmdbs.clickRealisators = false;
         this.loadMovies();
         this.subscription = this.filmsts.sub.subscribe( g => {          
             if(g.length !== 0){                
