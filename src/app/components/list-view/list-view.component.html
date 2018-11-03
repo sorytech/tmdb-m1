@@ -1,13 +1,5 @@
 <div *ngIf="films.length > 0">
-    <div *ngFor="let film of films | sortList : valueToResearch">
-        <app-list-item [film]="film"></app-list-item>
-    </div>
+  <div *ngFor="let film of films | sortList : valueToResearch">
+    <app-list-item [film]="film"></app-list-item>
+  </div>
 </div>
-<!--
-<div *ngIf="acteurs.length > 0">
-        <div *ngFor="let actor of acteurs | sortList : valueToResearch">
-            <app-list-item [actor]="actor"></app-list-item>
-        </div>
-    </div>
--->
-

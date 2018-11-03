@@ -1,97 +1,97 @@
 .page-header {
-    overflow: hidden;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%;
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%;
 }
 .menu-horizontal-container {
-    width: 100%;
-    margin: auto;
-    border-bottom: none;
+  width: 100%;
+  margin: auto;
+  border-bottom: none;
 }
 .menu-horizontal {
-    background: white;
-    height: 3.5em;
-    display: flex;
-    padding: 8px 16px;
-    color: black;
+  background: white;
+  height: 3.5em;
+  display: flex;
+  padding: 8px 16px;
+  color: black;
 }
 
 .logo-container {
-    background: aliceblue;
-    height: 55px;
-    width: 96px;
-    margin-right: 7%;
-    text-align: center;
-    line-height: 55px;
+  background: aliceblue;
+  height: 55px;
+  width: 96px;
+  margin-right: 7%;
+  text-align: center;
+  line-height: 55px;
 }
 .menu-panel {
-    float: left;
-    width: 80%;
+  float: left;
+  width: 80%;
 }
 .menu-item {
-    cursor: pointer;
-    margin-right: 32px;
-    font-size: medium;
+  cursor: pointer;
+  margin-right: 32px;
+  font-size: medium;
 }
 
 .authentification-panel {
-    float: right;
-    width: 245px;
-    font-size: 13px;
+  float: right;
+  width: 245px;
+  font-size: 13px;
 }
 .auth-menu-item {
-    margin-right: 32px;
-    cursor: pointer;
+  margin-right: 32px;
+  cursor: pointer;
 }
 .page-container {
-    width: 100%;
-    text-align: center;
-    margin-top: 118px;
+  width: 100%;
+  text-align: center;
+  margin-top: 118px;
 }
 
 .rigth-panel {
-    float: right;
-    width: 75%;
-    background: #e4e0e052;
-    border-left: 1px solid #a5b1b1;
-    padding-top: 21px;
+  float: right;
+  width: 75%;
+  background: #e4e0e052;
+  border-left: 1px solid #a5b1b1;
+  padding-top: 21px;
 
 }
 
 /* Menu gauche */
 
 .left-panel {
-    float: left;
-    width: 29%;
-    height: 435px;
-    margin-top: 16px;
-    position: fixed;
-    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  float: left;
+  width: 29%;
+  height: 435px;
+  margin-top: 16px;
+  position: fixed;
+  font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 .left-panel-tite {
-    margin-top: 40px;
-    text-align: left;
-    padding-left: 37px;
-    font-size: larger;
-    font-weight: bold;
+  margin-top: 40px;
+  text-align: left;
+  padding-left: 37px;
+  font-size: larger;
+  font-weight: bold;
 }
 
 .left-panel-controls {
-    height: fit-content;
-    margin-top: 5px;
-    text-align: left;
-    padding-left: 40px;
-    display: table-caption;
+  height: fit-content;
+  margin-top: 5px;
+  text-align: left;
+  padding-left: 40px;
+  display: table-caption;
 }
 
 .left-panel_controls-item {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 .mat-slider {
-    width: 73%;
+  width: 73%;
 }
 .mat-slider-container {
-    width: 86%;
+  width: 86%;
 }

@@ -1,94 +1,98 @@
 <div *ngIf="currentFilmResponse !== undefined">
 
-    <div class="film-container">
-        <div class="film-photo-container">
-            <div class="retourn-tbn">
-                <button mat-button routerLink="/mylist">
-                    <mat-icon matPrefix>navigate_before</mat-icon>
-                    Retour
-                </button>
+  <div class="film-container">
+    <div class="film-photo-container">
+      <div class="retourn-tbn">
+        <button mat-button routerLink="/mylist">
+          <mat-icon matPrefix>navigate_before</mat-icon>
+        </button>
+      </div>
+      <img [src]="getPath(currentFilmResponse.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
+    </div>
+
+    <div class="film-content">
+      <div class="film-content-left">
+        <div class="item-head">
+          <span class="item-title">{{currentFilmResponse !== undefined ? currentFilmResponse.title : 'Film test'}}</span>
+        </div>
+        <div class="synopsis">
+          <span class="label-value">Synopsis</span>
+          <p class="synopsis-content">
+            {{currentFilmResponse.overview}}
+            <!-- Sans un bruit est un film rÃ©alisÃ© par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
+             :
+             Une famille tente de survivre sous la menace de mystÃ©rieuses ..
+             Sans un bruit est un film rÃ©alisÃ© par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
+             :
+             Une famille tente de survivre sous la menace de mystÃ©rieuses ..
+             Sans un bruit est un film rÃ©alisÃ© par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
+             :
+             Une famille tente de survivre sous la menace de mystÃ©rieuses ..-->
+          </p>
+        </div>
+      </div>
+      <div class="film-content-right">
+        <mat-icon style="font-size: 40px; margin-bottom: 35px;" class="item-icon">favorite</mat-icon>
+        <br>
+        <mat-icon style="font-size: 40px; margin-bottom: 35px;" class="item-icon">offline_bolt</mat-icon>
+        <br>
+        <mat-icon style="font-size: 40px; margin-bottom: 35px;" class="item-icon">play_circle_filled</mat-icon>
+      </div>
+
+      <div class="film-content-genre">
+        <label for="genre" class="genre-label">Genre : </label>
+        <span id="genre">{{currentFilmResponse.genres[0].name}}</span>
+        <span class="out-date">Sorti le : {{currentFilmResponse.release_date}}</span>
+        <label for="note" class="note-label">Note : </label>
+        <span id="note">{{currentFilmResponse.vote_average}}</span>
+      </div>
+    </div>
+
+    <div class="film-content-bottom">
+      <div class="film-content-bottom-realisateur">
+        <div class="realisateur">
+          <span class="realisateur-label">Realisateur</span> <br>
+          <div class="film-photo-container">
+            <img [src]="getPath(crew.profile_path)"  alt="assets/images/no-image-icon-6.png"
+                 class="realisateur-photo">
+          </div>
+          <div class="realisateur-details">
+            <span class="realisateur-name"><a  [routerLink]="['/realisateur/', currentFilmResponse.id]" >{{crew.name}}</a></span><br>
+            <div class="realisateur-biographie">
+              {{director.biography}}
             </div>
-            <img [src]="getPath(currentFilmResponse.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
+          </div>
         </div>
 
-        <div class="film-content">
-            <div class="film-content-left">
-                <div class="item-head">
-                    <span class="item-title">{{currentFilmResponse !== undefined ? currentFilmResponse.title : 'Film test'}}</span>
-                </div>
-                <div class="synopsis">
-                    <span class="label-value">Synopsis</span>
-                    <p class="synopsis-content">
-                        {{currentFilmResponse.overview}}
-                       <!-- Sans un bruit est un film réalisé par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-                        :
-                        Une famille tente de survivre sous la menace de mystérieuses ..
-                        Sans un bruit est un film réalisé par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-                        :
-                        Une famille tente de survivre sous la menace de mystérieuses ..
-                        Sans un bruit est un film réalisé par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-                        :
-                        Une famille tente de survivre sous la menace de mystérieuses ..-->
-                    </p>
-                </div>
-            </div>
-            <div class="film-content-right">
-                <mat-icon style="font-size: 40px; margin-bottom: 35px;" class="item-icon">favorite</mat-icon>
-                <br>
-                <mat-icon style="font-size: 40px; margin-bottom: 35px;" class="item-icon">offline_bolt</mat-icon>
-                <br>
-                <mat-icon style="font-size: 40px; margin-bottom: 35px;" class="item-icon">play_circle_filled</mat-icon>
-            </div>
-
-            <div class="film-content-genre">
-                <label for="genre" class="genre-label">Genre : </label>
-                <span id="genre">{{currentFilmResponse.genres[0].name}}</span>
-                <span class="out-date">Sorti le : {{currentFilmResponse.release_date}}</span>
-                <label for="note" class="note-label">Note : </label>
-                <span id="note">{{currentFilmResponse.vote_average}}</span>
-            </div>
+        <div class="trailer-container">
+          <span class="trailer-label">Trailer</span> <br>
+          <div class="trailer-display" >
+            <iframe id="idTrailer"
+              title="trailerTitre"
+              width="300"
+              height="200"
+              [src]="getPathVideo(key)">
+            </iframe>
+          </div>
         </div>
+      </div>
 
-        <div class="film-content-bottom">
-            <div class="film-content-bottom-realisateur">
-                <div class="realisateur">
-                    <span class="realisateur-label">Réalisateur</span> <br>
-                    <div class="film-photo-container">
-                        <img [src]="getPath(crew.profile_path)"  alt="assets/images/no-image-icon-6.png"
-                             class="realisateur-photo">
-                    </div>
-                    <div class="realisateur-details">
-                        <span class="realisateur-name"><a  [routerLink]="['/realisateur/', currentFilmResponse.id]" >{{crew.name}}</a></span><br>
-                        <div class="realisateur-biographie">
-                           {{director.biography}}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trailer-container">
-                    <span class="trailer-label">Trailer</span> <br>
-                    <div class="trailer-display">
-                        <!--<img src="assets/images/no-found.png" alt="assets/images/no-image-icon-6.png"-->
-                        <!--class="realisateur-photo">-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="film-content-bottom-acteurs">
-                <span class="acteurs-label">Acteurs</span><br>
-                <div class="acteur" *ngFor="let actor of casts">
-                    <a href="#" [routerLink]="['/actor/', actor.id]" > 
-                    <img [src]="getPath(actor.profile_path)" alt="Image Indisponible" class="acteur-photo" ><br>
-                    </a>
-                    <span class="acteur-name">Nom : <a href="#" [routerLink]="['/actor/', actor.id]" > {{actor.name}} </a></span>
-                </div>
-            </div>
+      <div class="film-content-bottom-acteurs">
+        <span class="acteurs-label">Acteurs</span><br>
+        <div class="acteur" *ngFor="let actor of casts">
+            <a href="#" [routerLink]="['/actor/', actor.id]" > 
+            <img [src]="getPath(actor.profile_path)" alt="Image Indisponible" class="acteur-photo" ><br>
+            </a>
+            <span class="acteur-name">Nom : <a href="#" [routerLink]="['/actor/', actor.id]" > {{actor.name}} </a></span>
         </div>
+     </div>
 
     </div>
+  </div>
 </div>
 
 <div class="wait"  *ngIf="currentFilmResponse === undefined">
-    <mat-spinner ></mat-spinner>
+  <mat-spinner ></mat-spinner>
 </div>
+
 

@@ -16,7 +16,7 @@ export class ResearchComponent implements OnInit {
   }
 
   onChange (event) {
-     // this._tmdb.subject.next(event);
+    this._tmdb.subject.next(event);
   }
 
 }
