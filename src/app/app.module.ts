@@ -29,6 +29,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule} from '@angular/forms';
 import {PersonneComponent} from './components/personne/personne.component';
+import {RealisateurComponent} from './components/realisateur/realisateur.component';
 
 
 const appRoutes: Routes = [
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     ListViewComponent,
     FIlmComponent,
     PersonneComponent,
+    RealisateurComponent
   ],
   imports: [
     BrowserModule,

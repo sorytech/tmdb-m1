@@ -1,107 +1,106 @@
 .film-container {
-    background: white;
-    width: 96%;
-    margin: auto;
-    height: 655px;
-    box-shadow: 1px 1px 1px #d4d0cd;
-    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  background: white;
+  width: 96%;
+  margin: auto;
+  height: 655px;
+  box-shadow: 1px 1px 1px #d4d0cd;
+  font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 
 .film-photo-container {
-    width: 30%;
-    height: 41%;
-    float: left;
+  width: 30%;
+  height: 41%;
+  float: left;
 }
 .photo {
-    height: inherit;
-    width: inherit;
+  height: inherit;
+  width: inherit;
 }
 
 .item-title {
-    font-size: larger;
-    font-weight: 600;
+  font-size: larger;
+  font-weight: 600;
 }
 .film-content {
-    height: 49%;
-    text-align: left;
-    padding-left: 8px;
-    margin-left: 11px;
-    width: 66%;
-    float: right;
-    padding-top: 5px;
-    padding-right: 5px;
+  height: 49%;
+  text-align: left;
+  padding-left: 8px;
+  margin-left: 11px;
+  width: 66%;
+  float: right;
+  padding-top: 5px;
+  padding-right: 5px;
 }
 .film-content-left {
-    width: 85%;
-    float: left;
-    margin-left: 13px;
+  width: 85%;
+  float: left;
+  margin-left: 13px;
 }
 
 .film-content-right {
-    width: 12%;
-    height: 263px;
-    float: right;
-    text-align: center;
+  width: 12%;
+  height: 263px;
+  float: right;
+  text-align: center;
 }
 .item-icons {
-margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 
 
 .synopsis {
-    margin-top: 12px;
+  margin-top: 12px;
 }
 .synopsis-content {
-    text-align: justify;
-    font-size: small;
+  text-align: justify;
+  font-size: small;
 }
 .label-value {
-    font-size: large;
-    font-weight: 600;
+  font-size: large;
+  font-weight: 600;
 }
 
 .film-content-bottom {
-    width: 100%;
-    background: #e1e8e8;
-    float: right;
-    height: 496px;
+  width: 100%;
+  background: #e1e8e8;
+  float: right;
+  height: 496px;
 }
 .film-content-bottom-realisateur {
-    height: 50%;
-    padding: 10px;
+  height: 50%;
+  padding: 10px;
 }
 .realisateur {
-    width: 50%;
-    float: right;
-    height: 100%;
-    text-align: left;
+  width: 50%;
+  float: right;
+  height: 100%;
+  text-align: left;
 }
 .realisateur-label {
-    font-size: x-large;
-    font-weight: 600;
+  font-size: x-large;
+  font-weight: 600;
 }
 .realisateur-film-photo-container {
-    width: 30%;
-    height: 41%;
-    float: left;
+  width: 30%;
+  height: 41%;
+  float: left;
 }
 .realisateur-photo {
-    height: 182px;
-    width: 156px;
-    float: left;
+  height: 182px;
+  width: 156px;
+  float: left;
 }
 .realisateur-details {
-    float: right;
-    width: 60%;
+  float: right;
+  width: 60%;
 }
 .realisateur-name a {
-    color: #1721ff;
-    font-size: larger;
-    font-weight: bold;
+  color: #1721ff;
+  font-size: larger;
+  font-weight: bold;
 }
 .realisateur-biographie {
-<<<<<<< HEAD
   text-align: justify;
   font-size: small;
   padding-right: 20px;
@@ -110,105 +109,92 @@ margin-bottom: 100px;
   display: block;
   margin-top: 19px;
   overflow: hidden;
-=======
-    text-align: justify;
-    font-size: small;
-    padding-right: 20px;
-    height: 50px;
-    white-space: pre-line;
-    display: block;
-    margin-top: 19px;
->>>>>>> origin/master
 }
 .film-content-bottom-acteurs {
-    background: #cdd4d2;
-    height: 46%;
-    padding: 7px;
+  background: #cdd4d2;
+  height: 46%;
+  padding: 7px;
 }
 
 .acteurs-panel {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .acteur {
-    width: 14%;
-    float: left;
-    margin-right: 6px;
+  width: 14%;
+  float: left;
+  margin-right: 6px;
 }
 .acteur-photo {
-    height: 150px;
-    width: 115px;
+  height: 150px;
+  width: 115px;
 }
 .acteurs-label {
-    font-size: x-large;
-    font-weight: 600;
-    float: left;
-    margin-bottom: 7px;
-    width: 100%;
-    text-align: left;
+  font-size: x-large;
+  font-weight: 600;
+  float: left;
+  margin-bottom: 7px;
+  width: 100%;
+  text-align: left;
 }
 .acteur-name {
-    font-size: smaller;
+  font-size: smaller;
 }
 
 /*Trailer*/
 
 .trailer-label {
-    font-size: x-large;
-    font-weight: 600;
+  font-size: x-large;
+  font-weight: 600;
 }
 .trailer-container {
-    background: #e4efef;
-    width: 47%;
-    height: 100%;
-    text-align: left;
-    padding-top: 2px;
-    padding-left: 2px;
+  background: #e4efef;
+  width: 47%;
+  height: 100%;
+  text-align: left;
+  padding-top: 2px;
+  padding-left: 2px;
 }
 
 /*Genre , Date de sortie, Note*/
 
 .film-content-genre {
-    float: inherit;
-    width: 86%;
+  float: inherit;
+  width: 86%;
 }
 
 #genre {
-    font-weight: 700;
+  font-weight: 700;
 }
 .genre-label {
 
 }
 .out-date {
-    font-size: small;
-    margin-left: 76px;
-    font-style: italic;
+  font-size: small;
+  margin-left: 76px;
+  font-style: italic;
 }
 .note-label {
-    margin-left: 95px;
+  margin-left: 95px;
 }
 #note {
-    font-weight: 700;
+  font-weight: 700;
 }
 .retourn-tbn{
-    background: #f9f9fb;
-    width: max-content;
-    height: max-content;
-    border-radius: 3px;
-    border: 1px solid #eae4e4;
-    margin: 5px;
+  background: #f9f9fb;
+  width: max-content;
+  height: max-content;
+  border-radius: 3px;
+  border: 1px solid #eae4e4;
+  margin: 5px;
 }
 
 .wait {
-    height: inherit;
-    margin-left: 50%;
-    margin-top: 30%;
+  height: inherit;
+  margin-left: 50%;
+  margin-top: 30%;
 }
 .poster {
-    width: 292px;
-    height: 371px;
-<<<<<<< HEAD
+  width: 292px;
+  height: 371px;
 }
-=======
-}
->>>>>>> origin/master
