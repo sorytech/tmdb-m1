@@ -37,6 +37,8 @@ const appRoutes: Routes = [
   { path: 'mylist', component: ListViewComponent },
   { path: '', component: ListViewComponent },
   { path: 'moviePerson', component: PersonneComponent },
+  { path: 'realisateur/:id', component: RealisateurComponent }
+
 ];
 
 @NgModule({

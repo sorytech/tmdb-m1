@@ -5,7 +5,6 @@
       <div class="retourn-tbn">
         <button mat-button routerLink="/mylist">
           <mat-icon matPrefix>navigate_before</mat-icon>
-          Retour
         </button>
       </div>
       <img [src]="getPath(currentFilmResponse.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
@@ -82,12 +81,13 @@
           <span class="acteur-name">Nom : <a href="url">{{actor.name}}</a></span>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>
 
 <div class="wait"  *ngIf="currentFilmResponse === undefined">
   <mat-spinner ></mat-spinner>
 </div>
+
 
