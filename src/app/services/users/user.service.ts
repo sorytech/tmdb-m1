@@ -8,40 +8,40 @@ import {MovieResponse} from '../../tmdb-data/Movie';
 import {TmdbService} from '../tmdb/tmdb.service';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class UserService {
 
-    private _user: User;
-    private _dbData: Observable<any>;
+  private _user: User;
+  private _dbData: Observable<any>;
 
-    constructor(private tmdb: TmdbService, private _anAuth: AngularFireAuth, private _db: AngularFireDatabase) {
-        this._anAuth.user.pipe(filter(u => !!u)).subscribe(u => {
-            this._user = u;
-            const listsPath = `lists/${u.uid}`;
-            const lists = _db.list(listsPath);
-            this._dbData = lists.valueChanges();
-        });
-    }
+  constructor(private tmdb: TmdbService, private _anAuth: AngularFireAuth, private _db: AngularFireDatabase) {
+    this._anAuth.user.pipe(filter(u => !!u)).subscribe(u => {
+      this._user = u;
+      const listsPath = `lists/${u.uid}`;
+      const lists = _db.list(listsPath);
+      this._dbData = lists.valueChanges();
+    });
+  }
 
-    login() {
-        this._anAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-    }
+  login() {
+    this._anAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
 
-    logout() {
-        this._anAuth.auth.signOut();
-        this._user = undefined;
-    }
+  logout() {
+    this._anAuth.auth.signOut();
+    this._user = undefined;
+  }
 
-    get user(): User {
-        return this._user;
-    }
+  get user(): User {
+    return this._user;
+  }
 
-    get lists(): Observable<any> {
-        return this._dbData;
-    }
+  get lists(): Observable<any> {
+    return this._dbData;
+  }
 
-    public getInstance() {
-        return this;
-    }
+  public getInstance() {
+    return this;
+  }
 }

@@ -87,9 +87,11 @@
   float: left;
 }
 .realisateur-photo {
-  height: 182px;
-  width: 156px;
-  float: left;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  height: 300px;
 }
 .realisateur-details {
   float: right;
@@ -104,7 +106,7 @@
   text-align: justify;
   font-size: small;
   padding-right: 20px;
-  height: 149px;
+  height: auto;
   white-space: pre-line;
   display: block;
   margin-top: 19px;
@@ -116,69 +118,10 @@
   padding: 7px;
 }
 
-.acteurs-panel {
-  margin-top: 5px;
-}
-
-.acteur {
-  width: 14%;
-  float: left;
-  margin-right: 6px;
-}
-.acteur-photo {
-  height: 150px;
-  width: 115px;
-}
-.acteurs-label {
-  font-size: x-large;
-  font-weight: 600;
-  float: left;
-  margin-bottom: 7px;
-  width: 100%;
-  text-align: left;
-}
-.acteur-name {
-  font-size: smaller;
-}
-
-/*Trailer*/
-
-.trailer-label {
-  font-size: x-large;
-  font-weight: 600;
-}
-.trailer-container {
-  background: #e4efef;
-  width: 47%;
-  height: 100%;
-  text-align: left;
-  padding-top: 2px;
-  padding-left: 2px;
-}
-
-/*Genre , Date de sortie, Note*/
 
 .film-content-genre {
   float: inherit;
   width: 86%;
-}
-
-#genre {
-  font-weight: 700;
-}
-.genre-label {
-
-}
-.out-date {
-  font-size: small;
-  margin-left: 76px;
-  font-style: italic;
-}
-.note-label {
-  margin-left: 95px;
-}
-#note {
-  font-weight: 700;
 }
 .retourn-tbn{
   background: #f9f9fb;
@@ -189,12 +132,3 @@
   margin: 5px;
 }
 
-.wait {
-  height: inherit;
-  margin-left: 50%;
-  margin-top: 30%;
-}
-.poster {
-  width: 292px;
-  height: 371px;
-}
