@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {TmdbService} from './services/tmdb/tmdb.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -12,9 +11,8 @@ import {SortListPipe} from './pipes/sort-list.pipe';
 import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ResearchComponent } from './components/research/research.component';
-import {FilmService} from './services/movies/film.service';
+import {ResearchComponent} from './components/research/research.component';
+
 import {FIlmComponent} from './components/film/film.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
 import {MatToolbarModule} from '@angular/material';
@@ -29,6 +27,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RealisateurComponent } from './components/realisateur/realisateur.component';
+import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 
 
@@ -37,7 +38,10 @@ const appRoutes: Routes = [
     { path: 'realisateur/:id', component: RealisateurComponent },
     { path: 'mylist', component: ListViewComponent },
     { path: '', component: ListViewComponent }
+    { path: 'mylist', component: ListViewComponent },
+    { path: '', component: ListViewComponent },
 ];
+
 
 @NgModule({
     declarations: [
@@ -49,6 +53,8 @@ const appRoutes: Routes = [
         ListViewComponent,
         FIlmComponent,
         RealisateurComponent
+
+
     ],
     imports: [
         BrowserModule,
@@ -69,8 +75,9 @@ const appRoutes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatProgressSpinnerModule,
+        FormsModule,
     ],
-    providers: [TmdbService, FilmService],
+    providers: [TmdbService],
     exports: [ResearchComponent],
     bootstrap: [AppComponent]
 })

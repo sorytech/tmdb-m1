@@ -1,10 +1,18 @@
 import {Component, OnInit, Output} from '@angular/core';
+<<<<<<< HEAD
 import {Observable} from 'rxjs';
 import {Film} from '../../modeles/myModeles';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FilmService} from '../../services/movies/film.service';
 import {UserService} from '../../services/users/user.service';
 import {auth, User} from 'firebase';
+=======
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../../services/users/user.service';
+import {User} from 'firebase';
+import {MovieResponse} from '../../tmdb-data/Movie';
+import {Constant} from '../../constante/Constant';
+>>>>>>> origin/master
 
 @Component({
     selector: 'app-main-page',
@@ -13,6 +21,7 @@ import {auth, User} from 'firebase';
 })
 export class MainPageComponent implements OnInit {
 
+<<<<<<< HEAD
     films: Film[] = [];
 
     @Output() movies: Film[] = [];
@@ -37,6 +46,15 @@ export class MainPageComponent implements OnInit {
     selectedReceiver(event) {
         console.log('JE suis là !!! : ', event.value)
         this.click = true
+=======
+    @Output() movies: MovieResponse[] = [];
+    public options = Constant.getGenres;
+    public films: MovieResponse[] = [];
+
+    constructor(private route: ActivatedRoute, private router: Router, private _userService: UserService) { }
+
+    ngOnInit() {
+>>>>>>> origin/master
     }
 
     formatLabel(value: number | null) {
@@ -51,8 +69,13 @@ export class MainPageComponent implements OnInit {
         return value;
     }
 
+<<<<<<< HEAD
     private _getUser () {
         return this._userSercive.getInstance();
+=======
+    private _getUser() {
+        return this._userService.getInstance();
+>>>>>>> origin/master
     }
 
     login() {
@@ -64,7 +87,11 @@ export class MainPageComponent implements OnInit {
     }
 
     user(): User {
+<<<<<<< HEAD
         return this._userSercive.user;
+=======
+        return this._userService.user;
+>>>>>>> origin/master
     }
 
 }

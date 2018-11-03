@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {TmdbService} from './services/tmdb/tmdb.service';
 import {MovieResponse} from './tmdb-data/Movie';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -8,55 +8,47 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {filter} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private _movie: MovieResponse;
-  private _user: User;
-  private dbData: Observable<any>;
+    private _movie: MovieResponse;
+    private _user: User;
+    private dbData: Observable<any>;
 
-  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
-    this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
-      this._user = u;
-      const listsPath = `lists/${u.uid}`;
-      const lists = db.list(listsPath);
-      lists.push('coucou');
-      this.dbData = lists.valueChanges();
-    });
-    setTimeout( () =>
-      tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
-          .getMovie(13)
-          .then( (m: MovieResponse) => console.log('Movie 13: ', this._movie = m) )
-          .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
+    constructor(private _tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
+        this.anAuth.user.pipe(filter(u => !!u)).subscribe(u => {
+            this._user = u;
+            const listsPath = `lists/${u.uid}`;
+            const lists = db.list(listsPath);
+            lists.push('coucou');
+            this.dbData = lists.valueChanges();
+        });
+    }
 
-  }
+    get movie(): MovieResponse {
+        return this._movie;
+    }
 
-  get movie(): MovieResponse {
-    return this._movie;
-  }
+    getPath(path: string): string {
+        return `https://image.tmdb.org/t/p/w500${path}`;
+    }
 
-  getPath(path: string): string {
-    return `https://image.tmdb.org/t/p/w500${path}`;
-  }
+    login() {
+        this.anAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    }
 
-  login() {
-    this.anAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-  }
+    logout() {
+        this.anAuth.auth.signOut();
+        this._user = undefined;
+    }
 
-  logout() {
-    this.anAuth.auth.signOut();
-    this._user = undefined;
-  }
+    get user(): User {
+        return this._user;
+    }
 
-  get user(): User {
-    return this._user;
-  }
-
-  get lists(): Observable<any> {
-    return this.dbData;
-  }
+    get lists(): Observable<any> {
+        return this.dbData;
+    }
 }
-// /yE5d3BUhE8hCnkMUJOo1QDoOGNz.jpg

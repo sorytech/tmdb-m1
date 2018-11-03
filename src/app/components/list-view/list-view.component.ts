@@ -1,7 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
+<<<<<<< HEAD
 import {Film} from '../../modeles/myModeles';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FilmService} from '../../services/movies/film.service';
+=======
+import {Router} from '@angular/router';
+import {MovieResponse} from '../../tmdb-data/Movie';
+import {TmdbService} from '../../services/tmdb/tmdb.service';
+>>>>>>> origin/master
 
 @Component({
     selector: 'app-list-view',
@@ -10,6 +16,7 @@ import {FilmService} from '../../services/movies/film.service';
 })
 export class ListViewComponent implements OnInit {
 
+<<<<<<< HEAD
     @Input() films: Film[] = [];
 
     constructor(private _FService: FilmService, private route: ActivatedRoute, private router: Router) {
@@ -24,4 +31,38 @@ export class ListViewComponent implements OnInit {
             );
     }
 
+=======
+    @Input() films: MovieResponse[] = [];
+
+    private _valueToResearch = '';
+
+    constructor(private _tmdb: TmdbService, private router: Router) { }
+
+    ngOnInit() {
+        this._tmdb.getPopularMovies()
+            .subscribe((movie: any[]) => {
+                    this.films = movie['results'];
+                },
+                (error) => {
+                    console.log('Erreur lors du téléchargement : ', error);
+                }
+            );
+
+        /**
+         * Récupère la valeur de la barre de recherche et met à jour la liste de films
+         */
+        this._tmdb.subject.subscribe((data) => {
+            this.valueToResearch = data;
+        });
+    }
+
+    get valueToResearch(): string {
+        return this._valueToResearch;
+    }
+
+    @Input()
+    set valueToResearch(value: string) {
+        this._valueToResearch = value;
+    }
+>>>>>>> origin/master
 }

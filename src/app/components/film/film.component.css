@@ -101,6 +101,7 @@ margin-bottom: 100px;
     font-weight: bold;
 }
 .realisateur-biographie {
+<<<<<<< HEAD
   text-align: justify;
   font-size: small;
   padding-right: 20px;
@@ -109,6 +110,15 @@ margin-bottom: 100px;
   display: block;
   margin-top: 19px;
   overflow: hidden;
+=======
+    text-align: justify;
+    font-size: small;
+    padding-right: 20px;
+    height: 50px;
+    white-space: pre-line;
+    display: block;
+    margin-top: 19px;
+>>>>>>> origin/master
 }
 .film-content-bottom-acteurs {
     background: #cdd4d2;
@@ -197,4 +207,8 @@ margin-bottom: 100px;
 .poster {
     width: 292px;
     height: 371px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

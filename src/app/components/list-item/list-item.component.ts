@@ -1,5 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Film} from '../../modeles/myModeles';
+<<<<<<< HEAD
+=======
+import {MovieResponse} from '../../tmdb-data/Movie';
+import {Constant} from '../../constante/Constant';
+>>>>>>> origin/master
 
 @Component({
   selector: 'app-list-item',
@@ -8,7 +13,14 @@ import {Film} from '../../modeles/myModeles';
 })
 export class ListItemComponent implements OnInit {
 
+<<<<<<< HEAD
   @Input()film: Film;
+=======
+  @Input()
+  public film: MovieResponse;
+
+  public imageBaseUrl = Constant.imageBaseURL;
+>>>>>>> origin/master
 
   constructor() { }
 
@@ -16,7 +28,11 @@ export class ListItemComponent implements OnInit {
   }
 
   onSelect () {
+<<<<<<< HEAD
     console.log('séléctioné : ', this.film.id);
+=======
+
+>>>>>>> origin/master
   }
 
 }

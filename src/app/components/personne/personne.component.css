@@ -1,0 +1,19 @@
+.InfosPersonne {
+    background: cyan;
+    width: 450px;
+    text-align:center;
+    border: 5px solid gray;
+}
+
+.personnePhoto {
+    width: inherit;
+}
+
+.personneInfo {
+    width: inherit;
+    font-weight: bold;
+}
+
+.biographie{
+    margin-bottom: 2px;
+}

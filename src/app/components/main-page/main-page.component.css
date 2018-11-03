@@ -82,6 +82,10 @@
     margin-top: 5px;
     text-align: left;
     padding-left: 40px;
+<<<<<<< HEAD
+=======
+    display: table-caption;
+>>>>>>> origin/master
 }
 
 .left-panel_controls-item {

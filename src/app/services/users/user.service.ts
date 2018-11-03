@@ -13,7 +13,10 @@ import {TmdbService} from '../tmdb/tmdb.service';
 export class UserService {
 
     private _user: User;
+<<<<<<< HEAD
     private _movie: MovieResponse;
+=======
+>>>>>>> origin/master
     private _dbData: Observable<any>;
 
     constructor(private tmdb: TmdbService, private _anAuth: AngularFireAuth, private _db: AngularFireDatabase) {
@@ -21,6 +24,7 @@ export class UserService {
             this._user = u;
             const listsPath = `lists/${u.uid}`;
             const lists = _db.list(listsPath);
+<<<<<<< HEAD
             lists.push('coucou');
             this._dbData = lists.valueChanges();
         });
@@ -31,6 +35,10 @@ export class UserService {
                     .then( (m: MovieResponse) => console.log('Movie 13: ', this._movie = m) )
                     .catch( err => console.error('Error getting movie:', err) ),
             1000 );
+=======
+            this._dbData = lists.valueChanges();
+        });
+>>>>>>> origin/master
     }
 
     login() {

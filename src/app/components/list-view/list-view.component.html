@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 
     <div *ngFor="let film of films">
       <app-list-item [film]="film"></app-list-item>
     </div>
+=======
+<div *ngIf="films.length > 0">
+    <div *ngFor="let film of films | sortList : valueToResearch">
+        <app-list-item [film]="film"></app-list-item>
+    </div>
+</div>
+>>>>>>> origin/master
 
