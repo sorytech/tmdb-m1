@@ -123,5 +123,12 @@
   float: inherit;
   width: 86%;
 }
-
+.retourn-tbn{
+  background: #f9f9fb;
+  width: max-content;
+  height: max-content;
+  border-radius: 3px;
+  border: 1px solid #eae4e4;
+  margin: 5px;
+}
 

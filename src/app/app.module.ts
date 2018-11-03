@@ -12,7 +12,8 @@ import {SortListPipe} from './pipes/sort-list.pipe';
 import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import {ResearchComponent} from './components/research/research.component';
 import {FIlmComponent} from './components/film/film.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
@@ -72,7 +73,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [TmdbService],
   exports: [ResearchComponent],

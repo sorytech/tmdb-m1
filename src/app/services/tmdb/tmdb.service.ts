@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {MovieCredits, MovieQuery, MovieResponse} from '../../tmdb-data/Movie';
+import {MovieCredits, MovieQuery, MovieResponse, MovieVideos} from '../../tmdb-data/Movie';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {PersonQuery, PersonResponse} from '../../tmdb-data/Person';
 import {SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie';
@@ -116,16 +116,21 @@ export class TmdbService {
     return res.body;
   }
 
-  async getMovieDetails(id: number): Promise<[MovieResponse, MovieCredits]> {
+  async getVideos(id: number, options?: MovieQuery): Promise<MovieVideos> {
+    const url= `${tmdbApi}/movie/${id}/videos`;
+    const res = await this.get<MovieVideos>(url, options);
+    return res.body;
+  }
+  async getMovieDetails(id: number): Promise<[MovieResponse, MovieCredits, MovieVideos]> {
     const P1 = this.getMovie(id);
     const P2 = this.getCredits(id);
+    const P3 = this.getVideos(id);
     console.log('P1', P1);
     console.log('P2', P2);
-    const P = await Promise.all([P1, P2]);
+    console.log('P3', P3);
+    const P = await Promise.all([P1, P2, P3]);
     console.log('P1', P[0]);
     console.log('P2', P[1]);
-    // this.movieDetails.movieResponse = P[0];
-    // this.movieDetails.movieCredits = P[1];
     return P;
   }
 

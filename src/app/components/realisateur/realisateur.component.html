@@ -16,6 +16,11 @@
 </div-->
 <div class = "InfosPersonne" *ngIf="director !== undefined" >
   <div class = "personnePhoto">
+      <div class="retourn-tbn">
+          <button mat-button routerLink="/mylist">
+            <mat-icon matPrefix>navigate_before</mat-icon>
+          </button>
+        </div>
     <img [src]= "getPath(director.profile_path)"  alt="assets/images/no-image-icon-6.png" class="realisateur-photo">
   </div>
   <div class = "personneInfo">

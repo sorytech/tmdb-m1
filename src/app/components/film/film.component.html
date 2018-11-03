@@ -51,7 +51,7 @@
     <div class="film-content-bottom">
       <div class="film-content-bottom-realisateur">
         <div class="realisateur">
-          <span class="realisateur-label">RÃ©alisateur</span> <br>
+          <span class="realisateur-label">Realisateur</span> <br>
           <div class="film-photo-container">
             <img [src]="getPath(crew.profile_path)"  alt="assets/images/no-image-icon-6.png"
                  class="realisateur-photo">
@@ -66,9 +66,13 @@
 
         <div class="trailer-container">
           <span class="trailer-label">Trailer</span> <br>
-          <div class="trailer-display">
-            <!--<img src="assets/images/no-found.png" alt="assets/images/no-image-icon-6.png"-->
-            <!--class="realisateur-photo">-->
+          <div class="trailer-display" >
+            <iframe id="inlineFrameExample"
+              title="Inline Frame Example"
+              width="300"
+              height="200"
+              [src]="getPathVideo(key)">
+            </iframe>
           </div>
         </div>
       </div>
