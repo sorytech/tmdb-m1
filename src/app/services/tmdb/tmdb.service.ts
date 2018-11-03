@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {MovieQuery, MovieResponse} from '../../tmdb-data/Movie';
+import {MovieCredits, MovieQuery, MovieResponse, MovieVideos} from '../../tmdb-data/Movie';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {PersonQuery, PersonResponse} from '../../tmdb-data/Person';
 import {SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie';
@@ -25,7 +25,11 @@ function AlxToObjectString(data: Object): { [key: string]: string } {
     providedIn: 'root'
 })
 export class TmdbService {
-    private api_key: string;
+
+  // private movieDetails: MovieDetails;
+  private movieResponse: MovieResponse;
+  private movieCredits: MovieCredits;
+  private api_key: string;
 
     private _subject = new Subject<any>();
 
@@ -44,10 +48,6 @@ export class TmdbService {
         this.api_key = key;
         return this;
     }
-
-    // _______________________________________________________________________________________________________________________________________
-    // Movies ________________________________________________________________________________________________________________________________
-    // _______________________________________________________________________________________________________________________________________
     async getMovie(id: number, options?: MovieQuery): Promise<MovieResponse> {
         const url = `${tmdbApi}/movie/${id}`;
         const res = await this.get<MovieResponse>(url, options);
@@ -59,10 +59,6 @@ export class TmdbService {
         const res = await this.get<SearchMovieResponse>(url, query);
         return res.body;
     }
-
-    // _______________________________________________________________________________________________________________________________________
-    // Person / People _______________________________________________________________________________________________________________________
-    // _______________________________________________________________________________________________________________________________________
     async getPerson(id: number, options?: PersonQuery): Promise<PersonResponse> {
         const url = `${tmdbApi}/person/${id}`;
         const res = await this.get<PersonResponse>(url, options);
@@ -81,10 +77,6 @@ export class TmdbService {
         const res = await this.get<SearchPeopleResponse>(url, query);
         return res.body;
     }
-
-    // _______________________________________________________________________________________________________________________________________
-    // TV ____________________________________________________________________________________________________________________________________
-    // _______________________________________________________________________________________________________________________________________
     async getTV(id: number, options?: TVQuery): Promise<TVResponse> {
         const url = `${tmdbApi}/tv/${id}`;
         const res = await this.get<TVResponse>(url, options);
@@ -117,4 +109,29 @@ export class TmdbService {
     set subject(value: Subject<any>) {
         this._subject = value;
     }
+
+  async getCredits(id: number, options?: MovieQuery): Promise<MovieCredits> {
+    const url = `${tmdbApi}/movie/${id}/credits`;
+    const res = await this.get<MovieCredits>(url, options);
+    return res.body;
+  }
+
+  async getVideos(id: number, options?: MovieQuery): Promise<MovieVideos> {
+    const url= `${tmdbApi}/movie/${id}/videos`;
+    const res = await this.get<MovieVideos>(url, options);
+    return res.body;
+  }
+  async getMovieDetails(id: number): Promise<[MovieResponse, MovieCredits, MovieVideos]> {
+    const P1 = this.getMovie(id);
+    const P2 = this.getCredits(id);
+    const P3 = this.getVideos(id);
+    console.log('P1', P1);
+    console.log('P2', P2);
+    console.log('P3', P3);
+    const P = await Promise.all([P1, P2, P3]);
+    console.log('P1', P[0]);
+    console.log('P2', P[1]);
+    return P;
+  }
+
 }

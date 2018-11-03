@@ -6,47 +6,47 @@ import {MovieResponse} from '../../tmdb-data/Movie';
 import {Constant} from '../../constante/Constant';
 
 @Component({
-    selector: 'app-main-page',
-    templateUrl: './main-page.component.html',
-    styleUrls: ['./main-page.component.css']
+  selector: 'app-main-page',
+  templateUrl: './main-page.component.html',
+  styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
 
-    @Output() movies: MovieResponse[] = [];
-    public options = Constant.getGenres;
-    public films: MovieResponse[] = [];
+  @Output() movies: MovieResponse[] = [];
+  public options = Constant.getGenres;
+  public films: MovieResponse[] = [];
 
-    constructor(private route: ActivatedRoute, private router: Router, private _userService: UserService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private _userService: UserService) { }
 
-    ngOnInit() {
+  ngOnInit() {
+  }
+
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
     }
 
-    formatLabel(value: number | null) {
-        if (!value) {
-            return 0;
-        }
-
-        if (value >= 1000) {
-            return Math.round(value / 1000);
-        }
-
-        return value;
+    if (value >= 1000) {
+      return Math.round(value / 1000);
     }
 
-    private _getUser() {
-        return this._userService.getInstance();
-    }
+    return value;
+  }
 
-    login() {
-        this._getUser().login();
-    }
+  private _getUser() {
+    return this._userService.getInstance();
+  }
 
-    logout() {
-        this._getUser().logout();
-    }
+  login() {
+    this._getUser().login();
+  }
 
-    user(): User {
-        return this._userService.user;
-    }
+  logout() {
+    this._getUser().logout();
+  }
+
+  user(): User {
+    return this._userService.user;
+  }
 
 }
