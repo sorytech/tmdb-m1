@@ -26,7 +26,7 @@ export class TraitementFilms {
         return this.myMovies;
     }
 
-    /* moi : pour filter les films */
+    /* pour filter les films */
 
     filterMovies(myGenres: MovieGenre[]) : MovieResponse[] {
         var res : MovieResponse[] = [];
@@ -37,8 +37,8 @@ export class TraitementFilms {
             console.log("titre ",this.myMovies[i].title);
             console.log("duree ",this.myMovies[i]);
             /* Pour chaque genre du film, on verifie si il se trouve dans myGenres
-            si c'est le cas, on verifie qu'on a pas son id dans tableID pour éviter les doublons
-            avant d'ajouter l'id et d'ajouter le film dans res */
+            si c'est le cas, on verifie qu'on a pas l'id du film dans tableID pour éviter
+            les doublons avant d'ajouter l'id et d'ajouter le film dans res */
             for(let j in this.myMovies[i].genre_ids){
                 
                 for(let g in myGenres){
@@ -65,42 +65,6 @@ export class TraitementFilms {
     set subject(value: Subject<any>) {
         this._subject = value;
     }
-
-    
+   
 }
-
-    /*public url_movie = `https://api.themoviedb.org/3/`;
-
-    getMovieByName(name: string) {
-        return this.httpClient.get(this.url_movie + `search/movie?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US
-                                    &query=${name}&include_adult=false`);
-    }
-    getLatestMovie() {
-        return this.httpClient.get(this.url_movie + `movie/latest?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US`);
-    }
-    getPopularMovies() {
-        return this.httpClient.get<MovieResponse[]>(this.url_movie + `movie/popular?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US&page=1`);
-    }
-
-    getGenreMovies(){
-        return this.httpClient.get<MovieGenre[]>(this.url_movie + `genre/movie/list?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US`);
-    }
-
-   /* search(term: string): Observable<Film[]> {
-        const url = this.url_movie + `movie/popular?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US&page=1`;
-        return this.httpClient.get(url).pipe(
-            map(res => {
-                return res.json().results.map(item => {
-                    return new SearchItem(
-                        item.trackName,
-                        item.artistName,
-                        item.trackViewUrl,
-                        item.artworkUrl30,
-                        item.artistId
-                    );
-                });
-            })
-        );
-
-    }*/
 

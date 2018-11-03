@@ -14,6 +14,7 @@ export class ListViewComponent implements OnInit {
     films: MovieResponse[];
  
     subscription : Subscription;
+    showSpinner: boolean = true;
     
     constructor(private tmdbs: TmdbService,private filmsts:TraitementFilms) {
     }
@@ -27,23 +28,21 @@ export class ListViewComponent implements OnInit {
                 this.loadMovies();
             }                 
         });
+        
     }
 
     loadMovies(){
         this.tmdbs.getPopularMovies()
             .subscribe((movie: any[]) => {
                 this.films = movie['results'];
+                this.showSpinner=false;
                 this.filmsts.setMovies(this.films);
+
             },
             (error) => {
-                console.log('Erreur lors du téléchargement : ', error);
+                console.log('Impossible de récuperer les films ', error);
             }
         );
     }
-
-    loadCredits(id:number){
-        this.tmdbs.getCredits(id);
-    }
-
     
 }

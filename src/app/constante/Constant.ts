@@ -4,12 +4,12 @@ export class Constant {
     public static get fireBaseKey(): string { return 'AIzaSyCz6cIbElxXg97m_pXixDMMOS4N2hlYqc4'; }
     public static get tmdbKey(): string { return '384da4d1d38ad08447d757fb4629fa6b'; }
 
-    public static options : {label:string, value:string}[] =
+    public static options : {label:string, value:string, checked: boolean}[] =
          [
-            {label: 'Action', value: 'Action'},
-            {label: 'Drame', value: 'Drama'},
-            {label: 'Comedy', value: 'Comedy'},
-            {label: 'Sci-fy', value: 'Science Fiction'},
+            {label: 'Action', value: 'Action', checked: false},
+            {label: 'Drame', value: 'Drama', checked: false},
+            {label: 'Comedy', value: 'Comedy', checked: false},
+            {label: 'Sci-fy', value: 'Science Fiction', checked : false},
         ];
     
 }

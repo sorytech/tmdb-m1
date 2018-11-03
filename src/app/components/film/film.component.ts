@@ -13,6 +13,7 @@ export class FIlmComponent implements OnInit {
 
     public currentFilmResponse: MovieResponse; // Film en cours
     private id: string;
+    showSpinner : boolean=true;
 
     // L'Id du film qui sera passé en paramètre dans le router
 
@@ -27,6 +28,7 @@ export class FIlmComponent implements OnInit {
             .getMovie(Number(this.id))
             .then((m: MovieResponse) => {
                 this.currentFilmResponse = m;
+                this.showSpinner=false;
             })
             .catch(err => console.error('Error getting movie:', err)),
         1000);

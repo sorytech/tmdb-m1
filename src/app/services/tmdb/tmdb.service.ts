@@ -25,7 +25,7 @@ function AlxToObjectString(data: Object): { [key: string]: string } {
 })
 export class TmdbService {
     private api_key: string;
-
+    clickRealisators : boolean = false;
     private async get<T>(url: string, data?: Object): Promise<HttpResponse<T>> {
         return this._http.get<T>(url, {
             observe: 'response',
@@ -106,13 +106,6 @@ export class TmdbService {
     getPopularMovies() {
         return this._http.get<MovieResponse[]>(`${Constant.baseURL}movie/popular?api_key=${Constant.tmdbKey}&language=en-US&page=1`);
     }
-
-    /** moi : renvoie les films poulaires 
-    async getPopular(options?: MovieQuery): Promise<MovieResponse[]> {
-      const url = `${tmdbApi}/movie/popular?api_key=384da4d1d38ad08447d757fb4629fa6b&language=en-US&page=1`;
-      const res = await this.get<MovieResponse[]>(url,options);
-      return res.body;
-    } */
 
     /*****
    *  get credits

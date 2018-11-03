@@ -1,13 +1,33 @@
-<div class="realisateur">
-    <span class="realisateur-label">Réalisateur</span> <br>
-    <div class="realisateur-photo-container">
-      <img src="http://image.tmdb.org/t/p/w500/{{director.profile_path}}"  alt="assets/images/no-image-icon-6.png"
-           class="realisateur-photo">
+<div class="wait"  *ngIf="showSpinner">
+    <mat-spinner ></mat-spinner>
+</div>
+<div class="realisateur-container" *ngIf="!showSpinner">
+  <div class="realisateur-photo-container">
+    <div class="retourn-tbn">
+      <button mat-button routerLink="/realisateurs">
+        <mat-icon matPrefix>navigate_before</mat-icon>
+          Retour
+      </button>
     </div>
-    <div class="realisateur-details">
-      <span class="realisateur-name"><a >{{director.name}}</a></span><br>
-      <div class="realisateur-biographie">
-        {{director.biography}}
+    <img [src]="getPath(director.profile_path)" alt="assets/images/no-image-icon-6.png" class="poster">
+  </div>
+  <div class="realisateur-infos-container">
+    <div class="realisateur-content">
+      <div class="realisateur-name-content">
+        <span class="realisateur-name">{{director.name}}</span>
       </div>
-    </div>
+      <div class="infos-realisateur">
+        <br>
+        <label for="birthday">Date de naissance : </label>
+        <span> {{director.birthday}}</span><br>
+        <span>Lieu de naissance : {{director.place_of_birth}}</span><br>
+        <label for="popularity" >Popularité : </label>
+        <span>{{director.popularity}}</span><br>
+      </div>     
+      <div class="biography">       
+        <span class="label-value">Biographie</span>
+        <p class="biography-content">{{director.biography}}</p>
+      </div>
+    </div>   
+  </div>
 </div>

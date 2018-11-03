@@ -17,31 +17,19 @@ export class RealisateurComponent implements OnInit {
   public current_id: number;
   public  crew: Crew;
   public  director: PersonResponse={};
+  showSpinner: boolean=true;
 
   ngOnInit() {
-    //console.log('Film : ', this._route.snapshot.params['id']);
     this.current_id = this._route.snapshot.params['id']; // On récupère l'id du film
-
-    /*setTimeout(() =>
-        this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
-          .getMovieDetails(Number(this.current_id))
-          .then(([mr, mc]) => {
-            this.crew = mc.crew.find((elem) => elem.job === 'Director')
-            this.tmdb.getPerson(this.crew.id).then((realisateur) => {
-              this.director = realisateur ;
-            });
-          })
-          .catch(err => console.error('Error getting movie:', err)),
-      1000);*/
       this.tmdb.getPerson(this.current_id).then((r:PersonResponse) =>{
         this.director=r;
+        this.showSpinner=false;
       }).catch(err => console.log("error getting director",err));
-
   }
 
-  /*getPath(path: string): string {
+  getPath(path: string): string {
     return `https://image.tmdb.org/t/p/w500${path}`;
-  }*/
+  }
 
 
 

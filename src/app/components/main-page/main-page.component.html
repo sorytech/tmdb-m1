@@ -6,9 +6,9 @@
                 <!--span class="menu-item" mat-button [matMenuTriggerFor]="menuFilms">Films</span>
                 <span class="menu-item" mat-button [matMenuTriggerFor]="menuFilms">Acteurs</span>
                 <span class="menu-item" mat-button [matMenuTriggerFor]="menuFilms">Réalisateurs</span-->
-                <button mat-button routerLink="/films">Films</button>
-                <button mat-button >Acteurs</button>
-                <button mat-button routerLink="/realisateurs">Réalisateurs</button>
+                <button mat-button routerLink="/films" (click)="resetAllCheckboxes()">Films</button>
+                <button mat-button (click)="resetAllCheckboxes()">Acteurs</button>
+                <button mat-button routerLink="/realisateurs" (click)="resetAllCheckboxes()">Réalisateurs</button>
             </div>
 
             <div class="authentification-panel">
@@ -26,10 +26,10 @@
     <div class="left-panel">
         <div class="left-panel-tite">Genre</div>      
         <div class="left-panel-controls">
-            <section  *ngFor="let option of options" >      
-                <mat-checkbox              
+            <section  *ngFor="let option of options; let j = index" >      
+                <mat-checkbox            
                     (change)="addGenre(option.value)" 
-                    class="left-panel_controls-item">{{option.label}} 
+                    class="left-panel_controls-item" [(ngModel)]='options[j].checked'>{{option.label}}
                 </mat-checkbox>
             </section>
         </div>

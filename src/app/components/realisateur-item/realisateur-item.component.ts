@@ -13,12 +13,6 @@ export class RealisateurItemComponent implements OnInit {
 
   constructor(private tmdb: TmdbService) { }
 
-  ngOnInit() {
-    /*this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
-      .getMovie(Number(this.film.id))
-      .then((m: MovieResponse) => {
-        this.current = m;       
-      }).catch(err => console.error('Error getting movie:', err));*/
-  }
+  ngOnInit() {}
 
 }
