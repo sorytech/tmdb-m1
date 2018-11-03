@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+
 import {AppComponent} from './app.component';
 import {TmdbService} from './services/tmdb/tmdb.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -11,8 +12,8 @@ import {SortListPipe} from './pipes/sort-list.pipe';
 import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ResearchComponent} from './components/research/research.component';
-
 import {FIlmComponent} from './components/film/film.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
 import {MatToolbarModule} from '@angular/material';
@@ -26,60 +27,52 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { RealisateurComponent } from './components/realisateur/realisateur.component';
 import {FormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-
+import {PersonneComponent} from './components/personne/personne.component';
 
 
 const appRoutes: Routes = [
-    { path: 'film/:id', component: FIlmComponent },
-    { path: 'realisateur/:id', component: RealisateurComponent },
-    { path: 'mylist', component: ListViewComponent },
-    { path: '', component: ListViewComponent }
-    { path: 'mylist', component: ListViewComponent },
-    { path: '', component: ListViewComponent },
+  { path: 'film/:id', component: FIlmComponent },
+  { path: 'mylist', component: ListViewComponent },
+  { path: '', component: ListViewComponent },
+  { path: 'moviePerson', component: PersonneComponent },
 ];
 
-
 @NgModule({
-    declarations: [
-        AppComponent,
-        SortListPipe,
-        MainPageComponent,
-        ListItemComponent,
-        ResearchComponent,
-        ListViewComponent,
-        FIlmComponent,
-        RealisateurComponent
-
-
-    ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireAuthModule,
-        AngularFireDatabaseModule,
-        RouterModule.forRoot(appRoutes),
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatCardModule,
-        MatMenuModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatListModule,
-        MatCheckboxModule,
-        MatSliderModule,
-        MatButtonModule,
-        MatIconModule,
-        MatProgressSpinnerModule,
-        FormsModule,
-    ],
-    providers: [TmdbService],
-    exports: [ResearchComponent],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    SortListPipe,
+    MainPageComponent,
+    ListItemComponent,
+    ResearchComponent,
+    ListViewComponent,
+    FIlmComponent,
+    PersonneComponent,
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatSliderModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+  ],
+  providers: [TmdbService],
+  exports: [ResearchComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
