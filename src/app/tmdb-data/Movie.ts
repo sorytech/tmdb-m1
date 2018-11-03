@@ -100,5 +100,3 @@ export interface MovieVideos {
   id: number;
   results: Result[];
 }
-
-

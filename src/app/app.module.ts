@@ -31,6 +31,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule} from '@angular/forms';
 import {PersonneComponent} from './components/personne/personne.component';
 import {RealisateurComponent} from './components/realisateur/realisateur.component';
+import { ActeurComponent } from './components/acteur/acteur.component';
 
 
 const appRoutes: Routes = [
@@ -38,8 +39,8 @@ const appRoutes: Routes = [
   { path: 'mylist', component: ListViewComponent },
   { path: '', component: ListViewComponent },
   { path: 'moviePerson', component: PersonneComponent },
-  { path: 'realisateur/:id', component: RealisateurComponent }
-
+  { path: 'realisateur/:id', component: RealisateurComponent },
+  { path: 'actor/:id', component: ActeurComponent }
 ];
 
 @NgModule({
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     ListViewComponent,
     FIlmComponent,
     PersonneComponent,
-    RealisateurComponent
+    RealisateurComponent,
+    ActeurComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MovieResponse} from '../../tmdb-data/Movie';
+import {PersonResponse} from '../../tmdb-data/Person';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
 
 @Component({
@@ -42,4 +43,5 @@ export class ListViewComponent implements OnInit {
   set valueToResearch(value: string) {
     this._valueToResearch = value;
   }
+
 }
