@@ -74,11 +74,12 @@
       <div class="film-content-bottom-acteurs">
         <span class="acteurs-label">Acteurs</span><br>
         <div class="acteur" *ngFor="let actor of casts">
-          <img [src]="getPath(actor.profile_path)" alt="Image Indisponible"
-               class="acteur-photo"><br>
-          <span class="acteur-name">Nom : <a href="url">{{actor.name}}</a></span>
+            <a href="#" [routerLink]="['/actor/', actor.id]" > 
+            <img [src]="getPath(actor.profile_path)" alt="Image Indisponible" class="acteur-photo" ><br>
+            </a>
+            <span class="acteur-name">Nom : <a href="#" [routerLink]="['/actor/', actor.id]" > {{actor.name}} </a></span>
         </div>
-      </div>
+     </div>
 
     </div>
   </div>

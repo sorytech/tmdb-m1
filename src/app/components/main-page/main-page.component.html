@@ -1,21 +1,23 @@
 <div class="page-header">
-  <div class="menu-horizontal-container">
+<div class="menu-horizontal-container">
     <mat-toolbar class="menu-horizontal">
-      <div class="menu-panel">
-        <span class="logo-container">Logo</span>
-        <button class="menu-item" mat-button routerLink="/films">Films</button>
-        <button class="menu-item" mat-button>Acteurs</button>
-        <button class="menu-item" mat-button routerLink="/realisateurs" (click)="resetAllCheckboxes()">Réalisateurs</button>
-      </div>
-
-      <div class="authentification-panel">
-        <span class="auth-menu-item" mat-button (click)="login()">Connection</span>
-        <span class="auth-menu-item" mat-button>Créer un compte</span>
-        <label>{{user() !== undefined ? user().displayName : ''}}</label>
-      </div>
+        <div class="menu-panel">
+          <span class="logo-container">Logo</span>
+          <button class="menu-item" mat-button routerLink="/films">Films</button>
+          <button class="menu-item" mat-button>Acteurs</button>
+          <button class="menu-item" mat-button routerLink="/realisateurs" (click)="resetAllCheckboxes()">Réalisateurs</button>
+        </div>
+     
+        <div class="authentification-panel">
+            <!--<span class="auth-menu-item" mat-button (click)="login()">Connection</span>-->
+            <span class="auth-menu-item" mat-button [matMenuTriggerFor]="menuConnection">Connection</span>
+            <span class="auth-menu-item" mat-button *ngIf="user() === defined">Créer un compte</span>
+            <label>{{user() !== undefined ? user().displayName : ''}}</label>
+        </div>
     </mat-toolbar>
     <app-research></app-research>
-  </div>
+</div>
+
 </div>
 
 <div class="page-container">
@@ -46,11 +48,7 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
-
-<mat-menu #menuFilms="matMenu">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
+<mat-menu #menuConnection="matMenu">
+  <button mat-menu-item (click)="login()">Connection</button>
+  <button mat-menu-item (click)="logout()">Deconnection</button>
 </mat-menu>
-
-

@@ -107,4 +107,3 @@ export interface Option {
     label: string;
     checked: boolean;
 }
-

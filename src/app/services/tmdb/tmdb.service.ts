@@ -6,23 +6,21 @@ import {SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie
 import {SearchPeopleQuery, SearchPeopleResponse} from '../../tmdb-data/SearchPeople';
 import {TVQuery, TVResponse} from '../../tmdb-data/TV';
 import {SearchTVQuery, SearchTVResponse} from '../../tmdb-data/SearchTV';
-import {Subject} from 'rxjs';
-import {Constant} from '../../constante/Constant';
 
 const tmdbApi = 'https://api.themoviedb.org/3';
 type HTTP_METHOD = 'GET' | 'POST' | 'DELETE' | 'PUT';
 
-function AlxToObjectString(data: Object): { [key: string]: string } {
-    const res = {};
-    for (const k in data) {
-        const v = data[k];
-        res[k] = typeof v === 'string' ? v : JSON.stringify(v);
-    }
-    return res;
+function AlxToObjectString(data: Object): {[key: string]: string} {
+  const res = {};
+  for (const k in data) {
+    const v = data[k];
+    res[k] = typeof v === 'string' ? v : JSON.stringify(v);
+  }
+  return res;
 }
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class TmdbService {
 
@@ -109,7 +107,9 @@ export class TmdbService {
     getPopularMovies() {
         return this._http.get<MovieResponse[]>(`${Constant.baseURL}movie/popular?api_key=${Constant.tmdbKey}&language=en-US&page=1`);
     }
-
+    getPopularPerson() {
+        return this._http.get<PersonResponse[]>(`${Constant.baseURL}person/popular?api_key=${Constant.tmdbKey}&language=en-US&page=1`);
+    }
     get subject(): Subject<any> {
         return this._subject;
     }
@@ -154,5 +154,4 @@ export class TmdbService {
         const allPromise = await Promise.all([moviePromise, creditsPromise, videosPromise]);
         return allPromise;
     }
-
 }

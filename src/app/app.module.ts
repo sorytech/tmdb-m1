@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {TmdbService} from './services/tmdb/tmdb.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -8,7 +7,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {SortListPipe} from './pipes/sort-list.pipe';
+import {SortListPipe} from './pipes/movies-sort/sort-list.pipe';
 import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
@@ -31,18 +30,25 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule} from '@angular/forms';
 import {PersonneComponent} from './components/personne/personne.component';
 import {RealisateurComponent} from './components/realisateur/realisateur.component';
-import {RealisateurItemComponent} from './components/realisateur-item/realisateur-item.component';
+import { ActeurComponent } from './components/acteur/acteur.component';
+import { ListActorComponent } from './components/list-actor/list-actor.component';
+import { ListViewPersonComponent } from './components/list-view-person/list-view-person.component';
+import { PipesPersonPipe } from './pipes/persons-sort/pipes-person.pipe';
 import {ListeRealisateursComponent} from './components/liste-realisateurs/liste-realisateurs.component';
 import {TraitementFilms} from './services/movies/traitement-films';
 
-
 const appRoutes: Routes = [
-    {path: 'film/:id', component: FIlmComponent},
+    { path: 'film/:id', component: FIlmComponent },
     {path: 'films', component: ListViewComponent},
-    {path: '', component: ListViewComponent},
-    {path: 'moviePerson', component: PersonneComponent},
+    { path: 'mylist', component: ListViewComponent },
+    { path: 'moviePerson', component: PersonneComponent },
+    { path: 'realisateur/:id', component: RealisateurComponent },
+    {path: 'realisateurs', component: ListeRealisateursComponent},
     {path: 'realisateur/:id/:fromFilm', component: RealisateurComponent},
-    {path: 'realisateurs', component: ListeRealisateursComponent}
+    { path: 'actor/:id', component: ActeurComponent },
+    { path: 'person/:id', component: PersonneComponent},
+    { path: 'Persons', component: ListViewPersonComponent},
+    { path: '', component: ListViewComponent}
 ];
 
 @NgModule({
@@ -58,6 +64,9 @@ const appRoutes: Routes = [
         RealisateurComponent,
         RealisateurItemComponent,
         ListeRealisateursComponent,
+        ListActorComponent,
+        ListViewPersonComponent,
+        PipesPersonPipe,
     ],
     imports: [
         BrowserModule,
@@ -78,6 +87,7 @@ const appRoutes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatProgressSpinnerModule,
+        dev-validation
         FormsModule
     ],
     providers: [TmdbService, TraitementFilms],

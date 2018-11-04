@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {MovieResponse} from '../tmdb-data/Movie';
+import {MovieResponse} from '../../tmdb-data/Movie';
 
 @Pipe({
     name: 'sortList'

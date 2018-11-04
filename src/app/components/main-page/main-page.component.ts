@@ -6,6 +6,7 @@ import {MovieResponse, Option} from '../../tmdb-data/Movie';
 import {Constant} from '../../constante/Constant';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
 import {TraitementFilms} from '../../services/movies/traitement-films';
+import {PersonResponse} from '../../tmdb-data/Person';
 
 @Component({
     selector: 'app-main-page',
@@ -18,6 +19,8 @@ export class MainPageComponent implements OnInit {
     public options = Constant.getGenres;
     public films: MovieResponse[] = [];
     public checkedGenres: Option[] = [];
+    @Output() persons: PersonResponse[] = [];
+    public _persons: PersonResponse[] = [];
 
     constructor(private route: ActivatedRoute,
                 private router: Router, private _userService: UserService,
