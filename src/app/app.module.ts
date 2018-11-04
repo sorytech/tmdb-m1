@@ -11,8 +11,8 @@ import {SortListPipe} from './pipes/movies-sort/sort-list.pipe';
 import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
-import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import {ResearchComponent} from './components/research/research.component';
 import {FIlmComponent} from './components/film/film.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
@@ -34,14 +34,18 @@ import { ActeurComponent } from './components/acteur/acteur.component';
 import { ListActorComponent } from './components/list-actor/list-actor.component';
 import { ListViewPersonComponent } from './components/list-view-person/list-view-person.component';
 import { PipesPersonPipe } from './pipes/persons-sort/pipes-person.pipe';
-
+import {ListeRealisateursComponent} from './components/liste-realisateurs/liste-realisateurs.component';
+import {TraitementFilms} from './services/movies/traitement-films';
 
 const appRoutes: Routes = [
     { path: 'film/:id', component: FIlmComponent },
+    {path: 'films', component: ListViewComponent},
     { path: 'mylist', component: ListViewComponent },
     { path: 'moviePerson', component: PersonneComponent },
     { path: 'realisateur/:id', component: RealisateurComponent },
-    { path: 'actor/:id', component: ActeurComponent }
+    {path: 'realisateurs', component: ListeRealisateursComponent},
+    {path: 'realisateur/:id/:fromFilm', component: RealisateurComponent},
+    { path: 'actor/:id', component: ActeurComponent },
     { path: 'person/:id', component: PersonneComponent},
     { path: 'Persons', component: ListViewPersonComponent},
     { path: '', component: ListViewComponent}
@@ -57,6 +61,9 @@ const appRoutes: Routes = [
         ListViewComponent,
         FIlmComponent,
         PersonneComponent,
+        RealisateurComponent,
+        RealisateurItemComponent,
+        ListeRealisateursComponent,
         ListActorComponent,
         ListViewPersonComponent,
         PipesPersonPipe,
@@ -80,9 +87,10 @@ const appRoutes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatProgressSpinnerModule,
-        FormsModule,
+        dev-validation
+        FormsModule
     ],
-    providers: [TmdbService],
+    providers: [TmdbService, TraitementFilms],
     exports: [ResearchComponent],
     bootstrap: [AppComponent]
 })

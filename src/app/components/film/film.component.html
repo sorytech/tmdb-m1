@@ -3,8 +3,9 @@
   <div class="film-container">
     <div class="film-photo-container">
       <div class="retourn-tbn">
-        <button mat-button routerLink="/mylist">
+        <button mat-button routerLink="/films">
           <mat-icon matPrefix>navigate_before</mat-icon>
+          Retour
         </button>
       </div>
       <img [src]="getPath(currentFilmResponse.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
@@ -19,15 +20,6 @@
           <span class="label-value">Synopsis</span>
           <p class="synopsis-content">
             {{currentFilmResponse.overview}}
-            <!-- Sans un bruit est un film rÃ©alisÃ© par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-             :
-             Une famille tente de survivre sous la menace de mystÃ©rieuses ..
-             Sans un bruit est un film rÃ©alisÃ© par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-             :
-             Une famille tente de survivre sous la menace de mystÃ©rieuses ..
-             Sans un bruit est un film rÃ©alisÃ© par John Krasinski avec Emily Blunt, John Krasinski. Synopsis
-             :
-             Une famille tente de survivre sous la menace de mystÃ©rieuses ..-->
           </p>
         </div>
       </div>
@@ -53,13 +45,15 @@
         <div class="realisateur">
           <span class="realisateur-label">Realisateur</span> <br>
           <div class="film-photo-container">
-            <img [src]="getPath(crew.profile_path)"  alt="assets/images/no-image-icon-6.png"
-                 class="realisateur-photo">
+            <img [src]="getPath(crew.profile_path)"  alt="Aucun aperçu disponible" class="realisateur-photo">
           </div>
           <div class="realisateur-details">
-            <span class="realisateur-name"><a  [routerLink]="['/realisateur/', currentFilmResponse.id]" >{{crew.name}}</a></span><br>
+            <span class="realisateur-name">
+              <a  [routerLink]="['/realisateur/', director !== undefined ? director.id : '', currentFilmResponse.id]">{{crew.name}}
+              </a>
+            </span><br>
             <div class="realisateur-biographie">
-              {{director.biography}}
+              {{director !== undefined ? director.biography : ''}}
             </div>
           </div>
         </div>
@@ -71,7 +65,7 @@
               title="trailerTitre"
               width="300"
               height="200"
-              [src]="getPathVideo(key)">
+              [src]="getPathVideo()">
             </iframe>
           </div>
         </div>
