@@ -13,7 +13,7 @@
 
       <div class="realisateur-details"  >
           <label class="label" for="item">Date de naissance : </label>
-          <a class="label-value" name="item">{{realisateur.birthday}}</a><br>
+          <a class="label-value" name="item">{{realisateur.birthday | date:'longDate'}}</a><br>
           <label class="label" for="item">Lieu de naissance </label>
           <a class="label-value" name="item">{{realisateur.place_of_birth}}</a><br>
       </div>

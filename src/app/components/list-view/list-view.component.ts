@@ -23,8 +23,24 @@ export class ListViewComponent implements OnInit {
         /**
          * Récupère la valeur de la barre de recherche et met à jour la liste de films
          */
+
         this._tmdb.subject.subscribe((data) => {
             this.valueToResearch = data;
+            if (this.valueToResearch === '') {
+                this._tmdb.getPopularMovies()
+                    .subscribe((movie: any[]) => {
+                            this.films = movie['results'];
+                        },
+                        (error) => {
+                            console.log('Erreur lors du téléchargement : ', error);
+                        }
+                    );
+            } else {
+                this._tmdb.getMovieByName(this.valueToResearch.toString())
+                    .subscribe((movie: any[]) => {
+                        this.films = movie['results'];
+                    });
+            }
         });
 
         this._tmdb.clickRealisators = false;

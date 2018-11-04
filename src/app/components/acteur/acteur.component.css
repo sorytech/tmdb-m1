@@ -1,0 +1,83 @@
+.acteur-container {
+    background: white;
+    width: 96%;
+    margin: auto;
+    height: 655px;
+    box-shadow: 1px 1px 1px #d4d0cd;
+    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+.acteur-photo-container {
+    width: 30%;
+    height: 41%;
+    float: left;
+}
+
+.acteur-name-content{
+    margin-top: 15%;
+}
+
+.acteur-name {
+
+    font-size: larger;
+    font-weight: 500;
+}
+.acteur-infos-container {
+    height: 49%;
+    text-align: left;
+    padding-left: 8px;
+    margin-left: 11px;
+    width: 66%;
+    float: right;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+.acteur-content{
+    width: 85%;
+    float: left;
+    margin-left: 13px;
+}
+
+.biography {
+    margin-top: 15%;
+}
+.biography-content {
+    text-align: justify;
+    font-size: small;
+}
+.label-value {
+
+    font-size: large;
+    font-weight: 400;
+}
+
+/*infos acteur */
+
+.infos-acteur {
+    float: inherit;
+    width: 86%;
+    font-size: small;
+    font-weight: 500;
+    display: inline ;
+}
+
+.retourn-tbn{
+    background: #f9f9fb;
+    width: max-content;
+    height: max-content;
+    border-radius: 3px;
+    border: 1px solid #eae4e4;
+    margin: 5px;
+}
+
+.poster {
+    width: 292px;
+    height: 371px;
+}
+
+.wait {
+    height: inherit;
+    margin-left: 50%;
+    margin-top: 30%;
+}
+

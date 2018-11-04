@@ -6,6 +6,8 @@ import {SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie
 import {SearchPeopleQuery, SearchPeopleResponse} from '../../tmdb-data/SearchPeople';
 import {TVQuery, TVResponse} from '../../tmdb-data/TV';
 import {SearchTVQuery, SearchTVResponse} from '../../tmdb-data/SearchTV';
+import {Constant} from '../../constante/Constant';
+import {Subject} from 'rxjs';
 
 const tmdbApi = 'https://api.themoviedb.org/3';
 type HTTP_METHOD = 'GET' | 'POST' | 'DELETE' | 'PUT';
@@ -153,5 +155,9 @@ export class TmdbService {
         const videosPromise = this.getVideos(id);
         const allPromise = await Promise.all([moviePromise, creditsPromise, videosPromise]);
         return allPromise;
+    }
+
+    public getPersonByName (name: string) {
+        return this._http.get(`${Constant.baseURL}search/person?api_key=${Constant.tmdbKey}&language=en_us&query=${name}&include_adult=false`);
     }
 }

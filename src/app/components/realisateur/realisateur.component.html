@@ -19,7 +19,7 @@
             <div class="infos-realisateur">
                 <br>
                 <label for="birthday">Date de naissance : </label>
-                <span id="birthday"> {{director.birthday}}</span><br>
+                <span id="birthday"> {{director.birthday | date:'longDate'}}</span><br>
                 <span>Lieu de naissance : {{director.place_of_birth}}</span><br>
                 <label for="popularity">Popularité : </label>
                 <span id="popularity">{{director.popularity}}</span><br>

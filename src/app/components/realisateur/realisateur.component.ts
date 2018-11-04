@@ -60,4 +60,5 @@ export class RealisateurComponent implements OnInit {
     set director(value: PersonResponse) {
         this._director = value;
     }
+
 }

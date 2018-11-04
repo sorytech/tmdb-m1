@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TraitementFilms} from 'src/app/services/movies/traitement-films';
 import {MovieResponse, Crew, MovieCredits} from 'src/app/tmdb-data/Movie';
 import {PersonResponse} from 'src/app/tmdb-data/Person';
@@ -15,6 +15,7 @@ export class ListeRealisateursComponent implements OnInit {
     public movies: MovieResponse[] = [];
     public crew: Crew;
     showSpinner = true;
+    private _valueToResearch: string;
 
     constructor(private tmdbs: TmdbService) {
     }
@@ -53,6 +54,19 @@ export class ListeRealisateursComponent implements OnInit {
                 (error) => {
                     console.log('Impossible de récuperer les films ', error);
                 });
+
+        this.tmdbs.subject.subscribe((data) => {
+            this.valueToResearch = data;
+        });
+    }
+
+    get valueToResearch(): string {
+        return this._valueToResearch;
+    }
+
+    @Input()
+    set valueToResearch(value: string) {
+        this._valueToResearch = value;
     }
 
 }
