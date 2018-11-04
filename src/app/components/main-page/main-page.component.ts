@@ -15,15 +15,10 @@ import {PersonResponse} from '../../tmdb-data/Person';
 })
 export class MainPageComponent implements OnInit {
 
-    @Output() movies: MovieResponse[] = [];
     public options = Constant.getGenres;
-    public films: MovieResponse[] = [];
     public checkedGenres: Option[] = [];
-    @Output() persons: PersonResponse[] = [];
-    public _persons: PersonResponse[] = [];
 
-    constructor(private route: ActivatedRoute,
-                private router: Router, private _userService: UserService,
+    constructor(private _userService: UserService,
                 private _tmdb: TmdbService, private _filmTraitment: TraitementFilms) {
     }
 

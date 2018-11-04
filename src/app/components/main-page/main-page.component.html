@@ -12,10 +12,10 @@
             </div>
 
             <div class="authentification-panel">
-                <span class="auth-menu-item" mat-button="menuConnection" *ngIf="user() === defined" (click)="login()">Connexion</span>
-                <span class="auth-menu-item" mat-button="menuConnection" *ngIf="user() !== defined" (click)="logout()">Deconnexion</span>
-                <span class="auth-menu-item" mat-button *ngIf="user() === defined">Créer un compte</span>
-                <label>{{user() !== undefined ? user().displayName : ''}}</label>
+                <label style="margin-right: 15px">{{user() !== undefined ? user().displayName : ''}}</label>
+                <span class="auth-menu-item" mat-button="menuConnection" *ngIf="user() === undefined" (click)="login()">Connexion</span>
+                <span class="auth-menu-item" mat-button="menuConnection" *ngIf="user() !== undefined" (click)="logout()">Deconnexion</span>
+                <span class="auth-menu-item" mat-button *ngIf="user() === undefined">Créer un compte</span>
             </div>
         </mat-toolbar>
         <app-research></app-research>
