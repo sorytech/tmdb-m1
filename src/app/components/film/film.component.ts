@@ -49,7 +49,6 @@ export class FIlmComponent implements OnInit {
 
                         this.casts = mc.cast;
                         this.casts.splice(3); // On ne retient que les 3 premiers acteurs
-                        console.log('Casts: ', this.casts)
                     })
                     .catch(err => console.error('Error getting movie:', err)),
             1000);

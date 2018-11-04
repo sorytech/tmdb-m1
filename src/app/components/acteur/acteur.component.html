@@ -1,18 +1,35 @@
-<div class = "InfosPersonne" *ngIf="actor !== undefined" >
-  <div class = "personnePhoto">
-    <img [src]= "getPath(actor.profile_path)"  alt="assets/images/no-image-icon-6.png">
-  </div>
-  <div class = "personneInfo">
-    <span class="personneNom" >Nom: {{actor.name}}</span><br>
-    <span class="personneSexe">Sexe: {{getGender(actor.gender)}}</span><br>
-    <span class="personneBirth">Date de naissance: {{actor.birthday}}</span><br>
-    <span class="personneBirthPace">Lieu de naissance: {{actor.place_of_birth}}</span><br>
-    <span class="personnePopularité">Popularité: {{actor.popularity}}</span>
-  </div>
-  <div class = "biographiePersonne">
-    <h2 class = "biographie">Biographie</h2>
-    <div class = "biographieDetails">
-      {{actor.biography}}
+<div class="wait" *ngIf="showSpinner">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="acteur-container" *ngIf="!showSpinner">
+    <div class="acteur-photo-container">
+        <div class="retourn-tbn">
+            <button mat-button [routerLink]="fromFilm !== '' ? ['/film', fromFilm] : '/actors'">
+                <mat-icon matPrefix>navigate_before</mat-icon>
+                Retour
+            </button>
+        </div>
+        <img [src]="getPath(actor.profile_path)" alt="assets/images/no-image-icon-6.png" class="poster">
     </div>
-  </div>
+    <div class="acteur-infos-container">
+        <div class="acteur-content">
+            <div class="acteur-name-content">
+                <span class="acteur-name">{{actor.name}}</span>
+            </div>
+            <div class="infos-acteur">
+                <br>
+                <label for="personneSexe">Sexe : </label>
+                <span id="personneSexe">{{getGender(actor.gender)}}</span><br>
+                <label for="birthday">Date de naissance : </label>
+                <span id="birthday"> {{actor.birthday | date:'longDate'}}</span><br>
+                <span>Lieu de naissance : {{actor.place_of_birth}}</span><br>
+                <label for="popularity">Popularité : </label>
+                <span id="popularity">{{actor.popularity}}</span><br>
+            </div>
+            <div class="biography">
+                <span class="label-value">Biographie</span>
+                <p class="biography-content">{{actor.biography}}</p>
+            </div>
+        </div>
+    </div>
 </div>

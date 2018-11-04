@@ -1,4 +1,4 @@
-.list-item-container {
+.list-currentActor-container {
   background: white;
   width: 96%;
   margin: auto;
@@ -7,11 +7,13 @@
   font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
   cursor: pointer;
 }
-.list-item-container:hover {
+.list-currentActor-container:hover {
   box-shadow: 1px 2px 2px rgba(166, 166, 150, 0.84)
 }
-
-.film-photo-container {
+.list-currentActor-container-content ul li{
+  display: inline;
+}
+.currentActor-photo-container {
   width: 125px;
   height: inherit;
   float: left;
@@ -21,7 +23,7 @@
   width: inherit;
 }
 
-.list-item-container-content {
+.list-currentActor-container-content {
   height: inherit;
   text-align: left;
   padding-left: 8px;
@@ -32,29 +34,23 @@
   padding-right: 5px;
 }
 
-.item-title {
+.currentActor-name {
   font-size: small;
   font-weight: 600;
   float: left;
 }
-.item-date {
-  float: right;
-  font-size: small;
-  font-style: italic;
-  margin-right: 34px;
-}
-.item-details {
 
-}
+
 .label {
   font-size: small;
-  color: #aba3a3;
+  color: #4a4b4c;
 }
 .label-value {
   font-size: 11px;
   font-weight: 600;
 }
-.synopsis-content {
+
+.biography-content {
   font-size: 12px;
   height: 40px;
   width: 97%;
@@ -63,10 +59,6 @@
   display: inline-block;
 }
 
-.item-icons {
-  text-align: right;
-}
-.item-icon {
-  margin-right: 5px;
-  font-size: medium;
+.currentActor-details{
+  margin-top: 10px;
 }
