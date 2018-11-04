@@ -14,9 +14,12 @@
 
         <div class="item-details"  >
             <label class="label" for="item">Réalisé par : </label>
-            <a class="label-value" name="item">Hardy Nkouka</a><br>
+            <a class="label-value" name="item">{{crew.name}}</a><br>
             <label class="label" for="item">Avec : </label>
-            <a class="label-value" name="item">Jean Paul, Dialo, Ali, ...</a><br>
+            <div class="genre-name" *ngFor="let acteur of casts; let i = index">
+                {{acteur.name}}
+                <div class="genre-name" *ngIf="casts.length > i+1"> ,</div>               
+            </div>
         </div>
 
         <label class="label" for="item">Genre :</label>
