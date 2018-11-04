@@ -1,39 +1,33 @@
-<!--div class="">
-  <div class="realisateur">
-    <span class="realisateur-label">Réalisateur</span> <br>
-    <div class="film-photo-container">
-      <img [src]="getPath(crew.profile_path)"  alt="assets/images/no-image-icon-6.png"
-           class="realisateur-photo">
-    </div>
-    <div class="realisateur-details">
-      <span class="realisateur-name"><a href="url">{{crew.name}}</a></span><br>
-      <div class="realisateur-biographie">
-        {{director.biography}}
-      </div>
-    </div>
-  </div>
-
-</div-->
-<div class = "InfosPersonne" *ngIf="director !== undefined" >
-  <div class = "personnePhoto">
-      <div class="retourn-tbn">
-          <button mat-button routerLink="/mylist">
-            <mat-icon matPrefix>navigate_before</mat-icon>
-          </button>
+<div class="wait" *ngIf="showSpinner">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="realisateur-container" *ngIf="!showSpinner">
+    <div class="realisateur-photo-container">
+        <div class="retourn-tbn">
+            <button mat-button [routerLink]="fromFilm !== '' ? ['/film', fromFilm] : '/realisateurs'">
+                <mat-icon matPrefix>navigate_before</mat-icon>
+                Retour
+            </button>
         </div>
-    <img [src]= "getPath(director.profile_path)"  alt="assets/images/no-image-icon-6.png" class="realisateur-photo">
-  </div>
-  <div class = "personneInfo">
-    <span class="personneNom" >Nom: {{director.name}}</span><br>
-    <span class="personneSexe">Sexe: {{director.gender}}</span><br>
-    <span class="personneBirth">Date de naissance: {{director.birthday}}</span><br>
-    <span class="personneBirthPace">Lieu de naissance: {{director.place_of_birth}}</span><br>
-    <span class="personnePopularité">Popularité: {{director.popularity}}</span>
-  </div>
-  <div class = "biographiePersonne">
-    <h2 class = "biographie">Biographie</h2>
-    <div class = "biographieDetails">
-      {{director.biography}}
+        <img [src]="getPath(director.profile_path)" alt="assets/images/no-image-icon-6.png" class="poster">
     </div>
-  </div>
+    <div class="realisateur-infos-container">
+        <div class="realisateur-content">
+            <div class="realisateur-name-content">
+                <span class="realisateur-name">{{director.name}}</span>
+            </div>
+            <div class="infos-realisateur">
+                <br>
+                <label for="birthday">Date de naissance : </label>
+                <span id="birthday"> {{director.birthday}}</span><br>
+                <span>Lieu de naissance : {{director.place_of_birth}}</span><br>
+                <label for="popularity">Popularité : </label>
+                <span id="popularity">{{director.popularity}}</span><br>
+            </div>
+            <div class="biography">
+                <span class="label-value">Biographie</span>
+                <p class="biography-content">{{director.biography}}</p>
+            </div>
+        </div>
+    </div>
 </div>

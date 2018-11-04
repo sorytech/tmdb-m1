@@ -1,4 +1,4 @@
-.film-container {
+.realisateur-container {
   background: white;
   width: 96%;
   margin: auto;
@@ -7,21 +7,22 @@
   font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 
-.film-photo-container {
+.realisateur-photo-container {
   width: 30%;
   height: 41%;
   float: left;
 }
-.photo {
-  height: inherit;
-  width: inherit;
+
+.realisateur-name-content{
+  margin-top: 15%;
 }
 
-.item-title {
+.realisateur-name {
+
   font-size: larger;
-  font-weight: 600;
+  font-weight: 500;
 }
-.film-content {
+.realisateur-infos-container {
   height: 49%;
   text-align: left;
   padding-left: 8px;
@@ -31,98 +32,35 @@
   padding-top: 5px;
   padding-right: 5px;
 }
-.film-content-left {
+.realisateur-content{
   width: 85%;
   float: left;
   margin-left: 13px;
 }
 
-.film-content-right {
-  width: 12%;
-  height: 263px;
-  float: right;
-  text-align: center;
+.biography {
+  margin-top: 15%;
 }
-.item-icons {
-  margin-bottom: 100px;
-}
-
-
-
-.synopsis {
-  margin-top: 12px;
-}
-.synopsis-content {
+.biography-content {
   text-align: justify;
   font-size: small;
 }
 .label-value {
+
   font-size: large;
-  font-weight: 600;
+  font-weight: 400;
 }
 
-.film-content-bottom {
-  width: 100%;
-  background: #e1e8e8;
-  float: right;
-  height: 496px;
-}
-.film-content-bottom-realisateur {
-  height: 50%;
-  padding: 10px;
-}
-.realisateur {
-  width: 50%;
-  float: right;
-  height: 100%;
-  text-align: left;
-}
-.realisateur-label {
-  font-size: x-large;
-  font-weight: 600;
-}
-.realisateur-film-photo-container {
-  width: 30%;
-  height: 41%;
-  float: left;
-}
-.realisateur-photo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 350px;
-  height: 300px;
-}
-.realisateur-details {
-  float: right;
-  width: 60%;
-}
-.realisateur-name a {
-  color: #1721ff;
-  font-size: larger;
-  font-weight: bold;
-}
-.realisateur-biographie {
-  text-align: justify;
-  font-size: small;
-  padding-right: 20px;
-  height: auto;
-  white-space: pre-line;
-  display: block;
-  margin-top: 19px;
-  overflow: hidden;
-}
-.film-content-bottom-acteurs {
-  background: #cdd4d2;
-  height: 46%;
-  padding: 7px;
-}
+/*infos realisateur */
 
-
-.film-content-genre {
+.infos-realisateur {
   float: inherit;
   width: 86%;
+  font-size: small;
+  font-weight: 500;
+  display: inline ;
 }
+
 .retourn-tbn{
   background: #f9f9fb;
   width: max-content;
@@ -130,5 +68,16 @@
   border-radius: 3px;
   border: 1px solid #eae4e4;
   margin: 5px;
+}
+
+.poster {
+  width: 292px;
+  height: 371px;
+}
+
+.wait {
+  height: inherit;
+  margin-left: 50%;
+  margin-top: 30%;
 }
 
