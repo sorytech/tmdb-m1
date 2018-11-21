@@ -17,6 +17,7 @@ export class ListItemComponent implements OnInit {
     currentFilmCredits: MovieCredits;
     crew: Crew;
     casts: Cast[] = [];
+    onHover = false;
 
     constructor(private tmdb: TmdbService) { }
 
