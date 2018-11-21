@@ -35,6 +35,9 @@ import {PipesPersonPipe} from './pipes/persons-sort/pipes-person.pipe';
 import {ListeRealisateursComponent} from './components/liste-realisateurs/liste-realisateurs.component';
 import {TraitementFilms} from './services/movies/traitement-films';
 import {RealisateurItemComponent} from './components/realisateur-item/realisateur-item.component';
+import { MyCustomListComponent } from './components/my-custom-list/my-custom-list.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatBadgeModule} from '@angular/material/badge';
 
 const appRoutes: Routes = [
     {path: 'film/:id', component: FIlmComponent},
@@ -44,7 +47,8 @@ const appRoutes: Routes = [
     {path: 'realisateur/:id/:fromFilm', component: RealisateurComponent},
     {path: 'actor/:id/:fromFilm', component: ActeurComponent},
     {path: 'actors', component: ListActorsComponent},
-    {path: '', component: ListViewComponent}
+    {path: '', component: ListViewComponent},
+    {path: 'myCustomList/:id', component: MyCustomListComponent}
 ];
 
 @NgModule({
@@ -63,6 +67,7 @@ const appRoutes: Routes = [
         ListActorsComponent,
         PipesPersonPipe,
         ActeurComponent,
+        MyCustomListComponent,
     ],
     imports: [
         BrowserModule,
@@ -83,7 +88,9 @@ const appRoutes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatProgressSpinnerModule,
-        FormsModule
+        FormsModule,
+        MatExpansionModule,
+        MatBadgeModule
     ],
     providers: [TmdbService, TraitementFilms],
     exports: [ResearchComponent],

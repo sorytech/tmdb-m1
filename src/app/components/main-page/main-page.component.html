@@ -14,7 +14,8 @@
             <div class="authentification-panel">
                 <label style="margin-right: 15px">{{user() !== undefined ? user().displayName : ''}}</label>
                 <span class="auth-menu-item" mat-button="menuConnection" *ngIf="user() === undefined" (click)="login()">Connexion</span>
-                <span class="auth-menu-item" mat-button="menuConnection" *ngIf="user() !== undefined" (click)="logout()">Deconnexion</span>
+                <span class="auth-menu-item" mat-button="menuConnection" *ngIf="user() !== undefined"
+                      (click)="logout()">Deconnexion</span>
                 <span class="auth-menu-item" mat-button *ngIf="user() === undefined">Créer un compte</span>
             </div>
         </mat-toolbar>
@@ -24,8 +25,29 @@
 </div>
 
 <div class="page-container">
-
     <div class="left-panel">
+
+        <div class="list-container">
+            <button mat-flat-button style="float: right;" matBadge="{{lists.length}}" matBadgePosition="above after" matBadgeColor="accent">
+                Ajouter
+                <mat-icon>add</mat-icon>
+            </button>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class=""> Mes listes </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-list class="list-content">
+                        <mat-list-item *ngFor="let list of lists" [routerLink]="['/myCustomList', list.id]"
+                                       class="list-item">
+                            <mat-icon>folder</mat-icon>
+                            <h3 matLine> {{list.name}} </h3>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
         <div class="left-panel-tite">Genre</div>
         <div class="left-panel-controls">
             <section>

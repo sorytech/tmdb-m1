@@ -63,11 +63,13 @@
 
 .left-panel {
   float: left;
-  width: 29%;
+  width: 24%;
   height: 435px;
   margin-top: 16px;
   position: fixed;
   font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  overflow: auto;
+  padding-top: 23px;
 }
 .left-panel-tite {
   margin-top: 40px;
@@ -94,4 +96,21 @@
 }
 .mat-slider-container {
   width: 86%;
+}
+
+/*MES LISTES*/
+
+.list-content {
+  text-align: justify;
+}
+.list-content :hover {
+  background: #dcdce1;
+}
+
+.list-container {
+  padding-left: 5px;
+  width: 93%;
+}
+.list-item {
+  cursor: pointer;
 }
