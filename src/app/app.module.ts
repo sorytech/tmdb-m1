@@ -33,11 +33,13 @@ import {ActorItemComponent} from './components/actor-item/actor-item.component';
 import {ListActorsComponent} from './components/list-actors/list-actors.component';
 import {PipesPersonPipe} from './pipes/persons-sort/pipes-person.pipe';
 import {ListeRealisateursComponent} from './components/liste-realisateurs/liste-realisateurs.component';
-import {TraitementFilms} from './services/movies/traitement-films';
+import {TraitementFilmsService} from './services/movies/traitement-films';
 import {RealisateurItemComponent} from './components/realisateur-item/realisateur-item.component';
 import { MyCustomListComponent } from './components/my-custom-list/my-custom-list.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
+import { DialogAddFilmComponent } from './components/dialog-add-film/dialog-add-film.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const appRoutes: Routes = [
     {path: 'film/:id', component: FIlmComponent},
@@ -68,6 +70,7 @@ const appRoutes: Routes = [
         PipesPersonPipe,
         ActeurComponent,
         MyCustomListComponent,
+        DialogAddFilmComponent,
     ],
     imports: [
         BrowserModule,
@@ -90,10 +93,12 @@ const appRoutes: Routes = [
         MatProgressSpinnerModule,
         FormsModule,
         MatExpansionModule,
-        MatBadgeModule
+        MatBadgeModule,
+        MatDialogModule
     ],
-    providers: [TmdbService, TraitementFilms],
+    providers: [TmdbService, TraitementFilmsService],
     exports: [ResearchComponent],
+    entryComponents: [DialogAddFilmComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

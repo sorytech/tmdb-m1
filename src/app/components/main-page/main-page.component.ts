@@ -5,7 +5,7 @@ import {User} from 'firebase';
 import {MovieResponse, Option} from '../../tmdb-data/Movie';
 import {Constant} from '../../constante/Constant';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
-import {TraitementFilms} from '../../services/movies/traitement-films';
+import {TraitementFilmsService} from '../../services/movies/traitement-films';
 import {PersonResponse} from '../../tmdb-data/Person';
 import {List} from '../../tmdb-data/List';
 
@@ -20,19 +20,14 @@ export class MainPageComponent implements OnInit {
 
     public checkedGenres: Option[] = [];
 
-    public lists: List[] = [
-        {id: '01', name: 'Famille', films_id: []},
-        {id: '02', name: 'Scool', films_id: []},
-        {id: '04', name: 'Professionelle', films_id: []},
-        {id: '03', name: 'Mes amis', films_id: []},
-        {id: '05', name: 'Autres', films_id: []},
-    ];
+    public lists: List[] = [];
 
     constructor(private _userService: UserService,
-                private _tmdb: TmdbService, private _filmTraitment: TraitementFilms) {
+                private _tmdb: TmdbService, private _filmTraitment: TraitementFilmsService) {
     }
 
     ngOnInit() {
+        this.lists = this._filmTraitment.lists
     }
 
     formatLabel(value: number | null) {

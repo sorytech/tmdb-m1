@@ -4,7 +4,7 @@ import {PersonResponse} from '../../tmdb-data/Person';
 import {ActivatedRoute} from '@angular/router';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
 import {Constant} from '../../constante/Constant';
-import {TraitementFilms} from '../../services/movies/traitement-films';
+import {TraitementFilmsService} from '../../services/movies/traitement-films';
 
 
 @Component({

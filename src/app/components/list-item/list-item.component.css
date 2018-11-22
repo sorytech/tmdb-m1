@@ -1,6 +1,6 @@
 .list-item-container {
     background: white;
-    width: 96%;
+    width: 90%;
     margin: auto;
     height: 180px;
     box-shadow: 1px 1px 1px #d4d0cd;
@@ -83,4 +83,12 @@
 
 .add-to-list {
     position: absolute;
+}
+
+.command {
+    float: left;
+    background: antiquewhite;
+    height: 181px;
+    width: 50px;
+    line-height: 181px;
 }
