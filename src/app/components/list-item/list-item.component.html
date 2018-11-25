@@ -1,46 +1,57 @@
-<div class="list-item-container" [routerLink]="['/film', film.id]">
-    <div class="film-photo-container">
-        <img src="http://image.tmdb.org/t/p/w500/{{film.poster_path}}" alt="" class="photo">
+<div (mouseover)="onHover=true" (mouseleave)="onHover=false">
+    <div class="command" *ngIf="onHover">
+        <button mat-mini-fab color="primary" (click)="openDialog(film, lists)">
+            <mat-icon>playlist_add</mat-icon>
+        </button>
+
     </div>
 
-    <div class="list-item-container-content">
-
-        <div class="item-head">
-            <span class="item-title">{{film.original_title}}</span>
-            <span class="item-date">Sortit le {{film.release_date}}</span>
+    <div class="list-item-container" [routerLink]="['/film', film.id]" >
+        <div class="film-photo-container">
+            <img src="http://image.tmdb.org/t/p/w500/{{film.poster_path}}" alt="" class="photo">
         </div>
 
-        <br>
+        <div class="list-item-container-content">
 
-        <div class="item-details">
-            <label class="label" for="item">Réalisé par : </label>
-            <a class="label-value" name="item">{{crew !== undefined ? crew.name : ''}}</a><br>
-            <label class="label" for="item">Avec : </label>
-            <div class="genre-name" *ngFor="let acteur of casts; let i = index">
-                {{acteur.name}}
-                <div class="genre-name" *ngIf="casts.length > i+1"> ,</div>
+            <div class="item-head">
+                <span class="item-title">{{film.original_title}}</span>
+                <span class="item-date">Sortit le {{film.release_date}}</span>
+            </div>
+
+            <br>
+
+            <div class="item-details">
+                <label class="label" for="item">Réalisé par : </label>
+                <a class="label-value" name="item">{{crew !== undefined ? crew.name : ''}}</a><br>
+                <label class="label" for="item">Avec : </label>
+                <div class="genre-name" *ngFor="let acteur of casts; let i = index">
+                    {{acteur.name}}
+                    <div class="genre-name" *ngIf="casts.length > i+1"> ,</div>
+                </div>
+            </div>
+
+            <label class="label" for="item">Genre :</label>
+            <div class="genre-name" *ngFor="let genre of current.genres; let i = index">
+                {{genre.name}}
+                <div class="genre-name" *ngIf="current.genres.length > i+1"> ,</div>
+            </div>
+            <br>
+
+            <span class="label-value">Synopsis</span>
+            <div class="synopsis-content">
+                {{film.overview}}
+            </div>
+
+            <div class="item-icons">
+                <!--<button mat-mini-fab color="primary">-->
+                <!--<mat-icon></mat-icon>-->
+                <!--</button>-->
+                <mat-icon class="item-icon">favorite</mat-icon>
+                <mat-icon class="item-icon">visibility</mat-icon>
+                <mat-icon class="item-icon">insert_invitation</mat-icon>
             </div>
         </div>
-
-        <label class="label" for="item">Genre :</label>
-        <div class="genre-name" *ngFor="let genre of current.genres; let i = index">
-            {{genre.name}}
-            <div class="genre-name" *ngIf="current.genres.length > i+1"> ,</div>
-        </div>
-        <br>
-
-        <span class="label-value">Synopsis</span>
-        <div class="synopsis-content">
-            {{film.overview}}
-        </div>
-    </div>
-    <div class="item-icons">
-        <button mat-mini-fab color="primary">
-            <mat-icon>add</mat-icon>
-        </button>
-        <mat-icon class="item-icon">favorite</mat-icon>
-        <mat-icon class="item-icon">visibility</mat-icon>
-        <mat-icon class="item-icon">insert_invitation</mat-icon>
     </div>
 </div>
+
 <br>
