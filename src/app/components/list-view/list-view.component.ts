@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MovieResponse} from '../../tmdb-data/Movie';
 import {PersonResponse} from '../../tmdb-data/Person';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
-import {TraitementFilms} from '../../services/movies/traitement-films';
+import {TraitementFilmsService} from '../../services/movies/traitement-films';
 
 @Component({
     selector: 'app-list-view',
@@ -15,7 +15,7 @@ export class ListViewComponent implements OnInit {
 
     private _valueToResearch = '';
 
-    constructor(private _tmdb: TmdbService, private _filmTraitment: TraitementFilms) {
+    constructor(private _tmdb: TmdbService, private _filmTraitment: TraitementFilmsService) {
     }
 
     ngOnInit() {

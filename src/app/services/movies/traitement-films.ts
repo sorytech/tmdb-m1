@@ -1,13 +1,23 @@
 import {Subject} from 'rxjs';
 import {MovieResponse, MovieGenre, Option} from 'src/app/tmdb-data/Movie';
+import {Injectable} from '@angular/core';
+import {List} from '../../tmdb-data/List';
 
-export class TraitementFilms {
-
-    checkedGenresReceived = new Subject<Option[]>();
-
+@Injectable({
+    providedIn: 'root'
+})
+export class TraitementFilmsService {
+    public checkedGenresReceived = new Subject<Option[]>();
     private _movies: MovieResponse[] = [];
-
     private _subject = new Subject<any>();
+
+    private _lists: List[] = [
+        {id: '01', name: 'Famille', films: []},
+        {id: '02', name: 'Scool', films: []},
+        {id: '04', name: 'Professionelle', films: []},
+        {id: '03', name: 'Mes amis', films: []},
+        {id: '05', name: 'Autres', films: []},
+    ];
 
     constructor() {
     }
@@ -19,6 +29,14 @@ export class TraitementFilms {
 
     set movies(value: MovieResponse[]) {
         this._movies = value;
+    }
+
+    get lists(): List[] {
+        return this._lists;
+    }
+
+    set lists(value: List[]) {
+        this._lists = value;
     }
 
     /* pour filter les films */
@@ -45,21 +63,6 @@ export class TraitementFilms {
             }
         }
         return res;
-        // const res: MovieResponse[] = [];
-        // const tableID: number [] = [];
-        // this.movies.forEach((currentMovie) => {
-        //     currentMovie.genre_ids.forEach((currentId) => {
-        //         options.forEach((genre) => {
-        //             if (currentId === genre.id) {
-        //                 if (!(tableID.includes(currentMovie.id))) {
-        //                     tableID.push(currentMovie.id);
-        //                     res.push(currentMovie);
-        //                 }
-        //             }
-        //         });
-        //     });
-        // });
-        // return res;
     }
 
     get subject(): Subject<any> {

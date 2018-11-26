@@ -7,7 +7,7 @@ import {Constant} from '../../constante/Constant';
 import {ActivatedRoute} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
 import {DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
-import {TraitementFilms} from '../../services/movies/traitement-films';
+import {TraitementFilmsService} from '../../services/movies/traitement-films';
 
 
 @Component({
