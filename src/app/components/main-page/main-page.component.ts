@@ -1,13 +1,19 @@
-import {Component, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/users/user.service';
 import {User} from 'firebase';
-import {MovieResponse, Option} from '../../tmdb-data/Movie';
+import {Option} from '../../tmdb-data/Movie';
 import {Constant} from '../../constante/Constant';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
 import {TraitementFilmsService} from '../../services/movies/traitement-films';
-import {PersonResponse} from '../../tmdb-data/Person';
 import {List} from '../../tmdb-data/List';
+
+import {MatDialog} from '@angular/material';
+import { AddNewListComponent } from './add-new-list/add-new-list.component';
+
+export interface DialogData {
+    nameList: string;
+    visibility: string;
+  }
 
 @Component({
     selector: 'app-main-page',
@@ -20,25 +26,27 @@ export class MainPageComponent implements OnInit {
 
     public checkedGenres: Option[] = [];
 
-    public lists: List[] = [];
+    public lists: List[]=[];
+    
+    nameList: string;
+    visibility: string;
 
     constructor(private _userService: UserService,
-                private _tmdb: TmdbService, private _filmTraitment: TraitementFilmsService) {
+                private _tmdb: TmdbService, private _filmTraitment: TraitementFilmsService, 
+                public dialog: MatDialog) {
     }
 
     ngOnInit() {
-        this.lists = this._filmTraitment.lists
+        this.lists=this._filmTraitment.lists;
     }
 
     formatLabel(value: number | null) {
         if (!value) {
             return 0;
         }
-
         if (value >= 1000) {
             return Math.round(value / 1000);
         }
-
         return value;
     }
 
@@ -76,4 +84,26 @@ export class MainPageComponent implements OnInit {
             this._filmTraitment.checkedGenresReceived.next(this.checkedGenres);
         }
     }
+
+    openDialog(): void {
+        const dialogRef = this.dialog.open(AddNewListComponent, {
+          width: '280px',
+          data: {nameList: this.nameList,visibility:this.visibility}
+        });
+        
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed', result);
+          this.nameList = result;
+          console.log('nom de la liste '+this.nameList);
+          console.log('visibilité : '+this.visibility);
+          if(this.nameList != undefined){
+            this.lists.push({id:this.lists.length+1,name:this.nameList,films:[],visibility:this.visibility});           
+          }
+          this.nameList="";
+          this._filmTraitment.setLists(this.lists);
+          this.lists=this._filmTraitment.lists;
+        });
+    } 
+    
+
 }

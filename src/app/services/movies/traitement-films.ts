@@ -11,13 +11,7 @@ export class TraitementFilmsService {
     private _movies: MovieResponse[] = [];
     private _subject = new Subject<any>();
 
-    private _lists: List[] = [
-        {id: '01', name: 'Famille', films: []},
-        {id: '02', name: 'Scool', films: []},
-        {id: '04', name: 'Professionelle', films: []},
-        {id: '03', name: 'Mes amis', films: []},
-        {id: '05', name: 'Autres', films: []},
-    ];
+    private _lists: List[] = [];
 
     constructor() {
     }
@@ -35,7 +29,7 @@ export class TraitementFilmsService {
         return this._lists;
     }
 
-    set lists(value: List[]) {
+    public setLists(value: List[]) {
         this._lists = value;
     }
 

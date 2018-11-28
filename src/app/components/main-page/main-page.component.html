@@ -28,14 +28,14 @@
     <div class="left-panel">
 
         <div class="list-container">
-            <button mat-flat-button style="float: right;" matBadge="{{lists.length}}" matBadgePosition="above after" matBadgeColor="accent">
-                Ajouter
+            <button mat-flat-button style="float: right;"  (click)="openDialog()">
+                Ajouter 
                 <mat-icon>add</mat-icon>
             </button>
             <mat-accordion>
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
-                        <mat-panel-title class=""> Mes listes </mat-panel-title>
+                        <mat-panel-title matBadge="{{lists.length}}" matBadgePosition="above after" matBadgeColor="accent"> Mes listes </mat-panel-title>
                     </mat-expansion-panel-header>
                     <mat-list class="list-content">
                         <mat-list-item *ngFor="let list of lists" [routerLink]="['/myCustomList', list.id]"
