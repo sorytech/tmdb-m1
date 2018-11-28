@@ -160,20 +160,12 @@
   width: 86%;
 }
 
-<<<<<<< HEAD
 #genre {
   font-weight: 700;
 }
 .genre-label {
-=======
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 
-.film-content-genre .genre-name{
-    font-size: small;
-    font-weight: 500;
-    display: inline ;
 }
-
 .out-date {
   font-size: small;
   margin-left: 76px;

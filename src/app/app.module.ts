@@ -1,5 +1,4 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms'
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {TmdbService} from './services/tmdb/tmdb.service';
@@ -13,19 +12,10 @@ import {MainPageComponent} from './components/main-page/main-page.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 import {RouterModule, Routes} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-<<<<<<< HEAD
 import {ResearchComponent} from './components/research/research.component';
 import {FIlmComponent} from './components/film/film.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
 import {MatToolbarModule, MatRadioModule} from '@angular/material';
-=======
-import { ResearchComponent } from './components/research/research.component';
-import {TraitementFilms} from './services/movies/traitement-films';
-import {FIlmComponent} from './components/film/film.component';
-import {ListViewComponent} from './components/list-view/list-view.component';
-import { ListeRealisateursComponent } from './components/liste-realisateurs/liste-realisateurs.component';
-import {MatToolbarModule} from '@angular/material';
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
@@ -36,7 +26,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-<<<<<<< HEAD
 import {FormsModule} from '@angular/forms';
 import {RealisateurComponent} from './components/realisateur/realisateur.component';
 import {ActeurComponent} from './components/acteur/acteur.component';
@@ -63,18 +52,6 @@ const appRoutes: Routes = [
     {path: 'actors', component: ListActorsComponent},
     {path: '', component: ListViewComponent},
     {path: 'myCustomList/:id', component: MyCustomListComponent}
-=======
-import { RealisateurItemComponent } from './components/realisateur-item/realisateur-item.component';
-import { RealisateurComponent } from './components/realisateur/realisateur.component';
-
-
-const appRoutes: Routes = [
-    { path: 'film/:id', component: FIlmComponent },
-    { path: 'realisateur/:id', component: RealisateurComponent },
-    { path: 'films', component: ListViewComponent },
-    { path: 'realisateurs', component: ListeRealisateursComponent },
-    { path: '', component: ListViewComponent }
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 ];
 
 @NgModule({
@@ -86,7 +63,6 @@ const appRoutes: Routes = [
         ResearchComponent,
         ListViewComponent,
         FIlmComponent,
-<<<<<<< HEAD
         RealisateurComponent,
         RealisateurItemComponent,
         ListeRealisateursComponent,
@@ -97,11 +73,6 @@ const appRoutes: Routes = [
         MyCustomListComponent,
         DialogAddFilmComponent,
         AddNewListComponent
-=======
-        ListeRealisateursComponent,
-        RealisateurItemComponent,
-        RealisateurComponent
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
     ],
     imports: [
         BrowserModule,
@@ -122,7 +93,6 @@ const appRoutes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatProgressSpinnerModule,
-<<<<<<< HEAD
         FormsModule,
         MatExpansionModule,
         MatBadgeModule,
@@ -130,11 +100,6 @@ const appRoutes: Routes = [
         MatRadioModule 
     ],
     providers: [TmdbService, TraitementFilmsService],
-=======
-        FormsModule
-    ],
-    providers: [TmdbService, TraitementFilms],
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
     exports: [ResearchComponent],
     entryComponents: [DialogAddFilmComponent,AddNewListComponent],
     bootstrap: [AppComponent]

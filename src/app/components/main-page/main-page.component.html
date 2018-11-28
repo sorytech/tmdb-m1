@@ -3,7 +3,6 @@
         <mat-toolbar class="menu-horizontal">
             <div class="menu-panel">
                 <span class="logo-container">Logo</span>
-<<<<<<< HEAD
                 <button class="menu-item" mat-button routerLink="/films" (click)="resetAllCheckboxes()">Films</button>
                 <button class="menu-item" mat-button routerLink="/actors" (click)="resetAllCheckboxes()">Acteurs
                 </button>
@@ -18,20 +17,6 @@
                 <span class="auth-menu-item" mat-button="menuConnection" *ngIf="user() !== undefined"
                       (click)="logout()">Deconnexion</span>
                 <span class="auth-menu-item" mat-button *ngIf="user() === undefined">Créer un compte</span>
-=======
-                <!--span class="menu-item" mat-button [matMenuTriggerFor]="menuFilms">Films</span>
-                <span class="menu-item" mat-button [matMenuTriggerFor]="menuFilms">Acteurs</span>
-                <span class="menu-item" mat-button [matMenuTriggerFor]="menuFilms">Réalisateurs</span-->
-                <button mat-button routerLink="/films" (click)="resetAllCheckboxes()">Films</button>
-                <button mat-button (click)="resetAllCheckboxes()">Acteurs</button>
-                <button mat-button routerLink="/realisateurs" (click)="resetAllCheckboxes()">Réalisateurs</button>
-            </div>
-
-            <div class="authentification-panel">
-                <span class="auth-menu-item" mat-button (click)="login()">Connexion</span>
-                <span class="auth-menu-item" mat-button>Créer un compte</span>      
-                <span>{{user() !== undefined ? user().displayName : ''}}</span>
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
             </div>
         </mat-toolbar>
         <app-research></app-research>
@@ -41,7 +26,6 @@
 
 <div class="page-container">
     <div class="left-panel">
-<<<<<<< HEAD
 
         <div class="list-container">
             <button mat-flat-button style="float: right;"  (click)="openDialog()">
@@ -70,28 +54,18 @@
                 <mat-checkbox *ngFor="let option of options; let i = index"
                               [(ngModel)]="option.checked" (change)="addGenre(option)"
                               class="left-panel-controls-item">{{option.label}}
-=======
-        <div class="left-panel-tite">Genre</div>      
-        <div class="left-panel-controls">
-            <section  *ngFor="let option of options; let j = index" >      
-                <mat-checkbox            
-                    (change)="addGenre(option.value)" 
-                    class="left-panel_controls-item" [(ngModel)]='options[j].checked'>{{option.label}}
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
                 </mat-checkbox>
             </section>
         </div>
-        <div class="left-panel">
-            <div class="left-panel-tite">Durée</div>
-            <div class="mat-slider-container">
-                <mat-slider
-                        thumbLabel
-                        [displayWith]="formatLabel"
-                        tickInterval="1000"
-                        min="1"
-                        max="100000">
-                </mat-slider>
-            </div>
+        <div class="left-panel-tite">Durée</div>
+        <div class="mat-slider-container">
+            <mat-slider
+                    thumbLabel
+                    [displayWith]="formatLabel"
+                    tickInterval="1000"
+                    min="1"
+                    max="100000">
+            </mat-slider>
         </div>
     </div>
 
@@ -99,12 +73,3 @@
         <router-outlet></router-outlet>
     </div>
 </div>
-<<<<<<< HEAD
-=======
-
-<!--mat-menu #menuFilms="matMenu">
-    <button mat-menu-item routerLink="/mylist">Item 1</button>
-    <button mat-menu-item>Item 2</button>
-</mat-menu-->
-
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96

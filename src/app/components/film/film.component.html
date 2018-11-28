@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 <div *ngIf="currentFilmResponse !== undefined">
-=======
-<div class="wait"  *ngIf="showSpinner">
-    <mat-spinner ></mat-spinner>
-</div>
-<div *ngIf="!showSpinner">
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 
     <div class="film-container">
         <div class="film-photo-container">
@@ -15,31 +8,19 @@
                     Retour
                 </button>
             </div>
-<<<<<<< HEAD
             <img [src]="getPath(currentFilmResponse.poster_path)" alt="assets/images/no-image-icon-6.png"
                  class="poster">
-=======
-            <img [src]="getPath(currentFilmResponse.poster_path)" alt="assets/images/no-image-icon-6.png" class="poster">
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
         </div>
 
         <div class="film-content">
             <div class="film-content-left">
                 <div class="item-head">
-<<<<<<< HEAD
                     <span class="item-title">{{currentFilmResponse !== undefined ? currentFilmResponse.title : 'Film test'}}</span>
-=======
-                    <span class="item-title">{{currentFilmResponse.title}}</span>
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
                 </div>
                 <div class="synopsis">
                     <span class="label-value">Synopsis</span>
                     <p class="synopsis-content">
                         {{currentFilmResponse.overview}}
-<<<<<<< HEAD
-=======
-            
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
                     </p>
                 </div>
             </div>
@@ -52,19 +33,9 @@
             </div>
 
             <div class="film-content-genre">
-<<<<<<< HEAD
                 <label for="genre" class="genre-label">Genre : </label>
                 <span id="genre">{{currentFilmResponse.genres[0].name}}</span>
                 <span class="out-date">Sorti le : {{currentFilmResponse.release_date}}</span>
-=======
-                <label for="genre">Genre : </label>
-                <div class="genre-name" *ngFor="let genre of currentFilmResponse.genres; let i = index">
-                    {{genre.name}}
-                    <div class="genre-name" *ngIf="currentFilmResponse.genres.length > i+1"> ,</div> 
-                </div>
-                <br><br>
-                <span class="out-date">Sortit le : {{currentFilmResponse.release_date}}</span>
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
                 <label for="note" class="note-label">Note : </label>
                 <span id="note">{{currentFilmResponse.vote_average}}</span>
             </div>
@@ -116,12 +87,8 @@
     </div>
 </div>
 
-<<<<<<< HEAD
 <div class="wait" *ngIf="currentFilmResponse === undefined">
     <mat-spinner></mat-spinner>
 </div>
-=======
-
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 
 

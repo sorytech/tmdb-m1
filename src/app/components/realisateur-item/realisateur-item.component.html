@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <div class="list-realisateur-container" [routerLink]="['/realisateur', realisateur.id, '']">
-=======
-<div class="list-realisateur-container" [routerLink]="['/realisateur', realisateur.id]">
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
   <div class="realisateur-photo-container">
       <img src="http://image.tmdb.org/t/p/w500/{{realisateur.profile_path}}" alt="" class="photo">
   </div>
@@ -17,22 +13,14 @@
 
       <div class="realisateur-details"  >
           <label class="label" for="item">Date de naissance : </label>
-<<<<<<< HEAD
           <a class="label-value" name="item">{{realisateur.birthday | date:'longDate'}}</a><br>
-=======
-          <a class="label-value" name="item">{{realisateur.birthday}}</a><br>
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
           <label class="label" for="item">Lieu de naissance </label>
           <a class="label-value" name="item">{{realisateur.place_of_birth}}</a><br>
       </div>
 
       <label class="label" for="item">Film réalisé : </label>
       <a class="label-value" name="item">{{realisateur.title_movie}}</a><br>
-<<<<<<< HEAD
       <label class="label" for="item">Popularité : </label>
-=======
-      <label class="label" for="item">Popularité :</label>
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
       <a class="label-value" name="item">{{realisateur.popularity}}</a><br>
 
   </div>

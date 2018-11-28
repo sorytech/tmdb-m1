@@ -6,6 +6,7 @@ import {auth, User} from 'firebase';
 import {Observable} from 'rxjs';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {filter} from 'rxjs/operators';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',

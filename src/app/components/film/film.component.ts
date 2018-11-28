@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 import {Film} from '../../modeles/myModeles';
 import {MovieResponse, MovieCredits, Crew, Cast, MovieVideos, Result} from '../../tmdb-data/Movie';
@@ -10,13 +9,6 @@ import {Component, OnInit} from '@angular/core';
 import {DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import {TraitementFilmsService} from '../../services/movies/traitement-films';
 
-=======
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {MovieResponse, MovieCredits, Crew, Cast} from '../../tmdb-data/Movie';
-import {TmdbService} from '../../services/tmdb/tmdb.service';
-import { PersonResponse } from 'src/app/tmdb-data/Person';
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 
 @Component({
     selector: 'app-film',
@@ -24,7 +16,6 @@ import { PersonResponse } from 'src/app/tmdb-data/Person';
     styleUrls: ['./film.component.css']
 })
 export class FIlmComponent implements OnInit {
-<<<<<<< HEAD
     public currentFilmResponse: MovieResponse; // Film en cours
     public currentFilmCredits: MovieCredits; // Film en cours
     public currentFilmVideos: MovieVideos;
@@ -32,28 +23,19 @@ export class FIlmComponent implements OnInit {
     public casts: Cast[] = [];
     public director: PersonResponse;
     public trailer: Result;
-=======
-
-    public currentFilmResponse: MovieResponse; // Film en cours
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
     private id: string;
-    showSpinner : boolean=true;
 
-<<<<<<< HEAD
     // L'Id du film qui serai passé en paramètre dans le router
   
     constructor(private _route: ActivatedRoute, private _tmdb: TmdbService, private _sanitizer: DomSanitizer) {
-=======
-    // L'Id du film qui sera passé en paramètre dans le router
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 
     }
 
     ngOnInit() {
         console.log('Film : ', this._route.snapshot.params['id']);
         this.id = this._route.snapshot.params['id']; // On récupère l'id du film
+
         setTimeout(() =>
-<<<<<<< HEAD
                 this._tmdb.getMovieDetails(Number(this.id))
                     .then(([mr, mc, mv]) => {
                         this.currentFilmResponse = mr;
@@ -70,18 +52,6 @@ export class FIlmComponent implements OnInit {
                     })
                     .catch(err => console.error('Error getting movie:', err)),
             1000);
-=======
-            this.tmdb.init('384da4d1d38ad08447d757fb4629fa6b') // Clef de TMDB
-            .getMovie(Number(this.id))
-            .then((m: MovieResponse) => {
-                this.currentFilmResponse = m;
-                this.showSpinner=false;
-            })
-            .catch(err => console.error('Error getting movie:', err)),
-        1000);
-        
-
->>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
     }
 
     // Retourne l'URL complète du poster du film en cours
