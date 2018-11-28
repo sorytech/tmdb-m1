@@ -15,7 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ResearchComponent} from './components/research/research.component';
 import {FIlmComponent} from './components/film/film.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
-import {MatToolbarModule} from '@angular/material';
+import {MatToolbarModule, MatRadioModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
@@ -40,6 +40,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
 import { DialogAddFilmComponent } from './components/dialog-add-film/dialog-add-film.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AddNewListComponent } from './components/main-page/add-new-list/add-new-list.component';
 
 const appRoutes: Routes = [
     {path: 'film/:id', component: FIlmComponent},
@@ -71,6 +72,7 @@ const appRoutes: Routes = [
         ActeurComponent,
         MyCustomListComponent,
         DialogAddFilmComponent,
+        AddNewListComponent
     ],
     imports: [
         BrowserModule,
@@ -94,11 +96,12 @@ const appRoutes: Routes = [
         FormsModule,
         MatExpansionModule,
         MatBadgeModule,
-        MatDialogModule
+        MatDialogModule,
+        MatRadioModule 
     ],
     providers: [TmdbService, TraitementFilmsService],
     exports: [ResearchComponent],
-    entryComponents: [DialogAddFilmComponent],
+    entryComponents: [DialogAddFilmComponent,AddNewListComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
