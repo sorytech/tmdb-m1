@@ -1,5 +1,9 @@
 import {Injectable} from '@angular/core';
+<<<<<<< HEAD
 import {MovieCredits, MovieQuery, MovieResponse, MovieVideos} from '../../tmdb-data/Movie';
+=======
+import {MovieQuery, MovieResponse, MovieCredits, Crew} from '../../tmdb-data/Movie';
+>>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {PersonQuery, PersonResponse} from '../../tmdb-data/Person';
 import {SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie';
@@ -7,34 +11,43 @@ import {SearchPeopleQuery, SearchPeopleResponse} from '../../tmdb-data/SearchPeo
 import {TVQuery, TVResponse} from '../../tmdb-data/TV';
 import {SearchTVQuery, SearchTVResponse} from '../../tmdb-data/SearchTV';
 import {Constant} from '../../constante/Constant';
+<<<<<<< HEAD
 import {Subject} from 'rxjs';
+=======
+>>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 
 const tmdbApi = 'https://api.themoviedb.org/3';
 type HTTP_METHOD = 'GET' | 'POST' | 'DELETE' | 'PUT';
 
-function AlxToObjectString(data: Object): {[key: string]: string} {
-  const res = {};
-  for (const k in data) {
-    const v = data[k];
-    res[k] = typeof v === 'string' ? v : JSON.stringify(v);
-  }
-  return res;
+function AlxToObjectString(data: Object): { [key: string]: string } {
+    const res = {};
+    for (const k in data) {
+        const v = data[k];
+        res[k] = typeof v === 'string' ? v : JSON.stringify(v);
+    }
+    return res;
 }
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TmdbService {
+<<<<<<< HEAD
 
     private _subject = new Subject<any>();
     clickRealisators = false;
 
+=======
+    private api_key: string;
+    clickRealisators : boolean = false;
+>>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
     private async get<T>(url: string, data?: Object): Promise<HttpResponse<T>> {
         return this._http.get<T>(url, {
             observe: 'response',
             params: {...AlxToObjectString(data), api_key: Constant.tmdbKey}
         }).toPromise();
     }
+<<<<<<< HEAD
 
     constructor(private _http: HttpClient) { }
 
@@ -160,4 +173,104 @@ export class TmdbService {
     public getPersonByName (name: string) {
         return this._http.get(`${Constant.baseURL}search/person?api_key=${Constant.tmdbKey}&language=en_us&query=${name}&include_adult=false`);
     }
+=======
+
+    constructor(private _http: HttpClient) {
+
+    }
+
+    init(key: string): this {
+        this.api_key = key;
+        return this;
+    }
+
+    // _______________________________________________________________________________________________________________________________________
+    // Movies ________________________________________________________________________________________________________________________________
+    // _______________________________________________________________________________________________________________________________________
+    async getMovie(id: number, options?: MovieQuery): Promise<MovieResponse> {
+        const url = `${tmdbApi}/movie/${id}`;
+        const res = await this.get<MovieResponse>(url, options);
+        return res.body;
+    }
+
+    async searchMovie(query: SearchMovieQuery): Promise<SearchMovieResponse> {
+        const url = `${tmdbApi}/search/movie`;
+        const res = await this.get<SearchMovieResponse>(url, query);
+        return res.body;
+    }
+
+    // _______________________________________________________________________________________________________________________________________
+    // Person / People _______________________________________________________________________________________________________________________
+    // _______________________________________________________________________________________________________________________________________
+    async getPerson(id: number, options?: PersonQuery): Promise<PersonResponse> {
+        const url = `${tmdbApi}/person/${id}`;
+        const res = await this.get<PersonResponse>(url, options);
+        return res.body;
+    }
+
+    async searchPerson(query: SearchPeopleQuery): Promise<SearchPeopleResponse> {
+        const url = `${tmdbApi}/search/person`;
+        const res = await this.get<SearchPeopleResponse>(url, query);
+        return res.body;
+    }
+
+
+    async searchCredits(query: SearchPeopleQuery): Promise<SearchPeopleResponse> {
+        const url = `${tmdbApi}/search/person`;
+        const res = await this.get<SearchPeopleResponse>(url, query);
+        return res.body;
+    }
+
+    // _______________________________________________________________________________________________________________________________________
+    // TV ____________________________________________________________________________________________________________________________________
+    // _______________________________________________________________________________________________________________________________________
+    async getTV(id: number, options?: TVQuery): Promise<TVResponse> {
+        const url = `${tmdbApi}/tv/${id}`;
+        const res = await this.get<TVResponse>(url, options);
+        return res.body;
+    }
+
+    async searchTV(query: SearchTVQuery): Promise<SearchTVResponse> {
+        const url = `${tmdbApi}/search/tv`;
+        const res = await this.get<SearchTVResponse>(url, query);
+        return res.body;
+    }
+
+    getMovieByName(name: string) {
+        return this._http.get(`${Constant.baseURL}search/movie?api_key=${Constant.tmdbKey}&language=en-US
+                                    &query=${name}&include_adult=false`);
+    }
+
+    getLatestMovie() {
+        return this._http.get(`${Constant.baseURL}movie/latest?api_key=${Constant.tmdbKey}&language=en-US`);
+    }
+
+    getPopularMovies() {
+        return this._http.get<MovieResponse[]>(`${Constant.baseURL}movie/popular?api_key=${Constant.tmdbKey}&language=en-US&page=1`);
+    }
+
+    /*****
+   *  get credits
+   *  
+   * ****/
+    async getCredits(id: number, options?: PersonQuery): Promise<MovieCredits> {
+        const url = `${tmdbApi}/movie/${id}/credits?api_key=${Constant.tmdbKey}`;
+        const res = await this.get<MovieCredits>(url, options);
+        return res.body;
+    }
+
+    async getMovieDetails(id: number): Promise<[MovieResponse, MovieCredits]> {
+        const P1 = this.getMovie(id);
+        const P2 = this.getCredits(id);
+        console.log('P1', P1);
+        console.log('P2', P2);
+        const P = await Promise.all([P1, P2]);
+        console.log('P1', P[0]);
+        console.log('P2', P[1]);
+        return P;
+    }
+    
+    
+    
+>>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 }

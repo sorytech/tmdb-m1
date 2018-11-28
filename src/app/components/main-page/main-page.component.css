@@ -50,7 +50,6 @@
   text-align: center;
   margin-top: 118px;
 }
-
 .rigth-panel {
   float: right;
   width: 75%;
@@ -91,6 +90,7 @@
 .left-panel-controls-item {
   margin: 0 10px;
 }
+
 
 .mat-slider {
   width: 73%;

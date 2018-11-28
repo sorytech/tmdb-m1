@@ -6,3 +6,10 @@
     padding-bottom: 5px;
     max-height: 500px;
 }
+
+.wait {
+    height: inherit;
+    margin-left: 50%;
+    margin-top: 30%;
+}
+  

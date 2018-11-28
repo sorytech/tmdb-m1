@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 <div *ngIf="films.length > 0">
   <div *ngFor="let film of films | sortList : valueToResearch">
     <app-list-item [film]="film"></app-list-item>
   </div>
+=======
+<div class="wait"  *ngIf="showSpinner">
+    <mat-spinner ></mat-spinner>
+</div><div *ngFor="let film of films ">  
+    <app-list-item [film]="film"></app-list-item>
+>>>>>>> 1bb82f7e3c3b6b520b2a28e93cf268872877ad96
 </div>
