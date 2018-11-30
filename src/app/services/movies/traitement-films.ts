@@ -12,7 +12,7 @@ export class TraitementFilmsService {
     private _subject = new Subject<any>();
 
     private _lists: List[] = [];
-
+    
     constructor() {
     }
 
@@ -27,6 +27,10 @@ export class TraitementFilmsService {
 
     get lists(): List[] {
         return this._lists;
+    }
+
+    public getMoviesFromList(id : string): MovieResponse[]{
+        return this._lists.find( (l) => l.id === Number(id) ).films;
     }
 
     public setLists(value: List[]) {

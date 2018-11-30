@@ -1,3 +1,8 @@
-<p>
-  my-custom-list works!
-</p>
+<div *ngIf="myMovies.length===0">
+    <p>Votre liste est vide pour l'instant !</p>
+</div>
+<div *ngIf="myMovies.length > 0">
+    <div *ngFor="let film of myMovies | sortList : valueToResearch">
+        <app-list-item [film]="film"></app-list-item>
+    </div>
+</div>

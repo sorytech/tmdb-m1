@@ -1,9 +1,10 @@
 <div (mouseover)="onHover=true" (mouseleave)="onHover=false">
-    <div class="command" *ngIf="onHover">
-        <button mat-mini-fab color="primary" (click)="openDialog(film, lists)">
-            <mat-icon>playlist_add</mat-icon>
-        </button>
-
+    <div *ngIf="ifMainPage">
+        <div class="command" *ngIf="onHover">
+            <button mat-mini-fab color="primary" (click)="openDialog(film, lists)">
+                <mat-icon>playlist_add</mat-icon>
+            </button>           
+        </div>
     </div>
 
     <div class="list-item-container" [routerLink]="['/film', film.id]" >

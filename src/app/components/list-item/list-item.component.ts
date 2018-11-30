@@ -5,6 +5,7 @@ import {DialogAddFilmComponent} from '../dialog-add-film/dialog-add-film.compone
 import {MatDialog} from '@angular/material';
 import {TraitementFilmsService} from '../../services/movies/traitement-films';
 import {List} from '../../tmdb-data/List';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 
 @Component({
     selector: 'app-list-item',
@@ -16,15 +17,17 @@ export class ListItemComponent implements OnInit {
     @Input() film: MovieResponse;
 
     public current: MovieResponse = {};
-
     public genresResults: MovieGenre[];
     public currentFilmCredits: MovieCredits;
     public crew: Crew;
     public casts: Cast[] = [];
     public onHover = false;
     public lists: List[] = [];
+    public ifMainPage: boolean=true;
+    public _url: UrlSegment[]=[];
 
-    constructor(private tmdb: TmdbService, private _dialog: MatDialog, private _tfService: TraitementFilmsService) { }
+    constructor(private tmdb: TmdbService, private _dialog: MatDialog, 
+        private _tfService: TraitementFilmsService,private _route: ActivatedRoute) { }
 
     ngOnInit() {
         this.lists = this._tfService.lists;
@@ -36,6 +39,11 @@ export class ListItemComponent implements OnInit {
                 this.casts = mc.cast;
                 this.casts.splice(3);
             }).catch(err => console.error('Error getting movie:', err));
+        this._url=this._route.snapshot.url;
+        if(this._url[0].path==='myCustomList'){
+            this.ifMainPage=false;
+        }
+
     }
 
     openDialog(currentFilm: MovieResponse, lists: List[]): void {

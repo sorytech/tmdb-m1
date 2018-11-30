@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {List} from '../../tmdb-data/List';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
+import { MovieResponse } from 'src/app/tmdb-data/Movie';
+import { TraitementFilmsService } from 'src/app/services/movies/traitement-films';
 
 @Component({
   selector: 'app-my-custom-list',
@@ -8,11 +10,15 @@ import {List} from '../../tmdb-data/List';
 })
 export class MyCustomListComponent implements OnInit {
 
-  @Input() list: List;
+  private id: string;
+  public myMovies: MovieResponse[]=[];
+  
 
-  constructor() { }
+  constructor(private _route: ActivatedRoute,private _filmTraitment: TraitementFilmsService) { }
 
   ngOnInit() {
+    this.id = this._route.snapshot.params['id']; // On récupère l'id de la liste
+    this.myMovies=this._filmTraitment.getMoviesFromList(this.id);
   }
 
   

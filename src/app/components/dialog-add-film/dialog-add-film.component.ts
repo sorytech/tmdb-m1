@@ -53,9 +53,6 @@ export class DialogAddFilmComponent implements OnInit {
     });
   }
 
-
- 
-
   public save(film: MovieResponse, list: List) {
     list.films.push(film);
     this.dialogRef.close();
