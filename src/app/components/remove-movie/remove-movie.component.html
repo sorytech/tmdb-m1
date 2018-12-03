@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  <p>Voulez-vous supprimer le film {{data.film.title}} de la liste ?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Non</button>
+  <button mat-button (click)="removeMovie(data.film)">Oui</button>
+</div>

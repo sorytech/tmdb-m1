@@ -39,7 +39,8 @@ export class DialogAddFilmComponent implements OnInit {
       this.nameList = result;
       console.log('nom de la liste '+this.nameList);
       if(this.nameList != undefined){
-        this.ltmp={id:this.filmTraitement.lists.length+1,name:this.nameList,films:[],visibility: this.visibility};
+        this.ltmp={id:this.filmTraitement.lists.length+1,
+          name:this.nameList,films:[],visibility: this.visibility};
         this.ltmp.films.push(this.data.film);
         this.filmTraitement.lists.push(this.ltmp); 
         console.log("film "+this.data.film.title);

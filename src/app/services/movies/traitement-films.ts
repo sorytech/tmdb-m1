@@ -11,6 +11,8 @@ export class TraitementFilmsService {
     private _movies: MovieResponse[] = [];
     private _subject = new Subject<any>();
 
+    private listTmp: List;
+
     private _lists: List[] = [];
     
     constructor() {
@@ -29,8 +31,20 @@ export class TraitementFilmsService {
         return this._lists;
     }
 
+    public setListTmp(list: List){
+        this.listTmp = list;
+    }
+
+    public getListTmp(): List{
+        return this.listTmp;
+    }
+
     public getMoviesFromList(id : string): MovieResponse[]{
         return this._lists.find( (l) => l.id === Number(id) ).films;
+    }
+
+    public getListFromId(id: string): List{
+        return this._lists.find( (l) => l.id === Number(id));
     }
 
     public setLists(value: List[]) {

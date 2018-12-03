@@ -41,6 +41,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { DialogAddFilmComponent } from './components/dialog-add-film/dialog-add-film.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddNewListComponent } from './components/main-page/add-new-list/add-new-list.component';
+import { RemoveMovieComponent } from './components/remove-movie/remove-movie.component';
 
 const appRoutes: Routes = [
     {path: 'film/:id', component: FIlmComponent},
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
         ActeurComponent,
         MyCustomListComponent,
         DialogAddFilmComponent,
-        AddNewListComponent
+        AddNewListComponent,
+        RemoveMovieComponent
     ],
     imports: [
         BrowserModule,
@@ -101,7 +103,7 @@ const appRoutes: Routes = [
     ],
     providers: [TmdbService, TraitementFilmsService],
     exports: [ResearchComponent],
-    entryComponents: [DialogAddFilmComponent,AddNewListComponent],
+    entryComponents: [DialogAddFilmComponent,AddNewListComponent,RemoveMovieComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -6,6 +6,13 @@
             </button>           
         </div>
     </div>
+    <div *ngIf="!ifMainPage">
+        <div class="command" *ngIf="onHover">
+            <button mat-mini-fab color="primary" (click)="openDialogForRemoveMovie(film)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
 
     <div class="list-item-container" [routerLink]="['/film', film.id]" >
         <div class="film-photo-container">

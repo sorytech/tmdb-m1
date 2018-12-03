@@ -13,11 +13,11 @@ export class AddNewListComponent implements OnInit {
     public dialogRef: MatDialogRef<AddNewListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  ngOnInit() {
   }
 
-  ngOnInit() {
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 
