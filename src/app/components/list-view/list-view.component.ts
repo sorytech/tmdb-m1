@@ -14,6 +14,7 @@ export class ListViewComponent implements OnInit {
     @Input() films: MovieResponse[] = [];
 
     private _valueToResearch = '';
+    public 
 
     constructor(private _tmdb: TmdbService, private _filmTraitment: TraitementFilmsService) {
     }
