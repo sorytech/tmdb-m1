@@ -64,13 +64,12 @@ export class ListItemComponent implements OnInit {
     openDialogForRemoveMovie(currentFilm: MovieResponse): void{
         const dialogRef = this._dialog.open(RemoveMovieComponent, {
             width: '450px',
-            data: {film: currentFilm}
+            data: {film: currentFilm, isRemove: true}
         });
 
         this._tfService.setListTmp(this.list);
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed : ', result);
         });
     }
 }

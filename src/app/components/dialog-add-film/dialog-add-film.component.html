@@ -2,22 +2,40 @@
 <label for="filmname" class="film-label">Film en cours : </label>
 <span id="filmname">{{data.film.title}}</span>
 <hr>
-<mat-dialog-content *ngIf="!ifMyListEmpty">
-    <a>Veuillez sélectionner la liste</a>
-    <mat-nav-list>
-        <mat-list-item *ngFor="let list of filmTraitement.lists" (click)="save(data.film, list)">
-            <a matLine>{{ list.name }}</a>
-            <button mat-icon-button >
-                <mat-icon>info</mat-icon>
-            </button>
-        </mat-list-item>
-    </mat-nav-list>
+<mat-dialog-content>
 
+        <div *ngIf="ifMyListEmpty">
+            <p>Aucune liste pour l'instant</p> 
+        </div>
+        
+        <div *ngIf="!ifMyListEmpty">
+             <a>Veuillez sélectionner la liste</a>
+                 <mat-nav-list>
+                     <mat-list-item *ngFor="let list of filmTraitement.lists" (click)="save(data.film, list)">
+                         <a matLine>{{ list.name }}</a>
+                         <button mat-icon-button >
+                             <mat-icon>info</mat-icon>
+                         </button>
+                     </mat-list-item>
+                 </mat-nav-list>
+        </div> 
+        <hr>
+
+    <div *ngIf="addClicked">
+        <mat-card style="height: 31px; margin-top: 5px; padding-top: 10px;">
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="Saisissez le nom de la liste">
+            </mat-form-field>
+        </mat-card>
+    </div>
+   
 </mat-dialog-content>
-<hr>
 <mat-dialog-actions>
-    <button mat-raised-button [mat-dialog-close]="true" color="primary" (click)="openDialog1()">Créer une nouvelle liste
+    <button *ngIf="!addClicked" mat-raised-button color="primary" (click)="openDialog1()">Créer une nouvelle liste
         <mat-icon>add</mat-icon>
+    </button>
+    <button *ngIf="addClicked" mat-raised-button color="primary" (click)="openDialog1()">Valider
+            <mat-icon>add</mat-icon>
     </button>
     <button mat-raised-button mat-dialog-close color="accent">Annuler
         <mat-icon>clear</mat-icon>

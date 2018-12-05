@@ -15,6 +15,8 @@ export class DialogAddFilmComponent implements OnInit {
   visibility: string;
   ltmp : List;
   ifMyListEmpty:boolean;
+  addClicked = false;
+
   constructor(public dialogRef: MatDialogRef<DialogAddFilmComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public filmTraitement: TraitementFilmsService,public dialog: MatDialog) {  
@@ -29,7 +31,10 @@ export class DialogAddFilmComponent implements OnInit {
   }
 
   openDialog1(): void {
-    const dialogRef = this.dialog.open(AddNewListComponent, {
+
+    this.addClicked = !this.addClicked;
+    
+    /* const dialogRef = this.dialog.open(AddNewListComponent, {
       width: '250px',
       data: {nameList: this.nameList,visibility: this.visibility}
     });
@@ -43,16 +48,13 @@ export class DialogAddFilmComponent implements OnInit {
           name:this.nameList,films:[],visibility: this.visibility};
         this.ltmp.films.push(this.data.film);
         this.filmTraitement.lists.push(this.ltmp); 
-        console.log("film "+this.data.film.title);
-        console.log("liste "+this.ltmp.id);
-        console.log("nb film de la liste "+this.ltmp.films.length); 
-        console.log("visibilité : "+this.ltmp.visibility);         
+        
+        
+        
       }
-
       this.nameList="";
-
-    });
-  }
+    });*/
+  } 
 
   public save(film: MovieResponse, list: List) {
     list.films.push(film);
