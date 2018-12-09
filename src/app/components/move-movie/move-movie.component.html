@@ -1,0 +1,50 @@
+<!-->div mat-dialog-content>
+  <p>Voulez-vous deplacer le film {{data.film.title}} de la liste ?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Non</button>
+  <button mat-button (click)="moveMovie(data.film)">Oui</button>
+</div-->
+<h2 mat-dialog-title>Ajoutez un film à une liste</h2>
+<label for="filmname" class="film-label">Film en cours : </label>
+<span id="filmname">{{data.film.title}}</span>
+<hr>
+<mat-dialog-content>
+
+        <div *ngIf="ifMyListEmpty">
+            <p>Aucune liste pour l'instant</p> 
+        </div>
+        
+        <div *ngIf="!ifMyListEmpty">
+             <a>Veuillez sélectionner la liste</a>
+                 <mat-nav-list>
+                     <mat-list-item *ngFor="let list of filmTraitment.lists" (click)="moveMmoveMovieExistList(data.film, list)">
+                         <a matLine>{{ list.name }}</a>
+                         <button mat-icon-button >
+                             <mat-icon>info</mat-icon>
+                         </button>
+                     </mat-list-item>
+                 </mat-nav-list>
+        </div> 
+        <hr>
+
+    <div *ngIf="addClicked">
+        <mat-card style="height: 31px; margin-top: 5px; padding-top: 10px;">
+            <mat-form-field appearance="outline">
+                <input matInput [(ngModel)]="data.nameList" placeholder="Saisissez le nom de la liste">
+            </mat-form-field>
+        </mat-card>
+    </div>
+   
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button *ngIf="!addClicked" mat-raised-button color="primary" (click)="changeAddClicked()">Créer une nouvelle liste
+        <mat-icon>add</mat-icon>
+    </button>
+    <button *ngIf="addClicked" mat-raised-button color="primary" (click)="moveMovieNewList(data.film, data.nameList)">Valider
+            <mat-icon>add</mat-icon>
+    </button>
+    <button mat-raised-button mat-dialog-close color="accent">Annuler
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-dialog-actions>
