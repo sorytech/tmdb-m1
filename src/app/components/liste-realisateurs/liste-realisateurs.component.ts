@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TraitementFilmsService} from 'src/app/services/movies/traitement-films';
 import {MovieResponse, Crew, MovieCredits} from 'src/app/tmdb-data/Movie';
 import {PersonResponse} from 'src/app/tmdb-data/Person';
 import {TmdbService} from 'src/app/services/tmdb/tmdb.service';

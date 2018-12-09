@@ -24,9 +24,10 @@ export class ListItemComponent implements OnInit {
     public casts: Cast[] = [];
     public onHover = false;
     public lists: List[] = [];
-    public ifMainPage: boolean=true;
+    public ifCustomList = false;
     public _url: UrlSegment[]=[];
     public list: List;
+
 
     constructor(private tmdb: TmdbService, private _dialog: MatDialog, 
         private _tfService: TraitementFilmsService,private _route: ActivatedRoute) { }
@@ -43,21 +44,15 @@ export class ListItemComponent implements OnInit {
             }).catch(err => console.error('Error getting movie:', err));
         this._url=this._route.snapshot.url;
         this.list=this._tfService.getListFromId(this._route.snapshot.params['id']);
-        console.log("path "+this._route.snapshot.url.toString);
-        if(this._url[0].path==='myCustomList'){
-            this.ifMainPage=false;
+        if( (this._url.length > 0 )&& (this._url[0].path==='myCustomList')){
+            this.ifCustomList = true;
         }
-
     }
 
     openDialog(currentFilm: MovieResponse, lists: List[]): void {
         const dialogRef = this._dialog.open(DialogAddFilmComponent, {
             width: '600px',
             data: {film: currentFilm, lists: lists}
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed : ', result);
         });
     }
 
@@ -66,11 +61,8 @@ export class ListItemComponent implements OnInit {
             width: '450px',
             data: {film: currentFilm}
         });
-
         this._tfService.setListTmp(this.list);
-
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed : ', result);
         });
     }
 }

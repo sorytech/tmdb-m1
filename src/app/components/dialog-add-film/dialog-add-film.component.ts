@@ -1,9 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatDialog} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatSnackBar} from '@angular/material';
 import {MovieResponse} from '../../tmdb-data/Movie';
 import {List} from '../../tmdb-data/List';
 import { TraitementFilmsService } from 'src/app/services/movies/traitement-films';
 import { AddNewListComponent } from '../main-page/add-new-list/add-new-list.component';
+import { DialogData } from '../main-page/main-page.component';
 
 @Component({
   selector: 'app-dialog-add-film',
@@ -12,12 +13,14 @@ import { AddNewListComponent } from '../main-page/add-new-list/add-new-list.comp
 })
 export class DialogAddFilmComponent implements OnInit {
   nameList: string;
-  visibility: string;
+  visibility: string="";
   ltmp : List;
   ifMyListEmpty:boolean;
+  addClicked = false;
+
   constructor(public dialogRef: MatDialogRef<DialogAddFilmComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public filmTraitement: TraitementFilmsService,public dialog: MatDialog) {  
+              @Inject(MAT_DIALOG_DATA) public data: DialogData,
+              public filmTraitement: TraitementFilmsService,public snackBar: MatSnackBar) {  
   }
 
   ngOnInit() {
@@ -28,8 +31,27 @@ export class DialogAddFilmComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  openDialog1(): void {
-    const dialogRef = this.dialog.open(AddNewListComponent, {
+  confirmationMessage(message: string, secondParam: string) {
+    this.snackBar.open(message, secondParam, {
+      duration: 5000,
+      horizontalPosition: "center",
+      verticalPosition: "top"
+    });
+  }
+
+  emptyMessage(message: string, secondParam: string) {
+    this.snackBar.open(message, secondParam, {
+      duration: 5000,
+      horizontalPosition: "center",
+      verticalPosition: "top"
+    });
+  }
+
+  changeAddClicked(): void {
+
+    this.addClicked = !this.addClicked;
+    
+    /* const dialogRef = this.dialog.open(AddNewListComponent, {
       width: '250px',
       data: {nameList: this.nameList,visibility: this.visibility}
     });
@@ -42,23 +64,30 @@ export class DialogAddFilmComponent implements OnInit {
         this.ltmp={id:this.filmTraitement.lists.length+1,
           name:this.nameList,films:[],visibility: this.visibility};
         this.ltmp.films.push(this.data.film);
-        this.filmTraitement.lists.push(this.ltmp); 
-        console.log("film "+this.data.film.title);
-        console.log("liste "+this.ltmp.id);
-        console.log("nb film de la liste "+this.ltmp.films.length); 
-        console.log("visibilité : "+this.ltmp.visibility);         
+        this.filmTraitement.lists.push(this.ltmp);       
       }
-
       this.nameList="";
+    });*/
+  } 
 
-    });
+  addMovieInNewList(film: MovieResponse,myListName: string){
+    if(myListName != undefined){
+      this.ltmp={id:this.filmTraitement.lists.length+1,
+        name:myListName,films:[],visibility: this.visibility};
+      this.ltmp.films.push(film);
+      this.filmTraitement.lists.push(this.ltmp);
+      this.dialogRef.close();
+      this.confirmationMessage("Votre film a été ajouté avec succès", "");
+    }else{
+      this.emptyMessage("Donnez un nom à votre liste", "");
+    }
+    
   }
 
   public save(film: MovieResponse, list: List) {
     list.films.push(film);
     this.dialogRef.close();
-    console.log("film "+film.title);
-    console.log("liste "+list.id);
-    console.log("nb film de la liste "+list.films.length);
+    this.confirmationMessage("Votre film a été ajouté avec succès", "");
   }
+
 }

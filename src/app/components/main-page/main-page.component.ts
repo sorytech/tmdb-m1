@@ -13,6 +13,7 @@ import { AddNewListComponent } from './add-new-list/add-new-list.component';
 export interface DialogData {
     nameList: string;
     visibility: string;
+    isRemove?: boolean;
   }
 
 @Component({

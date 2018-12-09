@@ -10,7 +10,6 @@ export class TraitementFilmsService {
     public checkedGenresReceived = new Subject<Option[]>();
     private _movies: MovieResponse[] = [];
     private _subject = new Subject<any>();
-
     private listTmp: List;
 
     private _lists: List[] = [];

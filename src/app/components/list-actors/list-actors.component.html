@@ -1,6 +1,3 @@
-<div *ngIf="actors.length > 0">
-  <div *ngFor="let person of actors | pipesPerson : valueToResearch">
-    <app-actor-item [actor]="person"></app-actor-item>
-  </div>
+<div *ngFor="let person of actors | pipesPerson : valueToResearch">
+  <app-actor-item [actor]="person"></app-actor-item>
 </div>
-

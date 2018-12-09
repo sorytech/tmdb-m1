@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { MovieResponse } from 'src/app/tmdb-data/Movie';
 import { TraitementFilmsService } from 'src/app/services/movies/traitement-films';
+import { RemoveMovieComponent } from '../remove-movie/remove-movie.component';
+import { MatDialog } from '@angular/material';
+import { List } from 'src/app/tmdb-data/List';
 
 @Component({
   selector: 'app-my-custom-list',
@@ -12,8 +15,6 @@ export class MyCustomListComponent implements OnInit {
 
   private id: string;
   public myMovies: MovieResponse[]=[];
-  
-
   constructor(private _route: ActivatedRoute,private _filmTraitment: TraitementFilmsService) { }
 
   ngOnInit() {
