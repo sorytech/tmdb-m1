@@ -100,11 +100,18 @@ export class TraitementFilmsService {
         this._subject = value;
     }
 
+<<<<<<< HEAD
     public generateID() {
         return '_' + Math.random().toString(36).substr(2, 9);
     }
 
   
 
+=======
+    public update(currentFilm: MovieResponse, listOrigin: List, listDestination: List){
+        listOrigin.films.splice(listOrigin.films.indexOf(currentFilm),1);
+        listDestination.films.push(currentFilm);
+    }
+>>>>>>> 524134e3cc48ae318c387d83b2ac0b24e868d5a7
 }
 
