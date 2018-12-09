@@ -59,6 +59,7 @@ const appRoutes: Routes = [
     {path: 'myCustomList/:id', component: MyCustomListComponent}
 ];
 
+// @ts-ignore
 @NgModule({
     declarations: [
         AppComponent,
@@ -111,10 +112,7 @@ const appRoutes: Routes = [
     ],
     providers: [TmdbService, TraitementFilmsService],
     exports: [ResearchComponent],
-    entryComponents: [DialogAddFilmComponent,AddNewListComponent,RemoveMovieComponent ,MatRadioModule],
-    providers: [TmdbService, TraitementFilmsService],
-    exports: [ResearchComponent],
-    entryComponents: [DialogAddFilmComponent, AddNewListComponent, DialogEditListComponent],
+    entryComponents: [DialogAddFilmComponent, AddNewListComponent,RemoveMovieComponent , DialogEditListComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
