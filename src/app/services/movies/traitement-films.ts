@@ -18,6 +18,20 @@ export class TraitementFilmsService {
     }
 
 
+    addList(list: List) {
+        this._lists.push(list);
+    }
+
+    public deleteList(list: List) {
+        this._lists = this._lists.filter((cList) => cList !== list);
+    }
+
+    public addFilmToList (list: List, film: MovieResponse) {
+        this._lists.forEach((cList) => {
+            cList.addFilm(film);
+        })
+    }
+    
     get movies(): MovieResponse[] {
         return this._movies;
     }
@@ -39,11 +53,13 @@ export class TraitementFilmsService {
     }
 
     public getMoviesFromList(id : string): MovieResponse[]{
-        return this._lists.find( (l) => l.id === Number(id) ).films;
+        const currList = this._lists.find( (l) => l.id === id);
+
+        return currList !== undefined ? currList.films : undefined;
     }
 
     public getListFromId(id: string): List{
-        return this._lists.find( (l) => l.id === Number(id));
+        return this._lists.find( (l) => l.id === id);
     }
 
     public setLists(value: List[]) {
@@ -83,6 +99,12 @@ export class TraitementFilmsService {
     set subject(value: Subject<any>) {
         this._subject = value;
     }
+
+    public generateID() {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+  
 
 }
 

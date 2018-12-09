@@ -30,7 +30,7 @@ export class ListItemComponent implements OnInit {
 
 
     constructor(private tmdb: TmdbService, private _dialog: MatDialog, 
-        private _tfService: TraitementFilmsService,private _route: ActivatedRoute) { }
+        private _tfService: TraitementFilmsService, private _route: ActivatedRoute) { }
 
     ngOnInit() {
         this.lists = this._tfService.lists;
@@ -42,7 +42,7 @@ export class ListItemComponent implements OnInit {
                 this.casts = mc.cast;
                 this.casts.splice(3);
             }).catch(err => console.error('Error getting movie:', err));
-        this._url=this._route.snapshot.url;
+        this._url = this._route.snapshot.url;
         this.list=this._tfService.getListFromId(this._route.snapshot.params['id']);
         if( (this._url.length > 0 )&& (this._url[0].path==='myCustomList')){
             this.ifCustomList = true;
