@@ -7,7 +7,6 @@ import {TraitementFilmsService} from '../../services/movies/traitement-films';
 import {List} from '../../tmdb-data/List';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { RemoveMovieComponent } from '../remove-movie/remove-movie.component';
-import { MoveMovieComponent } from '../move-movie/move-movie.component';
 
 @Component({
     selector: 'app-list-item',
@@ -64,25 +63,6 @@ export class ListItemComponent implements OnInit {
         });
         this._tfService.setListTmp(this.list);
         dialogRef.afterClosed().subscribe(result => {
-<<<<<<< HEAD
-=======
-            console.log('The dialog was closed : ', result);
-            console.log('le film test :',currentFilm)
-        });
-    }
-
-    openDialogForMoveMovie(currentFilm: MovieResponse): void{
-
-        const dialogRef = this._dialog.open(MoveMovieComponent, {
-            width: '450px',
-            data: {film: currentFilm, currentlist: this.list}
-        });
-        this._tfService.setListTmp(this.list);
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed : ', result);
-            console.log('le film test :',currentFilm)
->>>>>>> 524134e3cc48ae318c387d83b2ac0b24e868d5a7
         });
     }
 }

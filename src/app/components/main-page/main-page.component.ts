@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/users/user.service';
 import {User} from 'firebase';
-import {Option, MovieResponse} from '../../tmdb-data/Movie';
+import {Option} from '../../tmdb-data/Movie';
 import {Constant} from '../../constante/Constant';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
 import {TraitementFilmsService} from '../../services/movies/traitement-films';
@@ -12,17 +12,9 @@ import { AddNewListComponent } from './add-new-list/add-new-list.component';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 
 export interface DialogData {
-<<<<<<< HEAD
     nameList: string;
     visibility: string;
     isRemove?: boolean;
-=======
-    nameList ?: string;
-    visibility ?: string;
-    currentMovie ?: MovieResponse, 
-    listOrigin ?: List,
-    listDestination ?: List
->>>>>>> 524134e3cc48ae318c387d83b2ac0b24e868d5a7
   }
 
 @Component({
