@@ -9,6 +9,7 @@ import {List} from '../../tmdb-data/List';
 
 import {MatDialog} from '@angular/material';
 import { AddNewListComponent } from './add-new-list/add-new-list.component';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 
 export interface DialogData {
     nameList: string;
@@ -34,7 +35,9 @@ export class MainPageComponent implements OnInit {
 
     constructor(private _userService: UserService,
                 private _tmdb: TmdbService, private _filmTraitment: TraitementFilmsService, 
-                public dialog: MatDialog) {
+                public dialog: MatDialog, private router: Router,
+                private _activedRoute: ActivatedRoute) {
+
     }
 
     ngOnInit() {
@@ -93,18 +96,25 @@ export class MainPageComponent implements OnInit {
         });
         
         dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed', result);
-          this.nameList = result;
-          console.log('nom de la liste '+this.nameList);
-          console.log('visibilité : '+this.visibility);
-          if(this.nameList != undefined){
-            this.lists.push({id:this.lists.length+1,name:this.nameList,films:[],visibility:this.visibility});           
+          if(result !== '') {
+              this._filmTraitment.addList(new List(this._filmTraitment.generateID(), result, this.visibility));           
           }
-          this.nameList="";
-          this._filmTraitment.setLists(this.lists);
-          this.lists=this._filmTraitment.lists;
         });
     } 
     
 
+    edit(list: List) {
+        console.log('edit')
+    }
+
+    delete(list: List) {
+        this._filmTraitment.deleteList(list);
+        this.lists=this._filmTraitment.lists;
+        console.log('route : ', this._activedRoute.snapshot)
+        this._activedRoute.snapshot.params['myCustomList'];
+        
+        this.router.navigate(['films']);
+
+        console.log('delete')
+    }
 }
