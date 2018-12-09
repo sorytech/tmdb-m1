@@ -41,11 +41,9 @@
                         <mat-list-item *ngFor="let list of lists" [routerLink]="['/myCustomList', list.id]"
                                        class="list-item">
                             <mat-icon matBadge="{{list.films.length}}" matBadgePosition="above after" matBadgeColor="accent" >folder</mat-icon>
-                          <button mat-flat-button style="float: right;"  (click)="openDialogModif(list)">
-                            Modifier
-                            <mat-icon>modify</mat-icon>
+                          <button mat-icon-button (click)="openDialogModif(list)">
+                            <mat-icon>edit</mat-icon>
                           </button>
-                            <mat-icon>folder</mat-icon>
                             <h3 matLine> {{list.name}} </h3>
                         </mat-list-item>
                     </mat-list>
