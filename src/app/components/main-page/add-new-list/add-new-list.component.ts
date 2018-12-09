@@ -35,6 +35,7 @@ export class AddNewListComponent implements OnInit {
 
       if(this.visibility !== '') {
           this.data.currentList.setVisibility(this.visibility);
+          const message = `Votre liste a été rendue ${this.visibility} !`;
       }
       this.dialogRef.close();
     }
