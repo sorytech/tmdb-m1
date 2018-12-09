@@ -1,6 +1,6 @@
 .list-item-container {
     background: white;
-    width: 100%;
+    width: 88%;
     margin: auto;
     height: 180px;
     box-shadow: 1px 1px 1px #d4d0cd;
@@ -87,8 +87,15 @@
 
 .command {
     float: left;
-    background: antiquewhite;
-    height: 181px;
+
+}
+
+.btn-bloc-list {
     width: 50px;
-    line-height: 181px;
+    line-height: 50px;
+    float: left;
+}
+
+.item-bloc{
+    margin-left: 5px;
 }
