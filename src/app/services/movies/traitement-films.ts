@@ -85,5 +85,9 @@ export class TraitementFilmsService {
         this._subject = value;
     }
 
+    public update(currentFilm: MovieResponse, listOrigin: List, listDestination: List){
+        listOrigin.films.splice(listOrigin.films.indexOf(currentFilm),1);
+        listDestination.films.push(currentFilm);
+    }
 }
 

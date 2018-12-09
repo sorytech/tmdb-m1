@@ -8,7 +8,7 @@
     </div>
     <div *ngIf="!ifMainPage">
         <div class="command" *ngIf="onHover">
-            <button mat-mini-fab color="primary" (click)="openDialogForRemoveMovie(film)">
+            <button mat-mini-fab color="primary" (click)="listDestination(film, lists)">
                 <mat-icon>delete</mat-icon>
             </button>
         </div>

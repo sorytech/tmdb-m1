@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/users/user.service';
 import {User} from 'firebase';
-import {Option} from '../../tmdb-data/Movie';
+import {Option, MovieResponse} from '../../tmdb-data/Movie';
 import {Constant} from '../../constante/Constant';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
 import {TraitementFilmsService} from '../../services/movies/traitement-films';
@@ -11,8 +11,11 @@ import {MatDialog} from '@angular/material';
 import { AddNewListComponent } from './add-new-list/add-new-list.component';
 
 export interface DialogData {
-    nameList: string;
-    visibility: string;
+    nameList ?: string;
+    visibility ?: string;
+    currentMovie ?: MovieResponse, 
+    listOrigin ?: List,
+    listDestination ?: List
   }
 
 @Component({
