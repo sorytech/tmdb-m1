@@ -1,0 +1,16 @@
+<div mat-dialog-content>
+  <p>Donnez un nouveua nom à votre liste</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.nameList">
+  </mat-form-field>
+</div>
+<p>Choisir nouvelle visibilité</p>
+<mat-radio-group [(ngModel)]="data.visibility">
+  <mat-radio-button value="privée">privée</mat-radio-button>
+  <mat-radio-button value="publique">publique</mat-radio-button>
+</mat-radio-group>
+<br>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button [mat-dialog-close]="data.nameList+' '+data.visibility" cdkFocusInitial>Valider</button>
+</div>

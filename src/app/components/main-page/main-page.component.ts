@@ -9,6 +9,8 @@ import {List} from '../../tmdb-data/List';
 
 import {MatDialog} from '@angular/material';
 import { AddNewListComponent } from './add-new-list/add-new-list.component';
+import {DialogEditListComponent} from './dialog-edit-list/dialog-edit-list.component';
+import {split} from 'ts-node';
 
 export interface DialogData {
     nameList: string;
@@ -27,7 +29,7 @@ export class MainPageComponent implements OnInit {
 
     public checkedGenres: Option[] = [];
 
-    public lists: List[]=[];
+    public lists: List[] = [];
     
     nameList: string;
     visibility: string;
@@ -38,7 +40,7 @@ export class MainPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.lists=this._filmTraitment.lists;
+        this.lists = this._filmTraitment.lists;
     }
 
     formatLabel(value: number | null) {
@@ -98,13 +100,32 @@ export class MainPageComponent implements OnInit {
           console.log('nom de la liste '+this.nameList);
           console.log('visibilité : '+this.visibility);
           if(this.nameList != undefined){
-            this.lists.push({id:this.lists.length+1,name:this.nameList,films:[],visibility:this.visibility});           
+            this.lists.push({id:this.lists.length+1,name:this.nameList,films:[],visibility:this.visibility});
           }
           this.nameList="";
           this._filmTraitment.setLists(this.lists);
           this.lists=this._filmTraitment.lists;
         });
-    } 
-    
+    }
+
+  openDialogModif(list: List): void {
+      const dialogRef = this.dialog.open(DialogEditListComponent , {
+        width: '280px',
+        data: {nameList: this.nameList, visibility: this.visibility}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+        this.nameList = result.split(' ')[0].toString();
+        this.visibility = result.split(' ')[1].toString();
+        console.log('nom de la liste ' + this.nameList);
+        console.log('visibilité : ' + this.visibility);
+        list.name = this.nameList;
+        list.visibility = this.visibility;
+        this.nameList = '';
+      });
+
+  }
+
 
 }

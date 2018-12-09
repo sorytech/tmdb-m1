@@ -20,7 +20,7 @@ export class DialogAddFilmComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<DialogAddFilmComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
-              public filmTraitement: TraitementFilmsService,public snackBar: MatSnackBar) {  
+              public filmTraitement: TraitementFilmsService,public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -50,12 +50,12 @@ export class DialogAddFilmComponent implements OnInit {
   changeAddClicked(): void {
 
     this.addClicked = !this.addClicked;
-    
+
     /* const dialogRef = this.dialog.open(AddNewListComponent, {
       width: '250px',
       data: {nameList: this.nameList,visibility: this.visibility}
     });
-    
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       this.nameList = result;
@@ -64,11 +64,11 @@ export class DialogAddFilmComponent implements OnInit {
         this.ltmp={id:this.filmTraitement.lists.length+1,
           name:this.nameList,films:[],visibility: this.visibility};
         this.ltmp.films.push(this.data.film);
-        this.filmTraitement.lists.push(this.ltmp);       
+        this.filmTraitement.lists.push(this.ltmp);
       }
       this.nameList="";
     });*/
-  } 
+  }
 
   addMovieInNewList(film: MovieResponse,myListName: string){
     if(myListName != undefined){
@@ -81,7 +81,7 @@ export class DialogAddFilmComponent implements OnInit {
     }else{
       this.emptyMessage("Donnez un nom à votre liste", "");
     }
-    
+
   }
 
   public save(film: MovieResponse, list: List) {

@@ -22,5 +22,5 @@ export class MyCustomListComponent implements OnInit {
     this.myMovies=this._filmTraitment.getMoviesFromList(this.id);
   }
 
-  
+
 }
