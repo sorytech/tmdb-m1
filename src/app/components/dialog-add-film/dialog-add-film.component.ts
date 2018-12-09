@@ -63,7 +63,7 @@ export class DialogAddFilmComponent implements OnInit {
   } 
 
   addMovieInNewList(film: MovieResponse, myListName: string){
-    if(myListName !== ''){
+    if(myListName !== undefined && myListName !== ''){
       const newList = new List(this.filmTraitement.generateID(), myListName)
       newList.addFilm(film);
       this.filmTraitement.addList(newList);

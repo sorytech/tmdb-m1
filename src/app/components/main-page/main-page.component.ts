@@ -10,11 +10,13 @@ import {List} from '../../tmdb-data/List';
 import {MatDialog} from '@angular/material';
 import { AddNewListComponent } from './add-new-list/add-new-list.component';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
+import { DialogEditListComponent } from '../dialog-edit-list/dialog-edit-list.component';
 
 export interface DialogData {
     nameList: string;
     visibility: string;
     isRemove?: boolean;
+    currentList: List;
   }
 
 @Component({
@@ -89,14 +91,15 @@ export class MainPageComponent implements OnInit {
         }
     }
 
-    openDialog(): void {
+    openDialog(list?: List): void {
         const dialogRef = this.dialog.open(AddNewListComponent, {
           width: '280px',
-          data: {nameList: this.nameList,visibility:this.visibility}
+          disableClose: true,
+          data: {nameList: this.nameList, visibility: this.visibility, currentList: list}
         });
         
         dialogRef.afterClosed().subscribe(result => {
-          if(result !== '') {
+          if(result !== undefined && result !== '') {
               this._filmTraitment.addList(new List(this._filmTraitment.generateID(), result, this.visibility));           
           }
         });
@@ -105,6 +108,7 @@ export class MainPageComponent implements OnInit {
 
     edit(list: List) {
         console.log('edit')
+        this.openDialog(list);
     }
 
     delete(list: List) {
@@ -112,7 +116,7 @@ export class MainPageComponent implements OnInit {
         this.lists=this._filmTraitment.lists;
         console.log('route : ', this._activedRoute.snapshot)
         this._activedRoute.snapshot.params['myCustomList'];
-        
+
         this.router.navigate(['films']);
 
         console.log('delete')
