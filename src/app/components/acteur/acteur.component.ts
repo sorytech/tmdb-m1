@@ -22,7 +22,6 @@ export class ActeurComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('Film : ', this._route.snapshot.params['id']);
         this.current_id = this._route.snapshot.params['id']; // On récupère l'id de l'acteur
         this.fromFilm = this._route.snapshot.params['fromFilm'];
 

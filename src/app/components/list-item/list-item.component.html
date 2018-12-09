@@ -1,17 +1,19 @@
 <div (mouseover)="onHover=true" (mouseleave)="onHover=false">
-    <div *ngIf="ifMainPage">
+
+    <div *ngIf="!ifCustomList">
         <div class="command" *ngIf="onHover">
             <button mat-mini-fab color="primary" (click)="openDialog(film, lists)">
                 <mat-icon>playlist_add</mat-icon>
             </button>           
         </div>
     </div>
-    <div *ngIf="!ifMainPage">
-        <div class="command" *ngIf="onHover">
-            <button mat-mini-fab color="primary" (click)="openDialogForRemoveMovie(film)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
+    
+    <div *ngIf="ifCustomList">
+            <div class="command" *ngIf="onHover">
+                    <button mat-mini-fab color="primary" (click)="openDialogForRemoveMovie(film)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+            </div>
     </div>
 
     <div class="list-item-container" [routerLink]="['/film', film.id]" >
@@ -51,9 +53,6 @@
             </div>
 
             <div class="item-icons">
-                <!--<button mat-mini-fab color="primary">-->
-                <!--<mat-icon></mat-icon>-->
-                <!--</button>-->
                 <mat-icon class="item-icon">favorite</mat-icon>
                 <mat-icon class="item-icon">visibility</mat-icon>
                 <mat-icon class="item-icon">insert_invitation</mat-icon>

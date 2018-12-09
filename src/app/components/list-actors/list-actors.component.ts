@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {MovieResponse} from '../../tmdb-data/Movie';
 import {TmdbService} from '../../services/tmdb/tmdb.service';
 import {PersonResponse} from '../../tmdb-data/Person';
 
@@ -14,7 +13,6 @@ export class ListActorsComponent implements OnInit {
     @Input() actors: PersonResponse[] = [];
 
     private _valueToResearch = '';
-
     constructor(private _tmdb: TmdbService, private router: Router) {
     }
 
@@ -27,9 +25,8 @@ export class ListActorsComponent implements OnInit {
                     console.log('Erreur lors du téléchargement : ', error);
                 }
             );
-
         /**
-         * Récupère la valeur de la barre de recherche et met à jour la liste de films
+         * Récupère la valeur de la barre de recherche et met à jour la liste des acteurs
          */
         this._tmdb.subject.subscribe((data) => {
             this.valueToResearch = data;
@@ -48,7 +45,7 @@ export class ListActorsComponent implements OnInit {
                 this.actors = actors['results'];
               });
             }
-        });
+        });  
     }
 
     get valueToResearch(): string {

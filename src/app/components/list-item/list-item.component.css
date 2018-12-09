@@ -1,6 +1,6 @@
 .list-item-container {
     background: white;
-    width: 90%;
+    width: 100%;
     margin: auto;
     height: 180px;
     box-shadow: 1px 1px 1px #d4d0cd;
@@ -43,11 +43,9 @@
     float: right;
     font-size: small;
     font-style: italic;
-    margin-right: 34px;
+    margin-right: 20px;
 }
-.item-details {
 
-}
 
 
 .label {
@@ -66,7 +64,7 @@
 
 .synopsis-content {
     font-size: 12px;
-    height: 40px;
+    height: 72px;
     width: 97%;
     text-align: justify;
     overflow: hidden;
@@ -75,6 +73,8 @@
 
 .item-icons {
     text-align: right;
+    margin-top: -13px;
+    margin-right: 14px;
 }
 .item-icon {
     margin-right: 5px;
