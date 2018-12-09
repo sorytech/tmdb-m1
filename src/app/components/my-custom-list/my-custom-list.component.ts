@@ -5,21 +5,34 @@ import { TraitementFilmsService } from 'src/app/services/movies/traitement-films
 import { RemoveMovieComponent } from '../remove-movie/remove-movie.component';
 import { MatDialog } from '@angular/material';
 import { List } from 'src/app/tmdb-data/List';
+import { OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-custom-list',
   templateUrl: './my-custom-list.component.html',
   styleUrls: ['./my-custom-list.component.css']
 })
-export class MyCustomListComponent implements OnInit {
+export class MyCustomListComponent implements OnInit, OnChanges {
 
   private id: string;
-  public myMovies: MovieResponse[]=[];
-  constructor(private _route: ActivatedRoute,private _filmTraitment: TraitementFilmsService) { }
+  public myMovies: MovieResponse[] = [];
+  constructor(private _route: ActivatedRoute, private _filmTraitment: TraitementFilmsService,
+    private router: Router) { }
 
   ngOnInit() {
     this.id = this._route.snapshot.params['id']; // On récupère l'id de la liste
     this.myMovies=this._filmTraitment.getMoviesFromList(this.id);
+    if(this.myMovies === undefined) {
+      this.router.navigate(['films'])
+    }
+  }
+
+  ngOnChanges () {
+    console.log('changes++++++++++++++++++++')
+    if(this.myMovies === undefined) {
+      this.router.navigate(['films'])
+    }
   }
 
   

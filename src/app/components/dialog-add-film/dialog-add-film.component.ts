@@ -31,19 +31,11 @@ export class DialogAddFilmComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  confirmationMessage(message: string, secondParam: string) {
-    this.snackBar.open(message, secondParam, {
-      duration: 5000,
+  displayMessage(message: string, secondParam: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 8000,
       horizontalPosition: "center",
-      verticalPosition: "top"
-    });
-  }
-
-  emptyMessage(message: string, secondParam: string) {
-    this.snackBar.open(message, secondParam, {
-      duration: 5000,
-      horizontalPosition: "center",
-      verticalPosition: "top"
+      verticalPosition: "bottom"
     });
   }
 
@@ -51,24 +43,24 @@ export class DialogAddFilmComponent implements OnInit {
     this.addClicked = !this.addClicked;
   } 
 
-  addMovieInNewList(film: MovieResponse,myListName: string){
-    if(myListName != undefined){
-      this.ltmp={id:this.filmTraitement.lists.length+1,
-        name:myListName,films:[],visibility: this.visibility};
-      this.ltmp.films.push(film);
-      this.filmTraitement.lists.push(this.ltmp);
+  addMovieInNewList(film: MovieResponse, myListName: string){
+    if(myListName !== ''){
+      const newList = new List(this.filmTraitement.generateID(), myListName)
+      newList.addFilm(film);
+      this.filmTraitement.addList(newList);
       this.dialogRef.close();
-      this.confirmationMessage("Votre film a été ajouté avec succès", "");
+      this.displayMessage("Votre film a été ajouté avec succès", "");
     }else{
-      this.emptyMessage("Donnez un nom à votre liste", "");
+      this.displayMessage("Donnez un nom à votre liste", "");
     }
     
   }
 
   public save(film: MovieResponse, list: List) {
-    list.films.push(film);
+    this.filmTraitement.addFilmToList(list, film);
+    // list.(film);
     this.dialogRef.close();
-    this.confirmationMessage("Votre film a été ajouté avec succès", "");
+    this.displayMessage("Votre film a été ajouté avec succès", "");
   }
 
 }

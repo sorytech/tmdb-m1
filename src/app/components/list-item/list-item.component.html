@@ -1,4 +1,4 @@
-<div (mouseover)="onHover=true" (mouseleave)="onHover=false">
+<div (mouseover)="onHover=true" (mouseleave)="onHover=false" class="item-bloc">
 
     <div *ngIf="!ifCustomList">
         <div class="command" *ngIf="onHover">
@@ -8,14 +8,23 @@
         </div>
     </div>
     
-    <div *ngIf="ifCustomList">
-            <div class="command" *ngIf="onHover">
+    <div class="btn-bloc-list" *ngIf="ifCustomList && onHover">
+            <div class="command" title="Cliquez pour supprimer ce film">
+                        <button mat-mini-fab color="primary" (click)="openDialogForRemoveMovie(film)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+             </div>
+
+            <div class="command" title="Cliquez pour déplacer ce film">
                     <button mat-mini-fab color="primary" (click)="openDialogForRemoveMovie(film)">
-                        <mat-icon>delete</mat-icon>
+                        <mat-icon>move_to_inbox</mat-icon>
                     </button>
             </div>
     </div>
+    
 
+
+    
     <div class="list-item-container" [routerLink]="['/film', film.id]" >
         <div class="film-photo-container">
             <img src="http://image.tmdb.org/t/p/w500/{{film.poster_path}}" alt="" class="photo">
