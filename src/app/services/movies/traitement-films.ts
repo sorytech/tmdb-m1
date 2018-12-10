@@ -2,6 +2,8 @@ import {Subject} from 'rxjs';
 import {MovieResponse, MovieGenre, Option} from 'src/app/tmdb-data/Movie';
 import {Injectable} from '@angular/core';
 import {List} from '../../tmdb-data/List';
+import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { MoveMovieComponent } from 'src/app/components/move-movie/move-movie.component';
 import { MessageComponent } from 'src/app/components/message/message.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
 
@@ -13,8 +15,16 @@ export class TraitementFilmsService {
     private _movies: MovieResponse[] = [];
     private _subject = new Subject<any>();
     private listTmp: List;
+    public snackBar: MatSnackBar
     public ifNew = true;
+
     private _lists: List[] = [];
+    public Currentlist: List;
+    nameList: string;
+    visibility: string="";
+    ltmp : List;
+    ifMyListEmpty:boolean;
+    addClicked = false;
     
     constructor(private _dialog: MatDialog,public snackBar: MatSnackBar) {
     }
@@ -118,7 +128,47 @@ export class TraitementFilmsService {
         return '_' + Math.random().toString(36).substr(2, 9);
     }
 
-  
+    public moveMovieExistList(currentFilm: MovieResponse, listOrigin: List, listDestination: List, dialogRef: MatDialogRef<MoveMovieComponent>){
+        listDestination.films.push(currentFilm);
+        dialogRef.close();
+        listOrigin.films.splice(listOrigin.films.indexOf(currentFilm),1);
+        this.confirmationMessage("Votre film a été ajouté avec succès", ""); 
+        console.log('Test update listDestination '+this.Currentlist.films);
+    }
+
+    public moveMovieNewList(film: MovieResponse,myListName: string, listOrigin: List, dialogRef: MatDialogRef<MoveMovieComponent>){
+        if(myListName != undefined){
+        this.ltmp = new List(this.generateID(), myListName,this.visibility);
+        this.ltmp.addFilm(film);
+        this.addList(this.ltmp);
+        dialogRef.close();
+        listOrigin.films.splice(listOrigin.films.indexOf(film),1);
+        this.confirmationMessage("Votre film a été ajouté avec succès", "");
+        }else{
+        this.emptyMessage("Donnez un nom à votre liste", "");
+        } 
+    }
+
+
+  confirmationMessage(message: string, secondParam: string) {
+    this.snackBar.open(message, secondParam, {
+      duration: 5000,
+      horizontalPosition: "center",
+      verticalPosition: "top"
+    });
+  }
+
+  emptyMessage(message: string, secondParam: string) {
+    this.snackBar.open(message, secondParam, {
+      duration: 5000,
+      horizontalPosition: "center",
+      verticalPosition: "top"
+    });
+  }
+
+  addMovieInNewList(film: MovieResponse,myListName: string){
+
+  }
 
 }
 
