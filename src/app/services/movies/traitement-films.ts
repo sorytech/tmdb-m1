@@ -4,6 +4,8 @@ import {Injectable} from '@angular/core';
 import {List} from '../../tmdb-data/List';
 import { MatSnackBar, MatDialogRef } from '@angular/material';
 import { MoveMovieComponent } from 'src/app/components/move-movie/move-movie.component';
+import { MessageComponent } from 'src/app/components/message/message.component';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +16,8 @@ export class TraitementFilmsService {
     private _subject = new Subject<any>();
     private listTmp: List;
     public snackBar: MatSnackBar
+    public ifNew = true;
+
     private _lists: List[] = [];
     public Currentlist: List;
     nameList: string;
@@ -22,10 +26,22 @@ export class TraitementFilmsService {
     ifMyListEmpty:boolean;
     addClicked = false;
     
-    constructor() {
+    constructor(private _dialog: MatDialog,public snackBar: MatSnackBar) {
     }
 
-
+    openMessageDialog(_message:string):void{
+        const mydialog = this._dialog.open(MessageComponent,{
+            width: '400px',
+            data:{message: _message}
+        });
+    }
+    displayMessage(message: string, secondParam: string) {
+        this.snackBar.open(message, 'Fermer', {
+          duration: 8000,
+          horizontalPosition: "center",
+          verticalPosition: "bottom"
+        });
+    }
     addList(list: List) {
         this._lists.push(list);
     }

@@ -4,7 +4,7 @@ export class List {
     id: string;
     name: string;
     films?: MovieResponse[] = [];
-    visibility?: string;
+    visibility?: string = 'publique';
     constructor(id: string, name: string, visibility?: string) {
         this.id = id;
         this.name = name;
@@ -25,5 +25,11 @@ export class List {
 
     removeFilm(film: MovieResponse) {
         this.films = this.films.filter((currfilm) => currfilm !== film);
+    }
+
+    setName(name: string) {
+        if (name !== undefined && name !== '') {
+            this.name = name;
+        }
     }
 }
