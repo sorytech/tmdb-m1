@@ -4,7 +4,7 @@ export class List {
     id: string;
     name: string;
     films?: MovieResponse[] = [];
-    visibility?: string = 'publique';
+    visibility?: string;
     constructor(id: string, name: string, visibility?: string) {
         this.id = id;
         this.name = name;

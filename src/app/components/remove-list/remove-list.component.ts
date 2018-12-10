@@ -14,17 +14,15 @@ export class RemoveListComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<RemoveListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,public dialog: MatDialog,
-    private _filmTraitment: TraitementFilmsService,
-    private _activedRoute: ActivatedRoute, private router: Router) {}
+    private _filmTraitment: TraitementFilmsService,private router: Router) {}
 
 
   ngOnInit() {}
 
   removeList(list: List){
-    this._filmTraitment.deleteList(list);
     this.dialogRef.close();
+    this._filmTraitment.deleteList(list);
     this._filmTraitment.openMessageDialog("La liste "+list.name+" a été supprimée de votre bibliothèque !")
-    this._activedRoute.snapshot.params['myCustomList'];
     this.router.navigate(['films']);
   }
 

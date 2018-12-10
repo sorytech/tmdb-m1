@@ -18,6 +18,7 @@ export class MoveMovieComponent implements OnInit {
   ltmp : List;
   ifMyListEmpty:boolean;
   addClicked = false;
+  public meslistes:List[]=[];
 
   constructor(public dialogRef: MatDialogRef<MoveMovieComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,public dialog: MatDialog,
@@ -26,15 +27,16 @@ export class MoveMovieComponent implements OnInit {
   ngOnInit() {
         this.ifMyListEmpty=(this.filmTraitment.lists.length===0);
         this.Currentlist = this.filmTraitment.getListTmp();
+        this.meslistes = this.filmTraitment.lists;
   }
 
 
-  moveMmoveMovieExistList(currentFilm: MovieResponse, listDestination: List, ){
+  moveMovieExistList(currentFilm: MovieResponse, listDestination: List, ){
     this.filmTraitment.moveMovieExistList(currentFilm,this.Currentlist,listDestination, this.dialogRef);
   }
 
-  moveMovieNewList(film: MovieResponse,myListName: string){
-    this.filmTraitment.moveMovieNewList(film,myListName,this.Currentlist,this.dialogRef);
+  moveMovieNewList(film: MovieResponse,myListName: string,visibility:string){
+    this.filmTraitment.moveMovieNewList(film,myListName,this.Currentlist,visibility,this.dialogRef);
   }
   
 

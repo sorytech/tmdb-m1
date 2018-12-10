@@ -52,6 +52,7 @@ export class ListItemComponent implements OnInit {
 
     openDialog(currentFilm: MovieResponse, lists: List[]): void {
         const dialogRef = this._dialog.open(DialogAddFilmComponent, {
+            disableClose: true,
             width: '600px',
             data: {film: currentFilm, lists: lists}
         });
