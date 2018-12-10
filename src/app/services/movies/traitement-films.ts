@@ -2,7 +2,7 @@ import {Subject} from 'rxjs';
 import {MovieResponse, MovieGenre, Option} from 'src/app/tmdb-data/Movie';
 import {Injectable} from '@angular/core';
 import {List} from '../../tmdb-data/List';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { MoveMovieComponent } from 'src/app/components/move-movie/move-movie.component';
 import { MessageComponent } from 'src/app/components/message/message.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -15,7 +15,6 @@ export class TraitementFilmsService {
     private _movies: MovieResponse[] = [];
     private _subject = new Subject<any>();
     private listTmp: List;
-    public snackBar: MatSnackBar
     public ifNew = true;
 
     private _lists: List[] = [];

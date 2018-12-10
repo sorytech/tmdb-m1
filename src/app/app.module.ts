@@ -80,7 +80,7 @@ const appRoutes: Routes = [
         DialogAddFilmComponent,
         AddNewListComponent,
         RemoveMovieComponent,
-        MoveMovieComponent
+        MoveMovieComponent,
         DialogEditListComponent,
         RemoveListComponent,
         MessageComponent
