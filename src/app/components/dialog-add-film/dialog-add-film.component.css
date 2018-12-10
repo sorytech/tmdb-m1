@@ -6,3 +6,9 @@
     color: #8e8b88;
     font-weight: 500;
 }
+h2,p{
+    text-align: center;
+}
+.mat-radio-button {
+    margin-left: 35px;
+}

@@ -2,6 +2,8 @@ import {Subject} from 'rxjs';
 import {MovieResponse, MovieGenre, Option} from 'src/app/tmdb-data/Movie';
 import {Injectable} from '@angular/core';
 import {List} from '../../tmdb-data/List';
+import { MessageComponent } from 'src/app/components/message/message.component';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Injectable({
     providedIn: 'root'
@@ -11,13 +13,25 @@ export class TraitementFilmsService {
     private _movies: MovieResponse[] = [];
     private _subject = new Subject<any>();
     private listTmp: List;
-
+    public ifNew = true;
     private _lists: List[] = [];
     
-    constructor() {
+    constructor(private _dialog: MatDialog,public snackBar: MatSnackBar) {
     }
 
-
+    openMessageDialog(_message:string):void{
+        const mydialog = this._dialog.open(MessageComponent,{
+            width: '400px',
+            data:{message: _message}
+        });
+    }
+    displayMessage(message: string, secondParam: string) {
+        this.snackBar.open(message, 'Fermer', {
+          duration: 8000,
+          horizontalPosition: "center",
+          verticalPosition: "bottom"
+        });
+    }
     addList(list: List) {
         this._lists.push(list);
     }

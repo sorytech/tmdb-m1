@@ -5,7 +5,6 @@ import { TraitementFilmsService } from 'src/app/services/movies/traitement-films
 import { RemoveMovieComponent } from '../remove-movie/remove-movie.component';
 import { MatDialog } from '@angular/material';
 import { List } from 'src/app/tmdb-data/List';
-import { OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './my-custom-list.component.html',
   styleUrls: ['./my-custom-list.component.css']
 })
-export class MyCustomListComponent implements OnInit, OnChanges {
+export class MyCustomListComponent implements OnInit {
 
   private id: string;
   public myMovies: MovieResponse[] = [];
@@ -27,13 +26,4 @@ export class MyCustomListComponent implements OnInit, OnChanges {
       this.router.navigate(['films'])
     }
   }
-
-  ngOnChanges () {
-    console.log('changes++++++++++++++++++++')
-    if(this.myMovies === undefined) {
-      this.router.navigate(['films'])
-    }
-  }
-
-  
 }
