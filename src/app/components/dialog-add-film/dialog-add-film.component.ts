@@ -1,9 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {MovieResponse} from '../../tmdb-data/Movie';
 import {List} from '../../tmdb-data/List';
 import { TraitementFilmsService } from 'src/app/services/movies/traitement-films';
-import { AddNewListComponent } from '../main-page/add-new-list/add-new-list.component';
 import { DialogData } from '../main-page/main-page.component';
 
 @Component({
@@ -20,47 +19,43 @@ export class DialogAddFilmComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<DialogAddFilmComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
-              public filmTraitement: TraitementFilmsService,public snackBar: MatSnackBar) {  
+              public filmTraitement: TraitementFilmsService) {  
   }
 
   ngOnInit() {
     this.ifMyListEmpty=(this.filmTraitement.lists.length===0);
+    this.data.nameList='';
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  displayMessage(message: string, secondParam: string) {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 8000,
-      horizontalPosition: "center",
-      verticalPosition: "bottom"
-    });
-  }
-
   changeAddClicked(): void {
     this.addClicked = !this.addClicked;
   } 
 
-  addMovieInNewList(film: MovieResponse, myListName: string){
-    if(myListName !== ''){
-      const newList = new List(this.filmTraitement.generateID(), myListName)
+  addMovieInNewList(film: MovieResponse, myListName: string,visibility:string){
+    if(myListName.trim() !== '' && myListName !== undefined){
+      const newList = new List(this.filmTraitement.generateID(), myListName, visibility); 
       newList.addFilm(film);
       this.filmTraitement.addList(newList);
+      
       this.dialogRef.close();
-      this.displayMessage("Votre film a été ajouté avec succès", "");
+      console.log("visibilité "+visibility);
+      this.filmTraitement.openMessageDialog("Votre film a été ajouté avec succès");
     }else{
-      this.displayMessage("Donnez un nom à votre liste", "");
+      this.filmTraitement.displayMessage("Erreur : Veuillez saisir le nom de la liste !", "Fermer");
+      this.data.nameList='';
+
     }
     
   }
 
   public save(film: MovieResponse, list: List) {
     this.filmTraitement.addFilmToList(list, film);
-    // list.(film);
     this.dialogRef.close();
-    this.displayMessage("Votre film a été ajouté avec succès", "");
+    this.filmTraitement.openMessageDialog("Votre film a été ajouté avec succès");
   }
 
 }

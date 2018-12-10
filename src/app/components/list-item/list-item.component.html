@@ -9,16 +9,16 @@
     </div>
     
     <div class="btn-bloc-list" *ngIf="ifCustomList && onHover">
-            <div class="command" title="Cliquez pour supprimer ce film">
+            <div class="moveSup" title="Cliquez pour supprimer ce film">
                         <button mat-mini-fab color="primary" (click)="openDialogForRemoveMovie(film)">
                             <mat-icon>delete</mat-icon>
                         </button>
              </div>
-
             <div class="command" title="Cliquez pour déplacer ce film">
-                    <button mat-mini-fab color="primary" (click)="openDialogForRemoveMovie(film)">
+                    <button mat-mini-fab color="primary" (click)="openDialogForMoveMovie(film)">
                         <mat-icon>move_to_inbox</mat-icon>
                     </button>
+            
             </div>
     </div>
     

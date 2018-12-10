@@ -2,6 +2,10 @@ import {Subject} from 'rxjs';
 import {MovieResponse, MovieGenre, Option} from 'src/app/tmdb-data/Movie';
 import {Injectable} from '@angular/core';
 import {List} from '../../tmdb-data/List';
+import { MatDialogRef } from '@angular/material';
+import { MoveMovieComponent } from 'src/app/components/move-movie/move-movie.component';
+import { MessageComponent } from 'src/app/components/message/message.component';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Injectable({
     providedIn: 'root'
@@ -11,13 +15,31 @@ export class TraitementFilmsService {
     private _movies: MovieResponse[] = [];
     private _subject = new Subject<any>();
     private listTmp: List;
+    public ifNew = true;
 
     private _lists: List[] = [];
+    public Currentlist: List;
+    nameList: string;
+    ltmp : List;
+    ifMyListEmpty:boolean;
+    addClicked = false;
     
-    constructor() {
+    constructor(private _dialog: MatDialog,public snackBar: MatSnackBar) {
     }
 
-
+    openMessageDialog(_message:string):void{
+        const mydialog = this._dialog.open(MessageComponent,{
+            width: '400px',
+            data:{message: _message}
+        });
+    }
+    displayMessage(message: string, secondParam: string) {
+        this.snackBar.open(message, 'Fermer', {
+          duration: 8000,
+          horizontalPosition: "center",
+          verticalPosition: "bottom"
+        });
+    }
     addList(list: List) {
         this._lists.push(list);
     }
@@ -27,9 +49,7 @@ export class TraitementFilmsService {
     }
 
     public addFilmToList (list: List, film: MovieResponse) {
-        this._lists.forEach((cList) => {
-            cList.addFilm(film);
-        })
+        list.films.push(film);
     }
     
     get movies(): MovieResponse[] {
@@ -104,7 +124,30 @@ export class TraitementFilmsService {
         return '_' + Math.random().toString(36).substr(2, 9);
     }
 
-  
+    public moveMovieExistList(currentFilm: MovieResponse, listOrigin: List, listDestination: List, dialogRef: MatDialogRef<MoveMovieComponent>){
+        if(listDestination === listOrigin){
+            this.displayMessage("Sélectionnez une différente liste !","");
+        }else{
+            listDestination.films.push(currentFilm);
+            dialogRef.close();
+            listOrigin.films.splice(listOrigin.films.indexOf(currentFilm),1);
+            this.openMessageDialog("Votre film a été déplacé avec succès !");
+        }
+        
+    }
+
+    public moveMovieNewList(film: MovieResponse,myListName: string, listOrigin: List,visibility:string, dialogRef: MatDialogRef<MoveMovieComponent>){
+        if(myListName.trim() !== '' && myListName !== undefined){
+        this.ltmp = new List(this.generateID(), myListName,visibility);
+        this.ltmp.addFilm(film);
+        this.addList(this.ltmp);
+        dialogRef.close();
+        listOrigin.films.splice(listOrigin.films.indexOf(film),1);
+        this.openMessageDialog("Votre film a été déplacé avec succès !");
+        }else{
+            this.displayMessage("Donnez un nom à votre liste", "");
+        } 
+    }
 
 }
 

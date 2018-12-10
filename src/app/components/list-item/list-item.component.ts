@@ -7,6 +7,7 @@ import {TraitementFilmsService} from '../../services/movies/traitement-films';
 import {List} from '../../tmdb-data/List';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { RemoveMovieComponent } from '../remove-movie/remove-movie.component';
+import { MoveMovieComponent } from '../move-movie/move-movie.component';
 
 @Component({
     selector: 'app-list-item',
@@ -51,6 +52,7 @@ export class ListItemComponent implements OnInit {
 
     openDialog(currentFilm: MovieResponse, lists: List[]): void {
         const dialogRef = this._dialog.open(DialogAddFilmComponent, {
+            disableClose: true,
             width: '600px',
             data: {film: currentFilm, lists: lists}
         });
@@ -62,6 +64,17 @@ export class ListItemComponent implements OnInit {
             data: {film: currentFilm}
         });
         this._tfService.setListTmp(this.list);
+        dialogRef.afterClosed().subscribe(result => {
+        });
+    }
+
+    openDialogForMoveMovie(currentFilm: MovieResponse): void{
+        this._tfService.setListTmp(this.list);
+        const dialogRef = this._dialog.open(MoveMovieComponent, {
+            width: '450px',
+            data: {film: currentFilm, list: this.list}
+        });
+     
         dialogRef.afterClosed().subscribe(result => {
         });
     }

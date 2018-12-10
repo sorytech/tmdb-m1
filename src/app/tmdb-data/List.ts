@@ -26,4 +26,10 @@ export class List {
     removeFilm(film: MovieResponse) {
         this.films = this.films.filter((currfilm) => currfilm !== film);
     }
+
+    setName(name: string) {
+        if (name !== undefined && name !== '') {
+            this.name = name;
+        }
+    }
 }

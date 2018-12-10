@@ -87,7 +87,13 @@
 
 .command {
     float: left;
+    height: 181px;
+    width: 50px;
+    line-height: 181px;
+}
 
+.moveSup{
+    float: left;
 }
 
 .btn-bloc-list {

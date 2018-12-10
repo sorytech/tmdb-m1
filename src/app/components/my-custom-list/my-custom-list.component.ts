@@ -1,11 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, OnChanges} from '@angular/core';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { MovieResponse } from 'src/app/tmdb-data/Movie';
 import { TraitementFilmsService } from 'src/app/services/movies/traitement-films';
 import { RemoveMovieComponent } from '../remove-movie/remove-movie.component';
 import { MatDialog } from '@angular/material';
 import { List } from 'src/app/tmdb-data/List';
-import { OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './my-custom-list.component.html',
   styleUrls: ['./my-custom-list.component.css']
 })
-export class MyCustomListComponent implements OnInit, OnChanges {
+export class MyCustomListComponent implements OnInit,OnChanges {
 
   private id: string;
   public myMovies: MovieResponse[] = [];
@@ -34,6 +33,4 @@ export class MyCustomListComponent implements OnInit, OnChanges {
       this.router.navigate(['films'])
     }
   }
-
-  
 }
