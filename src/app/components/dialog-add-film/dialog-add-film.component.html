@@ -24,7 +24,7 @@
                 <input matInput [(ngModel)]="data.nameList" placeholder="Saisissez le nom de la liste">
             </mat-form-field>
 
-            <mat-radio-group [(ngModel)]="visibility" required>
+            <mat-radio-group [(ngModel)]="visibility">
                 <mat-radio-button value="priveé">privée</mat-radio-button>
                 <mat-radio-button value="publique" >publique</mat-radio-button>
             </mat-radio-group> 
@@ -38,8 +38,8 @@
         style="margin-right:20px; margin-left: 5px;">Créer une nouvelle liste
         <mat-icon>add</mat-icon>
     </button>
-    <button *ngIf="addClicked" mat-raised-button color="primary" 
-        (click)="addMovieInNewList(data.film, data.nameList,visibility)" 
-        style="margin-right:20px; margin-left: 20%;" >Valider</button>
+    <button *ngIf="addClicked" mat-raised-button color="primary"  
+        style="margin-right:20px; margin-left: 20%;" 
+        (click)="addMovieInNewList(data.film, data.nameList,visibility)">Valider</button>
     <button mat-raised-button mat-dialog-close color="accent">Annuler</button>
 </mat-dialog-actions>

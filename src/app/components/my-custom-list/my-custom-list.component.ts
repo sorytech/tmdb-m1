@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, OnChanges} from '@angular/core';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { MovieResponse } from 'src/app/tmdb-data/Movie';
 import { TraitementFilmsService } from 'src/app/services/movies/traitement-films';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './my-custom-list.component.html',
   styleUrls: ['./my-custom-list.component.css']
 })
-export class MyCustomListComponent implements OnInit {
+export class MyCustomListComponent implements OnInit,OnChanges {
 
   private id: string;
   public myMovies: MovieResponse[] = [];
@@ -22,6 +22,13 @@ export class MyCustomListComponent implements OnInit {
   ngOnInit() {
     this.id = this._route.snapshot.params['id']; // On récupère l'id de la liste
     this.myMovies=this._filmTraitment.getMoviesFromList(this.id);
+    if(this.myMovies === undefined) {
+      this.router.navigate(['films'])
+    }
+  }
+
+  ngOnChanges () {
+    console.log('changes++++++++++++++++++++')
     if(this.myMovies === undefined) {
       this.router.navigate(['films'])
     }

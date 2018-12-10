@@ -37,7 +37,10 @@ export class DialogAddFilmComponent implements OnInit {
 
   addMovieInNewList(film: MovieResponse, myListName: string,visibility:string){
     if(myListName.trim() !== '' && myListName !== undefined){
-      this.filmTraitement.addList(new List(this.filmTraitement.generateID(), myListName, visibility));
+      const newList = new List(this.filmTraitement.generateID(), myListName, visibility); 
+      newList.addFilm(film);
+      this.filmTraitement.addList(newList);
+      
       this.dialogRef.close();
       console.log("visibilité "+visibility);
       this.filmTraitement.openMessageDialog("Votre film a été ajouté avec succès");

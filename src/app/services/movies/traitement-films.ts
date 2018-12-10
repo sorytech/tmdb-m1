@@ -20,7 +20,6 @@ export class TraitementFilmsService {
     private _lists: List[] = [];
     public Currentlist: List;
     nameList: string;
-    visibility: string="";
     ltmp : List;
     ifMyListEmpty:boolean;
     addClicked = false;
@@ -50,9 +49,7 @@ export class TraitementFilmsService {
     }
 
     public addFilmToList (list: List, film: MovieResponse) {
-        this._lists.forEach((cList) => {
-            cList.addFilm(film);
-        })
+        list.films.push(film);
     }
     
     get movies(): MovieResponse[] {
@@ -128,46 +125,29 @@ export class TraitementFilmsService {
     }
 
     public moveMovieExistList(currentFilm: MovieResponse, listOrigin: List, listDestination: List, dialogRef: MatDialogRef<MoveMovieComponent>){
-        listDestination.films.push(currentFilm);
-        dialogRef.close();
-        listOrigin.films.splice(listOrigin.films.indexOf(currentFilm),1);
-        this.confirmationMessage("Votre film a été ajouté avec succès", ""); 
-        console.log('Test update listDestination '+this.Currentlist.films);
+        if(listDestination === listOrigin){
+            this.displayMessage("Sélectionnez une différente liste !","");
+        }else{
+            listDestination.films.push(currentFilm);
+            dialogRef.close();
+            listOrigin.films.splice(listOrigin.films.indexOf(currentFilm),1);
+            this.openMessageDialog("Votre film a été déplacé avec succès !");
+        }
+        
     }
 
-    public moveMovieNewList(film: MovieResponse,myListName: string, listOrigin: List, dialogRef: MatDialogRef<MoveMovieComponent>){
-        if(myListName != undefined){
-        this.ltmp = new List(this.generateID(), myListName,this.visibility);
+    public moveMovieNewList(film: MovieResponse,myListName: string, listOrigin: List,visibility:string, dialogRef: MatDialogRef<MoveMovieComponent>){
+        if(myListName.trim() !== '' && myListName !== undefined){
+        this.ltmp = new List(this.generateID(), myListName,visibility);
         this.ltmp.addFilm(film);
         this.addList(this.ltmp);
         dialogRef.close();
         listOrigin.films.splice(listOrigin.films.indexOf(film),1);
-        this.confirmationMessage("Votre film a été ajouté avec succès", "");
+        this.openMessageDialog("Votre film a été déplacé avec succès !");
         }else{
-        this.emptyMessage("Donnez un nom à votre liste", "");
+            this.displayMessage("Donnez un nom à votre liste", "");
         } 
     }
-
-
-  confirmationMessage(message: string, secondParam: string) {
-    this.snackBar.open(message, secondParam, {
-      duration: 5000,
-      horizontalPosition: "center",
-      verticalPosition: "top"
-    });
-  }
-
-  emptyMessage(message: string, secondParam: string) {
-    this.snackBar.open(message, secondParam, {
-      duration: 5000,
-      horizontalPosition: "center",
-      verticalPosition: "top"
-    });
-  }
-
-  addMovieInNewList(film: MovieResponse,myListName: string){
-
-  }
 
 }
 
