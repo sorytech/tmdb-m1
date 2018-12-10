@@ -11,11 +11,11 @@ import {MatDialog} from '@angular/material';
 import { AddNewListComponent } from './add-new-list/add-new-list.component';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 import { DialogEditListComponent } from '../dialog-edit-list/dialog-edit-list.component';
+import { RemoveListComponent } from '../remove-list/remove-list.component';
 
 export interface DialogData {
     nameList: string;
     visibility: string;
-    isRemove?: boolean;
     currentList: List;
   }
 
@@ -29,22 +29,17 @@ export class MainPageComponent implements OnInit {
     public options = Constant.getGenres;
 
     public checkedGenres: Option[] = [];
-
-    public lists: List[]=[];
     
     nameList: string;
     visibility: string;
 
     constructor(private _userService: UserService,
                 private _tmdb: TmdbService, private _filmTraitment: TraitementFilmsService, 
-                public dialog: MatDialog, private router: Router,
+                private dialog: MatDialog, private router: Router,
                 private _activedRoute: ActivatedRoute) {
-
     }
 
-    ngOnInit() {
-        this.lists=this._filmTraitment.lists;
-    }
+    ngOnInit() {}
 
     formatLabel(value: number | null) {
         if (!value) {
@@ -96,29 +91,21 @@ export class MainPageComponent implements OnInit {
           width: '280px',
           disableClose: true,
           data: {nameList: this.nameList, visibility: this.visibility, currentList: list}
+
         });
-        
-        dialogRef.afterClosed().subscribe(result => {
-          if(result !== undefined && result !== '') {
-              this._filmTraitment.addList(new List(this._filmTraitment.generateID(), result, this.visibility));           
-          }
-        });
+
     } 
     
 
-    edit(list: List) {
-        console.log('edit')
+    edit(list: List,cdt: boolean) {
+        this._filmTraitment.ifNew=cdt;
         this.openDialog(list);
     }
 
-    delete(list: List) {
-        this._filmTraitment.deleteList(list);
-        this.lists=this._filmTraitment.lists;
-        console.log('route : ', this._activedRoute.snapshot)
-        this._activedRoute.snapshot.params['myCustomList'];
-
-        this.router.navigate(['films']);
-
-        console.log('delete')
+    delete(currentList: List) {
+        const dialogRef = this.dialog.open(RemoveListComponent,{
+           width:'450px',
+           data:{liste: currentList} 
+        });
     }
 }

@@ -35,12 +35,12 @@
             <mat-accordion>
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
-                        <mat-panel-title matBadge="{{lists.length}}" matBadgePosition="above after" matBadgeColor="accent"> Mes listes </mat-panel-title>
+                        <mat-panel-title matBadge="{{_filmTraitment.lists.length}}" matBadgePosition="above after" matBadgeColor="accent"> Mes listes </mat-panel-title>
                     </mat-expansion-panel-header>
                     <mat-list class="list-content">
-                        <mat-list-item *ngFor="let list of lists" [routerLink]="['/myCustomList', list.id]"
+                        <mat-list-item *ngFor="let list of _filmTraitment.lists" [routerLink]="['/myCustomList', list.id]"
                                        class="list-item">
-                            <mat-icon  (click)="edit(list)">edit</mat-icon>
+                            <mat-icon  (click)="edit(list,false)">edit</mat-icon>
                             <mat-icon  (click)="delete(list)">delete</mat-icon>
 
                             <h3 matLine matBadge="" matBadgePosition="above after" matBadgeColor="accent"> {{list.name}} </h3>

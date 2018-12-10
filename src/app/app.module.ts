@@ -44,6 +44,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AddNewListComponent } from './components/main-page/add-new-list/add-new-list.component';
 import { RemoveMovieComponent } from './components/remove-movie/remove-movie.component';
 import { DialogEditListComponent } from './components/dialog-edit-list/dialog-edit-list.component';
+import { RemoveListComponent } from './components/remove-list/remove-list.component';
+import { MessageComponent } from './components/message/message.component';
 
 const appRoutes: Routes = [
     {path: 'film/:id', component: FIlmComponent},
@@ -77,7 +79,9 @@ const appRoutes: Routes = [
         DialogAddFilmComponent,
         AddNewListComponent,
         RemoveMovieComponent,
-        DialogEditListComponent
+        DialogEditListComponent,
+        RemoveListComponent,
+        MessageComponent
     ],
     imports: [
         BrowserModule,
@@ -107,7 +111,8 @@ const appRoutes: Routes = [
     ],
     providers: [TmdbService, TraitementFilmsService],
     exports: [ResearchComponent],
-    entryComponents: [DialogAddFilmComponent, AddNewListComponent, RemoveMovieComponent, DialogAddFilmComponent],
+    entryComponents: [DialogAddFilmComponent, AddNewListComponent, RemoveMovieComponent,
+         DialogAddFilmComponent,RemoveListComponent,MessageComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

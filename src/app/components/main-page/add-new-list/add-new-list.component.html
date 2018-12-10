@@ -1,25 +1,40 @@
-<div mat-dialog-content>
-  <p>Donnez un nom à votre liste</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.nameList"  *ngIf=" data.currentList === undefined">  
-    <input matInput [(ngModel)]="data.currentList.name"  *ngIf=" data.currentList !== undefined">  
+<div *ngIf="ifNew">
+  <div mat-dialog-content>
+    <p>Donnez un nom à votre liste</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.nameList"  *ngIf=" data.currentList === undefined">  
+      <input matInput [(ngModel)]="data.currentList.name"  *ngIf=" data.currentList !== undefined">  
+  
+    </mat-form-field>
+  </div>
+  <p>Choisir la visibilité</p>
+  
+  <mat-radio-group [(ngModel)]="visibility" required>
+    <mat-radio-button value="priveé">privée</mat-radio-button>
+    <mat-radio-button value="publique" selected>publique</mat-radio-button>
+  </mat-radio-group>  
+  
+  <br>
+  <div mat-dialog-actions *ngIf=" data.currentList === undefined">
+      <button mat-button  (click) ="createNewList(data.nameList,visibility)" mat-raised-button color="primary">Valider</button>
+    <button mat-button mat-dialog-close mat-raised-button color="accent">Annuler</button>
+  </div>
 
-  </mat-form-field>
 </div>
-<p>Choisir la visibilité</p>
 
-<mat-radio-group [(ngModel)]="visibility">
-  <mat-radio-button value="priveé">privée</mat-radio-button>
-  <mat-radio-button value="publique">publique</mat-radio-button>
-</mat-radio-group>  
+<div *ngIf="!ifNew">
 
-<br>
-<div mat-dialog-actions *ngIf=" data.currentList === undefined">
-    <button mat-button [mat-dialog-close]="data.nameList" cdkFocusInitial>Valider</button>
-  <button mat-button (click)="onNoClick()">Annuler</button>
-</div>
+  <div mat-dialog-content>
+    <p>Renommer la liste</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.nameList"  *ngIf=" data.currentList === undefined">  
+      <input matInput [(ngModel)]="data.currentList.name"  *ngIf=" data.currentList !== undefined">  
+    </mat-form-field>
+  </div>
 
-<div mat-dialog-actions *ngIf=" data.currentList !== undefined">
-    <button mat-button (click)="saveEdit()"cdkFocusInitial>Sauvegarder</button>
-    <button mat-button (click)="cancelEdit()">Annuler</button>
+  <div mat-dialog-actions *ngIf=" data.currentList !== undefined">
+    <button mat-button (click)="saveEdit()" mat-raised-button color="primary">Sauvegarder</button>
+    <button mat-button (click)="cancelEdit()" mat-raised-button color="accent">Annuler</button>
+  </div>
+
 </div>

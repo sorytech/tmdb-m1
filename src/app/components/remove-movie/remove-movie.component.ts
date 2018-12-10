@@ -12,11 +12,10 @@ import { MovieResponse } from 'src/app/tmdb-data/Movie';
 })
 export class RemoveMovieComponent implements OnInit {
 
-  private id: string;
   public list: List;
   constructor(public dialogRef: MatDialogRef<RemoveMovieComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,public dialog: MatDialog,
-    private _route: ActivatedRoute,private _filmTraitment: TraitementFilmsService) {}
+    private _filmTraitment: TraitementFilmsService) {}
 
 
   ngOnInit() {}
@@ -24,10 +23,7 @@ export class RemoveMovieComponent implements OnInit {
   removeMovie(film: MovieResponse){
     this.list = this._filmTraitment.getListTmp();
     this.list.films.splice(this.list.films.indexOf(film),1);
-    this.onNoClick();
-  }
-
-  onNoClick(): void {
     this.dialogRef.close();
+    this._filmTraitment.openMessageDialog("Le film "+film.title+" a été supprimé de votre liste !");
   }
 }
